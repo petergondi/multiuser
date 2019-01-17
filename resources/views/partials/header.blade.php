@@ -1,8 +1,8 @@
 <!-- start: header -->
-<header class="header bg-primary">
+<header class="header">
         <div class="logo-container">
             <a href="../" class="logo">
-                {{ config('app.name', 'MOVETECH') }}
+                <img src="{{asset('assets/images/movetech.png')}}" height="35"  alt="JSOFT Admin" />
             </a>
             <div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
                 <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
@@ -110,7 +110,7 @@
                                 <li>
                                     <a href="#" class="clearfix">
                                         <figure class="image">
-                                            <img src="assets/images/!sample-user.jpg" alt="Joseph Junior" class="img-circle" />
+                                            <img src="{{asset('assets/images/!sample-user.jpg')}}" alt="Joseph Junior" class="img-circle" />
                                         </figure>
                                         <span class="title">Joseph Junior</span>
                                         <span class="message">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet lacinia orci. Proin vestibulum eget risus non luctus. Nunc cursus lacinia lacinia. Nulla molestie malesuada est ac tincidunt. Quisque eget convallis diam.</span>
@@ -186,8 +186,8 @@
                     <figure class="profile-picture">
                         <img src="{{asset('assets/images/!logged-user.jpg')}}" alt="Joseph Doe" class="img-circle" data-lock-picture="assets/images/!logged-user.jpg" />
                     </figure>
-                    <div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@JSOFT.com">
-                        John
+                    <div class="profile-info" >
+                          
                         <span class="name"></span>
                         @if(Auth::guard('admin')->check())
                         <span class="role">administrator</span>

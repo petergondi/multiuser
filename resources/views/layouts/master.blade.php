@@ -33,7 +33,7 @@
             <div class="inner-wrapper">
             @include('partials.sidebar')
             @yield('content')
-            </div>
+           
             </section>
 
             <!-- Vendor -->

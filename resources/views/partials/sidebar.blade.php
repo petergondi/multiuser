@@ -4,7 +4,7 @@
         
             <div class="sidebar-header">
                 <div class="sidebar-title">
-                    Navigation
+                   <h4 class="text-primary"> Navigation</h4>
                 </div>
                 <div class="sidebar-toggle hidden-xs" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
                     <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
@@ -16,7 +16,7 @@
                     <nav id="menu" class="nav-main" role="navigation">
                         <ul class="nav nav-main">
                             <li class="nav-active">
-                                <a href="index.html">
+                                <a href="/admin">
                                     <i class="fa fa-home" aria-hidden="true"></i>
                                     <span>Dashboard</span>
                                 </a>
@@ -28,12 +28,17 @@
                                 </a>
                                 <ul class="nav nav-children ">
                                     <li>
-                                        <a href="/admin/user">
+                                        <a href="/admin/user/create">
                                              Add User
                                         </a>
                                     </li>
                                     <li>
-                                        <a  href="pages-signin.html">
+                                        <a href="/admin/user">
+                                             Assign Role
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a  href="/admin/user/view">
                                              View Users
                                         </a>
                                     </li>   
@@ -42,7 +47,7 @@
                             <li class="nav-parent">
                                 <a>
                                     <i class="glyphicon glyphicon-tasks" aria-hidden="true"></i>
-                                    <span>Department Managaement</span>
+                                    <span>Deptmet Managaement</span>
                                 </a>
                                 <ul class="nav nav-children">
                                     <li>
@@ -155,20 +160,10 @@
         
 				<section role="main" class="content-body">
 					<header class="page-header">
-						<h2>Dashboard</h2>
-					
-						<div class="right-wrapper pull-right">
-							<ol class="breadcrumbs">
-								<li>
-									<a href="index.html">
-										<i class="fa fa-home"></i>
-									</a>
-								</li>
-								<li><span>Dashboard</span></li>
-							</ol>
-					
-							<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
-						</div>
+                            <a href="/admin">
+
+                            <h2> <i class="fa fa-home"></i> Welcome </h2>
+                            </a>
 					</header>
 
 						
