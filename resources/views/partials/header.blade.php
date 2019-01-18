@@ -184,14 +184,14 @@
             <div id="userbox" class="userbox">
                 <a href="#" data-toggle="dropdown">
                     <figure class="profile-picture">
-                        <img src="{{asset('assets/images/!logged-user.jpg')}}" alt="Joseph Doe" class="img-circle" data-lock-picture="assets/images/!logged-user.jpg" />
+                        <img src="http://stylopics.com/wp-content/uploads/2013/09/itm_cute-white-cat-in-bucket2013-02-15_13-27-48_1.jpg" alt="Joseph Doe" class="img-circle" data-lock-picture="http://stylopics.com/wp-content/uploads/2013/09/itm_cute-white-cat-in-bucket2013-02-15_13-27-48_1.jpg" />
                     </figure>
                     <div class="profile-info" >
-                          
+                         {{ Auth::user()->name}}
                         <span class="name"></span>
                         @if(Auth::guard('admin')->check())
                         <span class="role">administrator</span>
-                        @elseif(Auth::guard('user')->check())
+                        @elseif(Auth::guard('web')->check())
                         <span class="role">user</span>
                         @endif
                        </div>

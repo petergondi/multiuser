@@ -29,7 +29,7 @@
     </ul>
 @else
 <ul class="list-group">
-        <li class="list-group-item">Logged Out as <strong>Executive <a href="/executive/login">Admin Login</a></strong>
+        <li class="list-group-item">Logged Out as <strong>Executive <a href="/executive/login">Executive Login</a></strong>
         </li>
     </ul>
 @endif

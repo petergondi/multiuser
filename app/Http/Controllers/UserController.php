@@ -7,6 +7,11 @@ use App\User;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +20,8 @@ class UserController extends Controller
     public function index()
     {
         //
-        return view('user-management.create');
+        $users=User::All();
+        return view('user-management.create')->with('users',$users);
     }
 
     /**
@@ -43,15 +49,17 @@ class UserController extends Controller
              'email'=>'required',
              'password'=>'required'
         ]);
+        $role=array();
+     foreach($_POST['role'] as $value) {
+            $role[]=$value;
+     }
+        $checkData = implode(",", $role);
         $post=new User;
         $post->firstname=$request->input('firstname');
         $post->middlename=$request->input('middlename');
         $post->email=$request->input('email');
         $post->password=$request->input('password');
-        foreach ($request->input("hobby") as $role){
-            $post->role= $role; 
-            $post->save();   
-    }
+        $post->role=$checkData;
         $post->save();
         return redirect('admin/user/view')->with('success','User Added');
         
@@ -67,7 +75,7 @@ class UserController extends Controller
     {
         //
         $users = User::all();
-        return view('user-management.view');
+        return view('user-management.view')->with('users',$users);
     }
 
     /**
@@ -79,7 +87,11 @@ class UserController extends Controller
     public function edit($id)
     {
         //
-        return view('user-management.edit');
+        $user = User::find($id);
+        if ($user == null) {
+            return redirect('admin/user/view');
+        }
+        return view('user-management.edit')->with('user', $user);
     }
 
     /**
@@ -92,6 +104,26 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request,[
+            'firstname'=>'required',
+            'middlename'=>'required',
+             'email'=>'required',
+             'password'=>'required',
+             'role'=>'required'
+        ]);
+        $role=array();
+     foreach($_POST['role'] as $value) {
+            $role[]=$value;
+     }
+        $checkData = implode(",", $role);
+        $user_update = User::find($id);
+        $user_update->firstname=$request->input('firstname');
+        $user_update->middlename=$request->input('middlename');
+        $user_update->email=$request->input('email');
+        $user_update->password=$request->input('password');
+        $user_update->role=$checkData;
+        $user_update->save();
+        return redirect('admin/user/view')->with('success','Updated Added');
     }
 
     /**
@@ -103,5 +135,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+        User::where('id', $id)->delete();
+        return redirect('admin/user/view')->with('success','User Deleted');
     }
 }

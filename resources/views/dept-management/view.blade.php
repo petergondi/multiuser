@@ -1,8 +1,7 @@
-@extends('user-management.base')
+@extends('dept-management.base')
 @section('action-content')
 @include('partials.messages')
 <section class="content">
-    <section class="content">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -12,10 +11,10 @@
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
-                    <div class="col-sm-8"><h2>User <b>Details</b></h2></div>
+                    <div class="col-sm-8"><h2>Department <b>Details</b></h2></div>
                     <div class="col-sm-4">
-                            <a href="/admin/user/create">
-                        <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New User</button>
+                            <a href="/admin/dept/create">
+                        <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New Department</button>
                             </a>
                     </div>
                 </div>
@@ -23,26 +22,26 @@
             <table class="table table-bordered table-hover table-dark">
                 <thead>
                     <tr>
-                        <th>Email</th>
-                        <th>FirstName</th>
-                        <th>MIddleName</th>
-                        <th>Role</th>
-                        <th>Action</th>
+                        <th>Department Code</th>
+                        <th>Name</th>
+                        <th>Department</th>
+                        <th>Incharge</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                        @foreach($users as $user)
+                        @foreach($depts as $dept)
                     <tr>       
-                    <td>{{$user->email}}</td>
-                    <td>{{$user->firstname}}</td>
-                    <td>{{$user->middlename}}</td>
-                    <td>{{$user->role}}</td>
+                    <td>{{$dept->number}}</td>
+                    <td>{{$dept->name}}</td>
+                    <td>{{$dept->email}}</td>
+                    <td>{{$dept->firstname}}</td>
                         <td>
-                            <a href="/admin/user/edit/{{$user->id}}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                            {!! Form::open(['action' => ['UserController@destroy',$user->id],'method'=>'DELETE']) !!}
-                            <button class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></button>
+                        <a href="/admin/dept/edit/{{$dept->id}}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                            {!! Form::open(['action' => ['DepartmentController@destroy',$dept->id],'method'=>'DELETE']) !!}
+                            <button class="delete alert alert-danger" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></button>
                             {!! Form::close() !!}
-                          </td>
+                        </td>
                     </tr>
                     @endforeach 
                 </tbody>

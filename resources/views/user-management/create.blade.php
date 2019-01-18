@@ -6,9 +6,8 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading ">Add new User</div>
-                <div class="panel-body">
-                       
+                <div class="panel-heading " style="background-color:#072F5F;color:white;">Add new User</div>
+                <div class="panel-body ">  
                         {!! Form::open(['action' => 'UserController@store','method'=>'POST','enctype'=>'multipart/form-data']) !!}
                         {{ csrf_field() }}
                         <div class="form-group{{ $errors->has('firstname') ? ' has-error' : '' }}">
@@ -64,19 +63,22 @@
                                 @endif
                             </div>
                         </div>
+                        
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
                         <div class="form-group">
                                 <label class="col-md-4 control-label">Assign Role</label>
                                 <div class="col-md-6">
-                                        <label for="art" class="checkbox-inline">
-                                                {{Form::checkbox('hobby[]','role1')}}Role 1
-                                             </label>
-                                             <label for="artitecture" class="checkbox-inline">        
-                                                  {{Form::checkbox('hobby[]','role2')}}Role 2
-                                             </label>
-                                              <label for="business" class="checkbox-inline">
-                                                  {{Form::checkbox('hobby[]','role3')}}Role 3
-                                              </label>
-                                                  
+                                    <select class="selectpicker" name="role[]" multiple data-live-search="true">
+                                    <div class="invisible">{{$roles = App\Roles::all()}}</div>
+                                    @foreach ($roles as $role) 
+                                         <option>{{$role->name}}</option>
+                                 @endforeach
+                                      </select>
+                                   
                                  </div>
                                  </div>
                         

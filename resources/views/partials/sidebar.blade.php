@@ -4,7 +4,7 @@
         
             <div class="sidebar-header">
                 <div class="sidebar-title">
-                   <h4 class="text-primary"> Navigation</h4>
+                   <h4 style="font-size:15px" class="text-primary"> Navigation</h4>
                 </div>
                 <div class="sidebar-toggle hidden-xs" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
                     <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
@@ -16,14 +16,14 @@
                     <nav id="menu" class="nav-main" role="navigation">
                         <ul class="nav nav-main">
                             <li class="nav-active">
-                                <a href="/admin">
-                                    <i class="fa fa-home" aria-hidden="true"></i>
+                                <a style="font-size:15px" href="/admin">
+                                    <i style="font-size:24px"class="fa fa-home" aria-hidden="true"></i>
                                     <span>Dashboard</span>
                                 </a>
                             </li>
                             <li class="nav-parent">
-                                <a>
-                                    <i class="fa fa-link" aria-hidden="true"></i>
+                                <a style="font-size:15px">
+                                    <i style="font-size:24px" class="fa fa-link" aria-hidden="true"></i>
                                     <span>User Management</span>
                                 </a>
                                 <ul class="nav nav-children ">
@@ -33,8 +33,8 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="/admin/user">
-                                             Assign Role
+                                        <a href="/admin/user/role">
+                                             Add Role
                                         </a>
                                     </li>
                                     <li>
@@ -45,63 +45,37 @@
                                 </ul>
                             </li>
                             <li class="nav-parent">
-                                <a>
-                                    <i class="glyphicon glyphicon-tasks" aria-hidden="true"></i>
-                                    <span>Deptmet Managaement</span>
+                                <a style="font-size:15px">
+                                    <i style="font-size:24px" class="glyphicon glyphicon-tasks" aria-hidden="true"></i>
+                                    <span>Department Management</span>
                                 </a>
                                 <ul class="nav nav-children">
                                     <li>
-                                        <a href="forms-basic.html">
+                                        <a href="/admin/dept/create">
                                              Add Department
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="forms-advanced.html">
+                                        <a href="/admin/dept/view">
                                              View All Department
-                                        </a>
-                                    </li>
-                   
-                                    <li>
-                                        <a href="forms-code-editor.html">
-                                             Code Editor
                                         </a>
                                     </li>
                                 </ul>
                             </li>
                             <li class="nav-parent">
-                                <a>
-                                    <i class="fa fa-table" aria-hidden="true"></i>
-                                    <span>Tables</span>
+                                <a style="font-size:15px">
+                                    <i style="font-size:24px" class="fa fa-gear fa-spin" aria-hidden="true"></i>
+                                    <span>Settings</span>
                                 </a>
                                 <ul class="nav nav-children">
                                     <li>
-                                        <a href="tables-basic.html">
-                                             Basic
+                                        <a class="fa fa-envelope" style="font-size:18px" href="tables-basic.html">
+                                             Mail
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="tables-advanced.html">
-                                             Advanced
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="tables-responsive.html">
-                                             Responsive
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="tables-editable.html">
-                                             Editable
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="tables-ajax.html">
-                                             Ajax
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="tables-pricing.html">
-                                             Pricing
+                                        <a class="fa fa-mobile-phone" style="font-size:24px" href="tables-advanced.html">
+                                             Sms
                                         </a>
                                     </li>
                                 </ul>

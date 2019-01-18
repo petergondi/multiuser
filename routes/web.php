@@ -32,6 +32,20 @@ Route::get('/', 'AdminController@index')->name('admin.dashboard');
 Route::get('/user/create', 'UserController@index')->name('admin.create');
 Route::get('/user/view', 'UserController@show')->name('admin.view');
 Route::post('/user/view', 'UserController@store')->name('admin.view');
+Route::get('/user/edit/{id}', 'UserController@edit')->name('admin.view');
+Route::put('/user/update/{id}', 'UserController@update');
+Route::get('/dept/view', 'DepartmentController@show')->name('admin.view');
+Route::get('/dept/create', 'DepartmentController@index')->name('admin.dept.create');
+Route::post('/dept/create', 'DepartmentController@store')->name('admin.dept.create');
+Route::delete('/dept/view/{id}', 'DepartmentController@destroy')->name('admin.view.delete');
+Route::get('/dept/edit/{id}', 'DepartmentController@edit');
+Route::put('/dept/update/{id}', 'DepartmentController@update');
+Route::get('/user/role', 'RoleController@index')->name('admin.view');
+Route::put('/user/role/update/{id}', 'RoleController@update')->name('admin.view');
+Route::get('/user/role/edit/{id}', 'RoleController@edit')->name('admin.view');
+Route::post('/user/role/create', 'RoleController@store')->name('admin.view');
+Route::delete('/user/role/{id}', 'RoleController@destroy');
+Route::delete('/user/view/{id}', 'UserController@destroy')->name('admin.view.delete');
 Route::get('/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');
 
 
