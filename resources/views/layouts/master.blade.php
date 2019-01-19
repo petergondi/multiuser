@@ -23,6 +23,8 @@
 		<link rel="stylesheet" href="{{asset('assets/stylesheets/skins/default.css')}}" />
 		<!-- Theme Custom CSS -->
         <link rel="stylesheet" href="{{asset('assets/stylesheets/theme-custom.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/custom/made.css')}}">
+
         
 		<!-- Head Libs -->
         <script src="{{asset('assets/vendor/modernizr/modernizr.js')}}"></script>

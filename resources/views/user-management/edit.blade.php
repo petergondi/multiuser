@@ -66,13 +66,16 @@
                             @endif
                         </div>
                     </div>
-                    
-
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+                   
                     <div class="form-group">
                             <label class="col-md-4 control-label">Assign Role</label>
                             <div class="col-md-6">
-                                <select class="selectpicker" name="role[]" value="{{$user->role}}" multiple data-live-search="true">
-                                <div class="invisible">{{$roles = App\Roles::all()}}</div>
+                                <select class="selectpicker" name="role[]" multiple data-live-search="true">
+                              <div class="invisible">{{$roles = App\Roles::all()}}</div>
                                 @foreach ($roles as $role) 
                                      <option>{{$role->name}}</option>
                              @endforeach

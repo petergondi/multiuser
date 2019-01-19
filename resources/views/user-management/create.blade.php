@@ -11,7 +11,7 @@
                         {!! Form::open(['action' => 'UserController@store','method'=>'POST','enctype'=>'multipart/form-data']) !!}
                         {{ csrf_field() }}
                         <div class="form-group{{ $errors->has('firstname') ? ' has-error' : '' }}">
-                            <label for="firstname" class="col-md-4 control-label">First Name</label>
+                            <label style="color:black;" for="firstname" class="col-md-4 control-label">First Name</label>
 
                             <div class="col-md-6">
                                 <input id="firstname" type="text" class="form-control" name="firstname" value="{{ old('firstname') }}" required autofocus>
@@ -25,7 +25,7 @@
                         </div>
                         
                         <div class="form-group{{ $errors->has('middlename') ? ' has-error' : '' }}">
-                            <label for="middlename" class="col-md-4 control-label">Middle Name</label>
+                            <label style="color:black;" for="middlename" class="col-md-4 control-label">Middle Name</label>
 
                             <div class="col-md-6">
                                 <input id="middlename" type="text" class="form-control" name="middlename" value="{{ old('middlename') }}" required>
@@ -38,7 +38,7 @@
                             </div>
                         </div>
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="address" class="col-md-4 control-label">Email</label>
+                            <label style="color:black;" for="address" class="col-md-4 control-label">Email</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="text" class="form-control" name="email" value="{{ old('email') }}" required>
@@ -51,7 +51,7 @@
                             </div>
                         </div>
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="lastname" class="col-md-4 control-label">Password</label>
+                            <label style="color:black;" for="lastname" class="col-md-4 control-label">Password</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control" name="password" value="{{ old('password') }}" required>
@@ -70,7 +70,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 
                         <div class="form-group">
-                                <label class="col-md-4 control-label">Assign Role</label>
+                                <label style="color:black;" class="col-md-4 control-label">Assign Role</label>
                                 <div class="col-md-6">
                                     <select class="selectpicker" name="role[]" multiple data-live-search="true">
                                     <div class="invisible">{{$roles = App\Roles::all()}}</div>

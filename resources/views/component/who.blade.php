@@ -17,7 +17,7 @@
     </ul>
 
 @else
-<ul class="list-group">
+<ul  class="list-group">
         <li class="list-group-item">Logged Out as <strong>Admin <a href="/admin/login">Admin Login</a></strong>
         </li>
     </ul>

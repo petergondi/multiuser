@@ -68,7 +68,7 @@ class DepartmentController extends Controller
     public function show()
     {
         //
-        $depts = Department::all();
+        $depts = Department::paginate(2);
         return view('dept-management.view')->with('depts',$depts);
     }
 

@@ -20,9 +20,9 @@
                     </div>
                 </div>
             </div>
-            <table class="table table-bordered table-hover table-dark">
+            <table class="table table-bordered">
                 <thead>
-                    <tr>
+                    <tr class="bg-primary">
                         <th>Email</th>
                         <th>FirstName</th>
                         <th>MIddleName</th>
@@ -33,20 +33,23 @@
                 <tbody>
                         @foreach($users as $user)
                     <tr>       
-                    <td>{{$user->email}}</td>
-                    <td>{{$user->firstname}}</td>
-                    <td>{{$user->middlename}}</td>
-                    <td>{{$user->role}}</td>
+                    <td><b>{{$user->email}}</b></td>
+                    <td><b>{{$user->firstname}}</b></td>
+                    <td><b>{{$user->middlename}}</b></td>
+                    <td><b>{{$user->role}}</b></td>
                         <td>
                             <a href="/admin/user/edit/{{$user->id}}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
                             {!! Form::open(['action' => ['UserController@destroy',$user->id],'method'=>'DELETE']) !!}
-                            <button class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></button>
+                            <button class="delete alert alert-danger" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></button>
                             {!! Form::close() !!}
                           </td>
                     </tr>
                     @endforeach 
                 </tbody>
             </table>
+            <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
+                {{ $users->links() }}
+              </div>
         </div>
     </div>     
 </body>

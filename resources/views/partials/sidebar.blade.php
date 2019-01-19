@@ -69,12 +69,12 @@
                                 </a>
                                 <ul class="nav nav-children">
                                     <li>
-                                        <a class="fa fa-envelope" style="font-size:18px" href="tables-basic.html">
+                                        <a class="fa fa-envelope" style="font-size:18px" href="/admin/setting/email">
                                              Mail
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="fa fa-mobile-phone" style="font-size:24px" href="tables-advanced.html">
+                                        <a class="fa fa-mobile-phone" style="font-size:24px" href="/admin/setting/sms">
                                              Sms
                                         </a>
                                     </li>

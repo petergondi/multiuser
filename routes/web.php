@@ -47,6 +47,14 @@ Route::post('/user/role/create', 'RoleController@store')->name('admin.view');
 Route::delete('/user/role/{id}', 'RoleController@destroy');
 Route::delete('/user/view/{id}', 'UserController@destroy')->name('admin.view.delete');
 Route::get('/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');
+Route::get('/setting/email', 'MailController@index');
+Route::get('/setting/email/submit', 'MailController@mail');
+Route::post('/setting/email/create', 'MailController@emailform');
+Route::get('/setting/sms', 'SmsController@index');
+Route::post('/setting/sms/create', 'SmsController@smsform');
+
+
+
 
 
 });

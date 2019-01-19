@@ -19,9 +19,9 @@
                     </div>
                 </div>
             </div>
-            <table class="table table-bordered table-hover table-dark">
+            <table class="table table-bordered ">
                 <thead>
-                    <tr>
+                    <tr class="bg-primary">
                         <th>Department Code</th>
                         <th>Name</th>
                         <th>Department</th>
@@ -32,10 +32,10 @@
                 <tbody>
                         @foreach($depts as $dept)
                     <tr>       
-                    <td>{{$dept->number}}</td>
-                    <td>{{$dept->name}}</td>
-                    <td>{{$dept->email}}</td>
-                    <td>{{$dept->firstname}}</td>
+                    <td><b>{{$dept->number}}</td>
+                    <td><b>{{$dept->name}}</b></td>
+                    <td><b>{{$dept->email}}</b></td>
+                    <td><b>{{$dept->firstname}}</b></td>
                         <td>
                         <a href="/admin/dept/edit/{{$dept->id}}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
                             {!! Form::open(['action' => ['DepartmentController@destroy',$dept->id],'method'=>'DELETE']) !!}
@@ -46,6 +46,9 @@
                     @endforeach 
                 </tbody>
             </table>
+            <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
+                {{ $depts->links() }}
+              </div>
         </div>
     </div>     
 </body>
