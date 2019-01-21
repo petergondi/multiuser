@@ -10,9 +10,9 @@
                 {!! Form::open(['action' => 'UserController@store','method'=>'POST','enctype'=>'multipart/form-data']) !!}
         @else
         {!! Form::open(['action' => ['UserController@update',$user->id],'method'=>'POST','enctype'=>'multipart/form-data']) !!}
-        @endif
         <input type="hidden" name="_method" value="PUT">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        @endif
                     <div class="form-group{{ $errors->has('firstname') ? ' has-error' : '' }}">
                         <label for="firstname" class="col-md-4 control-label">First Name</label>
 

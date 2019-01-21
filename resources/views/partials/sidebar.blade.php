@@ -87,10 +87,15 @@
                                     </a>
                                     <ul class="nav nav-children">
                                         <li>
-                                            <a class="glyphicon glyphicon-pushpin"  style="font-size:18px" href="/admin/tasks/assign">
+                                            <a class="fa fa-thumb-tack"  style="font-size:18px" href="/admin/tasks/assign">
                                                  Assign
                                             </a>
                                         </li>
+                                        <li>
+                                                <a class="fa fa-eye"  style="font-size:18px" href="/admin/tasks/view">
+                                                     View 
+                                                </a>
+                                            </li>
                                     </ul>
                                 </li>
                             </li>

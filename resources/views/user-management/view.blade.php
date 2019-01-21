@@ -39,10 +39,10 @@
                     <td><b>{{$user->middlename}}</b></td>
                     <td><b>{{$user->role}}</b></td>
                         <td>
-                                <a style="float:left;" href="/admin/user/edit/{{$user->id}}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;&nbsp;</i></a>
-                            {!! Form::open(['action' => ['UserController@destroy',$user->id],'method'=>'DELETE']) !!}
-                            <button style="float:left; width:10px;height:10px;" class="delete alert alert-danger" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></button>
-                            {!! Form::close() !!}
+                                <a style="float:left;" href="/admin/user/edit/{{$user->id}}" data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs " data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button>&nbsp;&nbsp;</a>
+                                {!! Form::open(['action' => ['UserController@destroy',$user->id],'method'=>'DELETE']) !!}
+                                <p style="float:left;" data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p>
+                                {!! Form::close() !!}
                           </td>
                     </tr>
                     @endforeach 

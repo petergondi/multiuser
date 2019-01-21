@@ -5,15 +5,21 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading ">Assign Task</div>
+                <div class="panel-heading ">Edit Task</div>
+                @if(!isset($task->id))
                 {!! Form::open(['action' => 'TaskController@storeTask','method'=>'POST','enctype'=>'multipart/form-data']) !!}
-                {{ csrf_field() }}
+        @else
+        {!! Form::open(['action' => ['TaskController@update',$task->id,$task->customer_name],'method'=>'POST','enctype'=>'multipart/form-data']) !!}
+        <input type="hidden" name="_method" value="PUT">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        @endif
+       
                 <div class="panel-body">
                         <div class="form-group{{ $errors->has('task_name') ? ' has-error' : '' }}">
                             <label for="task_name" class="col-md-4 control-label">Task Name</label>
 
                             <div class="col-md-6">
-                                <input id="task_name" type="text" class="form-control" name="task_name" value="{{ old('task_name') }}" required autofocus>
+                                <input id="task_name" type="text" class="form-control" name="task_name" value="{{$task->task_name}}" required autofocus>
 
                                 @if ($errors->has('task_name'))
                                     <span class="help-block">
@@ -25,8 +31,10 @@
                         
                         <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
                             <label for="description" class="col-md-4 control-label">Task Description</label>
+
                             <div class="col-md-6">
-                                <textarea class="form-control" rows="5" name="description" id="comment"  value="{{ old('description') }}" required></textarea>
+                                <input id="description" type="text" class="form-control" name="description" value="{{$task->description }}" required>
+
                                 @if ($errors->has('description'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('description') }}</strong>
@@ -38,7 +46,7 @@
                             <label for="customer_name" class="col-md-4 control-label">Customer Name</label>
 
                             <div class="col-md-6">
-                                <input id="customer_name" type="text" class="form-control" name="customer_name" value="{{ old('customer_name') }}" required>
+                                <input id="customer_name" type="text" class="form-control" name="customer_name" value="{{$task->customer_name}}" required>
 
                                 @if ($errors->has('customer_name'))
                                     <span class="help-block">
@@ -51,7 +59,7 @@
                             <label for="location" class="col-md-4 control-label">Location</label>
 
                             <div class="col-md-6">
-                                <input id="location" type="text" class="form-control" name="location" value="{{ old('location') }}" required>
+                                <input id="location" type="text" class="form-control" name="location" value="{{$task->location}}" required>
 
                                 @if ($errors->has('Location'))
                                     <span class="help-block">
@@ -64,7 +72,7 @@
                                 <label for="contact" class="col-md-4 control-label">Customer Contact</label>
     
                                 <div class="col-md-6">
-                                    <input id="contact" type="tel" class="form-control" name="contact" value="{{ old('contact') }}" required>
+                                    <input id="contact" type="tel" class="form-control" name="contact" value="{{$task->contact}}" required>
     
                                     @if ($errors->has('contact'))
                                         <span class="help-block">
@@ -77,7 +85,7 @@
                                     <label for="email" class="col-md-4 control-label">Customer email</label>
         
                                     <div class="col-md-6">
-                                        <input id="email" type="text" class="form-control" name="email" value="{{ old('email') }}" required>
+                                        <input id="email" type="text" class="form-control" name="email" value="{{$task->email}}" required>
         
                                         @if ($errors->has('email'))
                                             <span class="help-block">
@@ -90,7 +98,7 @@
                                         <label for="asignee_name" class="col-md-4 control-label">Assignee</label>
             
                                         <div class="col-md-6">
-                                            <input id="asignee_name" type="text" class="form-control" name="asignee_name" value="{{ old('asignee_name') }}" required>
+                                            <input id="asignee_name" type="text" class="form-control" name="asignee_name" value="{{ $task->asignee_name}}" required>
             
                                             @if ($errors->has('asignee_name'))
                                                 <span class="help-block">
@@ -102,7 +110,7 @@
                                     <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary pull-right">
-                                    Assign
+                                    Update
                                 </button>
                             </div>
                         </div>

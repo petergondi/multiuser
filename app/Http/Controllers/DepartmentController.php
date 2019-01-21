@@ -111,7 +111,7 @@ class DepartmentController extends Controller
         $dept->email=$request->input('email');
         $dept->firstname=$request->input('firstname');
         $dept->save();
-        return redirect('admin/dept/view')->with('success',"Department Updated");
+        return redirect('admin/dept/view')->with('success',"Department Updated!");
     }
 
     /**
