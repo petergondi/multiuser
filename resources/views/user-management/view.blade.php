@@ -1,6 +1,7 @@
 @extends('user-management.base')
 @section('action-content')
 @include('partials.messages')
+
 <section class="content">
     <section class="content">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
@@ -20,10 +21,10 @@
                     </div>
                 </div>
             </div>
-            <table class="table table-bordered">
-                <thead>
-                    <tr class="bg-primary">
-                        <th>Email</th>
+            <table  class="table table-bordered">
+                <thead >
+                    <tr class="bg-primary" >
+                        <th >Email</th>
                         <th>FirstName</th>
                         <th>MIddleName</th>
                         <th>Role</th>
@@ -32,15 +33,15 @@
                 </thead>
                 <tbody>
                         @foreach($users as $user)
-                    <tr>       
+                    <tr >       
                     <td><b>{{$user->email}}</b></td>
                     <td><b>{{$user->firstname}}</b></td>
                     <td><b>{{$user->middlename}}</b></td>
                     <td><b>{{$user->role}}</b></td>
                         <td>
-                            <a href="/admin/user/edit/{{$user->id}}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                                <a style="float:left;" href="/admin/user/edit/{{$user->id}}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;&nbsp;</i></a>
                             {!! Form::open(['action' => ['UserController@destroy',$user->id],'method'=>'DELETE']) !!}
-                            <button class="delete alert alert-danger" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></button>
+                            <button style="float:left; width:10px;height:10px;" class="delete alert alert-danger" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></button>
                             {!! Form::close() !!}
                           </td>
                     </tr>

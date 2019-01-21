@@ -52,6 +52,8 @@ Route::get('/setting/email/submit', 'MailController@mail');
 Route::post('/setting/email/create', 'MailController@emailform');
 Route::get('/setting/sms', 'SmsController@index');
 Route::post('/setting/sms/create', 'SmsController@smsform');
+Route::get('/tasks/assign', 'TaskController@index');
+Route::post('/tasks/assign/assigned', 'TaskController@storeTask');
 
 
 

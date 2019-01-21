@@ -46,7 +46,7 @@
                             </li>
                             <li class="nav-parent">
                                 <a style="font-size:15px">
-                                    <i style="font-size:24px" class="glyphicon glyphicon-tasks" aria-hidden="true"></i>
+                                    <i style="font-size:24px" class="fa fa-building-o" aria-hidden="true"></i>
                                     <span>Department Management</span>
                                 </a>
                                 <ul class="nav nav-children">
@@ -80,6 +80,19 @@
                                     </li>
                                 </ul>
                             </li>
+                            <li class="nav-parent">
+                                    <a style="font-size:15px">
+                                        <i style="font-size:24px" class="fa fa-tasks" aria-hidden="true"></i>
+                                        <span>Tasks</span>
+                                    </a>
+                                    <ul class="nav nav-children">
+                                        <li>
+                                            <a class="glyphicon glyphicon-pushpin"  style="font-size:18px" href="/admin/tasks/assign">
+                                                 Assign
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
                             </li>
                         </ul>
                     </nav>

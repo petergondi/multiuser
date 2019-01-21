@@ -19,9 +19,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
-        $users=User::All();
+                //
+
+        $users = User::All();
         return view('user-management.create')->with('users',$users);
+        
     }
 
     /**
@@ -42,7 +44,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
          $this->validate($request,[
             'firstname'=>'required',
             'middlename'=>'required',
