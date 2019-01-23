@@ -90,8 +90,12 @@
                                         <label for="asignee_name" class="col-md-4 control-label">Assignee</label>
             
                                         <div class="col-md-6">
-                                            <input id="asignee_name" type="text" class="form-control" name="asignee_name" value="{{ old('asignee_name') }}" required>
-            
+                                            <select class="form-control" name="asignee_id" id="assignee">
+                                                    <option value="" selected>Select Assignee</option>
+                                                    @foreach($assignees as $assignee)
+                                            <option value="{{$assignee->id}}">{{$assignee->firstname}}</option>
+                                                    @endforeach
+                                                  </select>
                                             @if ($errors->has('asignee_name'))
                                                 <span class="help-block">
                                                     <strong>{{ $errors->first('asignee_name') }}</strong>

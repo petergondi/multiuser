@@ -49,7 +49,8 @@ class UserController extends Controller
             'firstname'=>'required',
             'middlename'=>'required',
              'email'=>'required',
-             'password'=>'required'
+             'password'=>'required',
+             'role'=>'required'
         ]);
         $role=array();
      foreach($_POST['role'] as $value) {
@@ -60,7 +61,7 @@ class UserController extends Controller
         $post->firstname=$request->input('firstname');
         $post->middlename=$request->input('middlename');
         $post->email=$request->input('email');
-        $post->password=$request->input('password');
+        $post->password=password_hash($request->input('password'),PASSWORD_DEFAULT);
         $post->role=$checkData;
         $post->save();
         return redirect('admin/user/view')->with('success','User Added');
@@ -122,7 +123,7 @@ class UserController extends Controller
         $user_update->firstname=$request->input('firstname');
         $user_update->middlename=$request->input('middlename');
         $user_update->email=$request->input('email');
-        $user_update->password=$request->input('password');
+        $user_update->password=password_hash($request->input('password'),PASSWORD_DEFAULT);
         $user_update->role=$checkData;
         $user_update->save();
         return redirect('admin/user/view')->with('success','Updated Added');

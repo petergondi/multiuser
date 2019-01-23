@@ -17,30 +17,28 @@
           <div id="table" class="table-editable">
             <table class="table table-bordered table-responsive-md table-striped table-hover">
               <tr>
-                <th class="text-center bg-primary">No</th>
-                <th class="text-center bg-primary">Task Name</th>
-                <th class="text-center bg-primary">Description</th>
-                <th class="text-center bg-primary">Customer Name</th>
-                <th class="text-center bg-primary">Location</th>
-                <th class="text-center bg-primary">Contact</th>
-                <th class="text-center bg-primary">Customer Email</th>
-                <th class="text-center bg-primary">Assignee</th>
-                <th class="text-center bg-primary">Status</th>
-                <th class="text-center bg-primary">Remove</th>
+            
+                <th class=" bg-primary">Task Name</th>
+                <th class=" bg-primary">Description</th>
+                <th class=" bg-primary">Customer Name</th>
+                <th class=" bg-primary">Location</th>
+                <th class=" bg-primary">Contact</th>
+                <th class=" bg-primary">Customer Email</th>
+                <th class=" bg-primary">Assignee</th>
+                <th class=" bg-primary">Status</th>
+                <th class=" bg-primary">Action</th>
               </tr>
               @foreach($tasks as $task)
               <tr>
-                  
-                <td class="pt-3-half" contenteditable="true">{{$task->id}}</td>
                 <td class="pt-3-half" contenteditable="true">{{$task->task_name}}</td>
                 <td class="pt-3-half" contenteditable="true">{{$task->description}}</td>
                 <td class="pt-3-half" contenteditable="true">{{$task->customer_name}}</td>
                 <td class="pt-3-half" contenteditable="true">{{$task->location}}</td>
                 <td class="pt-3-half" contenteditable="true">{{$task->contact}}</td>
                 <td class="pt-3-half" contenteditable="true">{{$task->email}}</td>
-                <td class="pt-3-half" contenteditable="true">{{$task->asignee_name}}</td>
+                <td class="pt-3-half" contenteditable="true">{{$task->user->firstname}}</td>
                 <td class="pt-3-half">
-                <span class="label label-warning">Not active</span>
+                <span class="label label-warning">Not Replied</span>
                 </td>
                 <td><a href="/admin/tasks/edit/{{$task->id}}" style="float:left;" data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs " data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button>&nbsp;&nbsp;</a>
                   {!! Form::open(['action' => ['TaskController@destroy',$task->id],'method'=>'DELETE']) !!}

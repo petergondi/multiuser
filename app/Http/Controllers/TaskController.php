@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Task;
-use App\Assignee;
+use App\Customer;
+use App\User;
 
 class TaskController extends Controller
 {
@@ -26,9 +27,10 @@ class TaskController extends Controller
      */
     public function index()
     {
-        return view('task-management.create');
+        $assignees=User::All();
+        return view('task-management.create')->with('assignees',$assignees);
     }
-    //function for posting task to both task table and assignee of the task table
+    //function for posting task to both task table and customer
     public function storeTask(Request $request)
     {
         //
@@ -39,12 +41,13 @@ class TaskController extends Controller
             'location'=>'required',
             'contact'=>'required',
             'email'=>'required',
-            'asignee_name'=>'required'
+            'asignee_id'=>'required'
         ]);
-        $assigned=new Assignee;
-        $assigned->asignee_name=$request->input('asignee_name');
-        $assigned->task_name=$request->input('task_name');
-        $assigned->customer_name=$request->input('customer_name');
+        $customer=new Customer;
+        $customer->email=$request->input('email');
+        $customer->contact=$request->input('contact');
+        $customer->location=$request->input('location');
+        $customer->customer_name=$request->input('customer_name');
         $task=new Task;
         $task->task_name=$request->input('task_name');
         $task->description=$request->input('description');
@@ -52,14 +55,15 @@ class TaskController extends Controller
         $task->location=$request->input('location');
         $task->contact=$request->input('contact');
         $task->email=$request->input('email');
-        $task->asignee_name=$request->input('asignee_name');
+        $task->asignee_id=$request->input('asignee_id');
         $task->save();
-        $assigned->save();
+        $customer->save();
         return redirect('admin/tasks/view')->with('success','Task Assigned');
         
     }
     public function show(){
-        $tasks=Task::paginate(3);;
+        $tasks = Task::with('user')->paginate(3);
+        //$tasks=Task::paginate(3);
         return view('task-management.view')->with('tasks',$tasks);
     }
     //editing tasks
@@ -72,7 +76,7 @@ class TaskController extends Controller
         }
         return view('task-management.edit')->with('task', $task);
     }
-     //function for posting task to both task table and assignee of the task table
+     //function for updating both task table and customers of  table
      public function update(Request $request,$id)
      {
          //
@@ -86,10 +90,11 @@ class TaskController extends Controller
              'asignee_name'=>'required'
          ]);
         
-         if( $assigned=Assignee::find($id)){
-            $assigned->asignee_name=$request->input('asignee_name');
-            $assigned->task_name=$request->input('task_name');
-            $assigned->customer_name=$request->input('customer_name');
+         if( $customer=Customer::find($id)){
+            $customer->email=$request->input('email');
+            $customer->contact=$request->input('contact');
+            $customer->location=$request->input('location');
+            $customer->customer_name=$request->input('customer_name');
             $task=Task::find($id);
             $task->task_name=$request->input('task_name');
             $task->description=$request->input('description');
@@ -99,14 +104,15 @@ class TaskController extends Controller
             $task->email=$request->input('email');
             $task->asignee_name=$request->input('asignee_name');
             $task->save();
-            $assigned->save(); 
+            $customer->save(); 
             return redirect('admin/tasks/view')->with('success','Task Updated');
          }
          else{
-            $assigned=new Assignee;
-            $assigned->asignee_name=$request->input('asignee_name');
-            $assigned->task_name=$request->input('task_name');
-            $assigned->customer_name=$request->input('customer_name');
+            $customer=new Customer;
+            $customer->email=$request->input('email');
+            $customer->contact=$request->input('contact');
+            $customer->location=$request->input('location');
+            $customer->customer_name=$request->input('customer_name');
             $task=Task::find($id);
             $task->task_name=$request->input('task_name');
             $task->description=$request->input('description');
@@ -116,7 +122,7 @@ class TaskController extends Controller
             $task->email=$request->input('email');
             $task->asignee_name=$request->input('asignee_name');
             $task->save();
-            $assigned->save();
+            $customer->save();
             return redirect('admin/tasks/view')->with('success','Task Updated');
         }
          
@@ -125,9 +131,9 @@ class TaskController extends Controller
      public function destroy($id)
      {
          //delete both records from assignee and task table
-         if(Assignee::where('id', $id)){
+         if(Customer::where('id', $id)){
             Task::where('id', $id)->delete();
-            Assignee::where('id', $id)->delete();
+            Customer::where('id', $id)->delete();
             return redirect('admin/tasks/view')->with('success','Task Deleted');
          }
          //incase in inconsistent id delete only the record in task table
@@ -136,6 +142,10 @@ class TaskController extends Controller
             return redirect('admin/tasks/view')->with('success','Task Deleted');
          }
         
+     }
+     public function customers(){
+         $customers= Customer::paginate(3);
+         return view('customers.view')->with('customers',$customers);
      }
    
 }

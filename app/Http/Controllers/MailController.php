@@ -29,8 +29,7 @@ class MailController extends Controller
     }
     public function emailform(Request $request)
     {
-        $email = Email::All();
-        if($email==true|||$email){
+        if($email = Email::All()){
             Email::query()->truncate();
             $this->validate($request,[
            

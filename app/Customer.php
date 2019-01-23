@@ -6,7 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Assignee extends Authenticatable
+class Customer extends Authenticatable
 {
     use Notifiable;
 
@@ -16,10 +16,10 @@ class Assignee extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'task_name', 'customer_name','asignee_name'
+        'contact', 'customer_name','email','location'
     ];
     //task table
-    public $table="assignee";
+    public $table="customers";
 
     /**
      * The attributes that should be hidden for arrays.

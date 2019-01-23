@@ -58,6 +58,7 @@ Route::post('/tasks/assign/assigned', 'TaskController@storeTask');
 Route::get('/tasks/edit/{id}', 'TaskController@edit');
 Route::put('/tasks/update/{id}', 'TaskController@update');
 Route::delete('/tasks/view/{id}', 'TaskController@destroy');
+Route::get('/customers/show', 'TaskController@customers');
 
 
 

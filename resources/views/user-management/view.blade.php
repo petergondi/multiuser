@@ -39,7 +39,7 @@
                     <td><b>{{$user->middlename}}</b></td>
                     <td><b>{{$user->role}}</b></td>
                         <td>
-                                <a style="float:left;" href="/admin/user/edit/{{$user->id}}" data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs " data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button>&nbsp;&nbsp;</a>
+                                <a style="float:left;" href="/admin/user/edit/{{$user->id}}" data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs " data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button>&nbsp;&nbsp; </a>
                                 {!! Form::open(['action' => ['UserController@destroy',$user->id],'method'=>'DELETE']) !!}
                                 <p style="float:left;" data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p>
                                 {!! Form::close() !!}

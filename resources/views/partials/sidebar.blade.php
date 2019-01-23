@@ -21,11 +21,13 @@
                                     <span>Dashboard</span>
                                 </a>
                             </li>
+                           
                             <li class="nav-parent">
                                 <a style="font-size:15px">
                                     <i style="font-size:24px" class="fa fa-link" aria-hidden="true"></i>
-                                    <span>User Management</span>
+                                    <span>Users</span>
                                 </a>
+                               
                                 <ul class="nav nav-children ">
                                     <li>
                                         <a href="/admin/user/create">
@@ -43,11 +45,12 @@
                                         </a>
                                     </li>   
                                 </ul>
+                                
                             </li>
                             <li class="nav-parent">
                                 <a style="font-size:15px">
                                     <i style="font-size:24px" class="fa fa-building-o" aria-hidden="true"></i>
-                                    <span>Department Management</span>
+                                    <span>Departments</span>
                                 </a>
                                 <ul class="nav nav-children">
                                     <li>
@@ -57,7 +60,7 @@
                                     </li>
                                     <li>
                                         <a href="/admin/dept/view">
-                                             View All Department
+                                             View Departments
                                         </a>
                                     </li>
                                 </ul>
@@ -98,9 +101,23 @@
                                             </li>
                                     </ul>
                                 </li>
+                                <li class="nav-parent">
+                                    <a style="font-size:15px">
+                                        <i style="font-size:24px" class="fa fa-user" aria-hidden="true"></i>
+                                        <span>Customers</span>
+                                    </a>
+                                    <ul class="nav nav-children">
+                                        <li>
+                                                <a class="fa fa-eye"  style="font-size:18px" href="/admin/customers/show">
+                                                     View 
+                                                </a>
+                                            </li>
+                                    </ul>
+                                </li>
                             </li>
                         </ul>
                     </nav>
+                  
         
                     <hr class="separator" />
         

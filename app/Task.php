@@ -26,4 +26,8 @@ class Task extends Authenticatable
      *
      * @var array
      */
+    public function user()
+    {
+        return $this->belongsTo('App\User','asignee_id');
+    }
 }
