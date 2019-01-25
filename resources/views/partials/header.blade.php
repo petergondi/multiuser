@@ -126,14 +126,11 @@
                     <figure class="profile-picture">
                         <img src="http://stylopics.com/wp-content/uploads/2013/09/itm_cute-white-cat-in-bucket2013-02-15_13-27-48_1.jpg" alt="Joseph Doe" class="img-circle" data-lock-picture="http://stylopics.com/wp-content/uploads/2013/09/itm_cute-white-cat-in-bucket2013-02-15_13-27-48_1.jpg" />
                     </figure>
+                    @if(Auth::guard('admin')->check())
                     <div class="profile-info" >
-                     
+                     {{Auth::user()->firstname}}
                         <span class="name"></span>
-                        @if(Auth::guard('admin')->check())
                         <span class="role">administrator</span>
-                        @elseif(Auth::guard('web')->check())
-                        <span class="role">user</span>
-                        @endif
                        </div>
     
                     <i class="fa custom-caret"></i>
@@ -149,10 +146,35 @@
                             <a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="fa fa-lock"></i> Lock Screen</a>
                         </li>
                         <li>
-                            <a role="menuitem" tabindex="-1" href="pages-signin.html"><i class="fa fa-power-off"></i> Logout</a>
+                            <a role="menuitem" tabindex="-1" href="/admin/logout"><i class="fa fa-power-off"></i> Logout</a>
                         </li>
                     </ul>
                 </div>
+                @elseif(Auth::guard('web')->check())
+                <div class="profile-info" >
+                 {{Auth::user()->firstname}}
+                    <span class="name"></span>
+                    <span class="role">User</span>
+                   </div>
+
+                <i class="fa custom-caret"></i>
+            </a>
+
+            <div class="dropdown-menu">
+                <ul class="list-unstyled">
+                    <li class="divider"></li>
+                    <li>
+                        <a role="menuitem" tabindex="-1" href="pages-user-profile.html"><i class="fa fa-user"></i> My Profile</a>
+                    </li>
+                    <li>
+                        <a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="fa fa-lock"></i> Lock Screen</a>
+                    </li>
+                    <li>
+                    <a role="menuitem" tabindex="-1" href="{{route('users.logout')}}"><i class="fa fa-power-off"></i> Logout</a>
+                    </li>
+                </ul>
+            </div>
+            @endif
             </div>
         </div>
         <!-- end: search & user box -->

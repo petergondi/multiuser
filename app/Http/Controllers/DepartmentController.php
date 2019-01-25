@@ -55,7 +55,7 @@ class DepartmentController extends Controller
         $post->email=$request->input('email');
         $post->firstname=$request->input('firstname');
         $post->save();
-        return redirect('admin/dept/view')->with('success','Department Added');
+        return redirect('admin/dept/show')->with('success','Department Added');
         
     }
 

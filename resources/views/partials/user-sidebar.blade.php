@@ -21,109 +21,30 @@
                                     <span>Dashboard</span>
                                 </a>
                             </li>
-                           
-                            <li class="nav-parent">
-                                    @if(Auth::guard('admin')->check())
-                                <a style="font-size:15px">
-                                    <i style="font-size:24px" class="fa fa-link" aria-hidden="true"></i>
-                                    <span>Users</span>
-                                </a>
-                                @endif
-                               
-                                <ul class="nav nav-children ">
-                                        @if(Auth::guard('admin')->check())
-                                    <li>
-                                        <a href="/admin/user/create">
-                                             Add User
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/admin/user/role">
-                                             Add Role
-                                        </a>
-                                    </li>
-                                    @endif
-                                    <li>
-                                        <a  href="/admin/user/view">
-                                             View Users
-                                        </a>
-                                    </li>   
-                                </ul>
-                                
-                            </li>
                             <li class="nav-parent">
                                 <a style="font-size:15px">
                                     <i style="font-size:24px" class="fa fa-building-o" aria-hidden="true"></i>
                                     <span>Departments</span>
                                 </a>
                                 <ul class="nav nav-children">
-                                    @if(Auth::guard('admin')->check())
-                                    <li>
-                                        <a href="/admin/dept/create">
-                                             Add Department
-                                        </a>
-                                    </li>
-                                    @endif
-                                    @if(Auth::guard('admin')->check())
-                                    <li>
-                                        <a href="/admin/dept/view">
-                                             View Departments
-                                        </a>
-                                    </li>
-                                    @else
+                                   
                                     <li>
                                             <a href="/users/dept/view">
                                                  View Departments
                                             </a>
                                         </li>
-                                    @endif
+                                    
                                 </ul>
                             </li>
-                            @if(Auth::guard('admin')->check())
-                            <li class="nav-parent">
-                                <a style="font-size:15px">
-                                    <i style="font-size:24px" class="fa fa-gear fa-spin" aria-hidden="true"></i>
-                                    <span>Settings</span>
-                                </a>
-                                <ul class="nav nav-children">
-                                    <li>
-                                        <a class="fa fa-envelope" style="font-size:18px" href="/admin/setting/email">
-                                             Mail
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="fa fa-mobile-phone" style="font-size:24px" href="/admin/setting/sms">
-                                             Sms
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            @endif
+                            
                             <li class="nav-parent">
                                     <a style="font-size:15px">
                                         <i style="font-size:24px" class="fa fa-tasks" aria-hidden="true"></i>
                                         <span>Tasks&nbsp;<span class="badge"> 5</span></span>
                                     </a>
                                     <ul class="nav nav-children">
-                                            @if(Auth::guard('admin')->check())
-                                    <a style="font-size:15px">
-                                        <i style="font-size:24px" class="fa fa-tasks" aria-hidden="true"></i>
-                                                    <span>Tasks</span>
-                                                </a>
-                                                <ul class="nav nav-children">
-                                        <li>
-                                            <a class="fa fa-thumb-tack"  style="font-size:18px" href="/admin/tasks/assign">
-                                                 Assign
-                                            </a>
-                                        </li>
-                                        <li>
-                                                <a class="fa fa-eye"  style="font-size:18px" href="/admin/tasks/view">
-                                                     View 
-                                                </a>
-                                            </li>
-                                            @endif
                                             <li>
-                                                    <a class="fa fa-eye"  style="font-size:18px" href="/users/tasks/view">
+                                                    <a class="fa fa-eye"  style="font-size:18px" href="{{ route('users.tasks.view') }}">
                                                          View 
                                                     </a>
                                                 </li>

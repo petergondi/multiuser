@@ -15,10 +15,10 @@ class TaskController extends Controller
      *
      * @return void
      */
-    //public function __construct()
-    //{
-        //$this->middleware('auth:admin');
-    //}
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
 
 
     /**
@@ -145,28 +145,10 @@ class TaskController extends Controller
          }
         
      }
+     //showing customers
      public function customers(){
          $customers= Customer::paginate(3);
          return view('customers.view')->with('customers',$customers);
      }
-     public function userTask(){
-         $userlogged=Auth::user()->id;
-        // checking for authenticated user's task 
-            $usertasks=Task::where('asignee_id', $userlogged)->orderBy('id','desc')->get();
-            if($usertasks){
-                //checking for tasks that have been replied by the user 
-                //using task id that is present in reply table
-                foreach($usertasks as $taskreplied){
-                    $checkreplied=Reply::where('task_id',$taskreplied->id)->first();
-                    
-                }
-                    return view('task-management.usertask')->with(compact('usertasks','checkreplied')); 
-         }
-         //for debbugin purposes to be removed later
-        else{
-           return "not possible";
-         }
-         
-     }
-   
+    
 }

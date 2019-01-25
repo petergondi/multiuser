@@ -54,12 +54,12 @@
                                 <ul class="nav nav-children">
                                    
                                     <li>
-                                        <a href="/admin/dept/create">
+                                        <a href="{{ route('admin.dept.create') }}">
                                              Add Department
                                         </a>
                                     </li> 
                                     <li>
-                                        <a href="/admin/dept/view">
+                                        <a href="{{ route('admin.dept.show') }}">
                                              View Departments
                                         </a>
                                     </li>    

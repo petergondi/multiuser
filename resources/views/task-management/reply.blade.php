@@ -3,33 +3,29 @@
 @include('partials.messages')
 <div class="container">
 	<div class="row">
-        <p>You are replying to The following assigned task</p>
+        <h4>You are replying to The following assigned task</h4>
         @foreach($taskassigned as $taskassign) 
-        {{$taskid=$taskassign->id}}
+        <div class="invisible">{{$taskid=$taskassign->id}}</div>
             <ul  class="list-group">
-            <li class="list-group-item">Task Name <strong>{{$taskassign->task_name}}</a></strong>
+                   <li class="list-group-item bg-dark"><strong>TASK NAME:</strong> {{$taskassign->task_name}}
+                   </li>
+            </ul>
+            <ul  class="list-group">
+                    <li class="list-group-item bg-dark"><strong>TASK DESCRIPTION</strong> {{$taskassign->description}}
                     </li>
-                </ul>
-                <ul  class="list-group">
-                        <li class="list-group-item">Task Description <strong>{{$taskassign->description}}</a></strong>
-                        </li>
-                    </ul>
+            </ul>
                 @endforeach  
                 {!! Form::open(['action' => ['ReplyController@replyTask',$taskid,$userid],'method'=>'POST','enctype'=>'multipart/form-data']) !!}
                 {{ csrf_field() }}
 <div class="form-horizontal">
    
     <fieldset>
-
 <!-- Form Name -->
 <legend>Reply to the Assigned task</legend>
-
 <!-- Textarea -->
 <div class="form-group">
-  <div class="col-md-12">   
-                     
+  <div class="col-md-12">                   
     <textarea class="form-control" id="textarea" name="reply" cols="30" rows="5" placeholder="reply to the task"></textarea>
-   
 </div>
 </div>
 

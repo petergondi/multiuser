@@ -18,10 +18,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('user.logout');
+Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('users.logout');
 Route::get('/executive/login', 'Auth\ExecutiveLoginController@showLoginForm')->name('executive.login');
 Route::get('users/dept/view', 'DepartmentController@show');
-Route::get('users/tasks/view', 'TaskController@userTask');
+Route::get('users/tasks/view', 'UserTaskController@userTask')->name('users.tasks.view');
 Route::post('/executive/login', 'Auth\ExecutiveLoginController@login')->name('executive.login.submit');
 Route::get('/executive/logout', 'Auth\ExecutiveLoginController@logout')->name('executive.logout');
 Route::get('/executive', 'ExecutiveController@index');
@@ -38,9 +38,9 @@ Route::get('/user/view', 'UserController@show')->name('admin.view');
 Route::post('/user/view', 'UserController@store')->name('admin.view');
 Route::get('/user/edit/{id}', 'UserController@edit')->name('admin.view');
 Route::put('/user/update/{id}', 'UserController@update');
-Route::get('/dept/view', 'DepartmentController@show')->name('admin.view');
+Route::get('/dept/show', 'DepartmentController@show')->name('admin.dept.show');
 Route::get('/dept/create', 'DepartmentController@index')->name('admin.dept.create');
-Route::post('/dept/create', 'DepartmentController@store')->name('admin.dept.create');
+Route::post('/dept/create', 'DepartmentController@store');
 Route::delete('/dept/view/{id}', 'DepartmentController@destroy')->name('admin.view.delete');
 Route::get('/dept/edit/{id}', 'DepartmentController@edit');
 Route::put('/dept/update/{id}', 'DepartmentController@update');

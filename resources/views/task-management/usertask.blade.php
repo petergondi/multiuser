@@ -30,7 +30,7 @@
               <td class="pt-3-half" contenteditable="true"> {{$usertask->location}}</td>
               <td class="pt-3-half" contenteditable="true"> {{$usertask->contact}}</td>
               <td class="pt-3-half" contenteditable="true"> {{$usertask->email}}</td>
-              @if($checkreplied)
+              @if($usertask->status=="yes")
               <td class="pt-3-half">
                 <span class="label label-primary">Replied</span>
               </td>

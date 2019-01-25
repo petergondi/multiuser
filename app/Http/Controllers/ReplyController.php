@@ -21,7 +21,7 @@ class ReplyController extends Controller
         return view('task-management.reply')->with(compact('taskassigned','userid'));
     }
     public function replyTask(Request $request,$taskid,$userid){
-        $existing_reply=Reply::where('task_id',$taskid)->first();
+        $existing_reply= Task::where('id', $taskid)->where('status', '=', 'yes')->first();
         //checking to reply only once
         if($existing_reply){
         return redirect('users/tasks/view')->with('error','The task has been replied');
