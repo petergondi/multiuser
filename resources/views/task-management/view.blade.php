@@ -37,9 +37,15 @@
                 <td class="pt-3-half" contenteditable="true">{{$task->contact}}</td>
                 <td class="pt-3-half" contenteditable="true">{{$task->email}}</td>
                 <td class="pt-3-half" contenteditable="true">{{$task->user->firstname}}</td>
+                @if($task->status=="yes")
                 <td class="pt-3-half">
-                <span class="label label-warning">Not Replied</span>
+                <span class="label label-primary">Replied</span>
                 </td>
+                @else
+                <td class="pt-3-half">
+                  <span class="label label-warning">Not Replied</span>
+                  </td>
+                  @endif
                 <td><a href="/admin/tasks/edit/{{$task->id}}" style="float:left;" data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs " data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button>&nbsp;&nbsp;</a>
                   {!! Form::open(['action' => ['TaskController@destroy',$task->id],'method'=>'DELETE']) !!}
                 <p style="float:left;" data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>

@@ -20,9 +20,13 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('user.logout');
 Route::get('/executive/login', 'Auth\ExecutiveLoginController@showLoginForm')->name('executive.login');
+Route::get('users/dept/view', 'DepartmentController@show');
+Route::get('users/tasks/view', 'TaskController@userTask');
 Route::post('/executive/login', 'Auth\ExecutiveLoginController@login')->name('executive.login.submit');
 Route::get('/executive/logout', 'Auth\ExecutiveLoginController@logout')->name('executive.logout');
-Route::get('/executive', 'ExecutiveController@index')->name('executive.dashboard');
+Route::get('/executive', 'ExecutiveController@index');
+Route::get('users/tasks/reply/{id}','ReplyController@showReplyForm');
+Route::post('users/tasks/replied/{taskid}/{userid}','ReplyController@replyTask');
 //function to group all the admin prefix
 Route::prefix('admin')->group(function()
 {

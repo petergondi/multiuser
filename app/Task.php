@@ -30,4 +30,5 @@ class Task extends Authenticatable
     {
         return $this->belongsTo('App\User','asignee_id');
     }
+    
 }

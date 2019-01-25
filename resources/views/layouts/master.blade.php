@@ -33,7 +33,11 @@
 		<section class="body">
             @include('partials.header')
             <div class="inner-wrapper">
-            @include('partials.sidebar')
+                @if(Auth::guard('web')->check()&&!Auth::guard('admin')->check())
+                @include('partials.user-sidebar')
+                @elseif((Auth::guard('admin')->check()&&!Auth::guard('web')->check())||(Auth::guard('admin')->check()&&Auth::guard('web')->check()))
+                @include('partials.sidebar')
+                @endif
             @yield('content')
            
             </section>

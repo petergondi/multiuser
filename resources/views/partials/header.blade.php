@@ -127,7 +127,7 @@
                         <img src="http://stylopics.com/wp-content/uploads/2013/09/itm_cute-white-cat-in-bucket2013-02-15_13-27-48_1.jpg" alt="Joseph Doe" class="img-circle" data-lock-picture="http://stylopics.com/wp-content/uploads/2013/09/itm_cute-white-cat-in-bucket2013-02-15_13-27-48_1.jpg" />
                     </figure>
                     <div class="profile-info" >
-                         {{ Auth::user()->name}}
+                     
                         <span class="name"></span>
                         @if(Auth::guard('admin')->check())
                         <span class="role">administrator</span>

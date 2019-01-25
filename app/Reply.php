@@ -6,7 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class Reply extends Authenticatable
 {
     use Notifiable;
 
@@ -16,20 +16,19 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'reply', 
     ];
-public $table='users';
+    //task table
+    public $table="reply";
+
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
-    public function task(){
-        return $this->hasMany('App\Task');
-   }
-   
-   
+    //public function user()
+    //{
+        //return $this->belongsTo('App\User','asignee_id');
+    //}
+    
 }

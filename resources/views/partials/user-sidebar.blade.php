@@ -23,12 +23,15 @@
                             </li>
                            
                             <li class="nav-parent">
-                                   
+                                    @if(Auth::guard('admin')->check())
                                 <a style="font-size:15px">
                                     <i style="font-size:24px" class="fa fa-link" aria-hidden="true"></i>
                                     <span>Users</span>
                                 </a>
-                                <ul class="nav nav-children ">     
+                                @endif
+                               
+                                <ul class="nav nav-children ">
+                                        @if(Auth::guard('admin')->check())
                                     <li>
                                         <a href="/admin/user/create">
                                              Add User
@@ -39,12 +42,14 @@
                                              Add Role
                                         </a>
                                     </li>
+                                    @endif
                                     <li>
                                         <a  href="/admin/user/view">
                                              View Users
                                         </a>
                                     </li>   
-                                </ul>   
+                                </ul>
+                                
                             </li>
                             <li class="nav-parent">
                                 <a style="font-size:15px">
@@ -52,19 +57,29 @@
                                     <span>Departments</span>
                                 </a>
                                 <ul class="nav nav-children">
-                                   
+                                    @if(Auth::guard('admin')->check())
                                     <li>
                                         <a href="/admin/dept/create">
                                              Add Department
                                         </a>
-                                    </li> 
+                                    </li>
+                                    @endif
+                                    @if(Auth::guard('admin')->check())
                                     <li>
                                         <a href="/admin/dept/view">
                                              View Departments
                                         </a>
-                                    </li>    
+                                    </li>
+                                    @else
+                                    <li>
+                                            <a href="/users/dept/view">
+                                                 View Departments
+                                            </a>
+                                        </li>
+                                    @endif
                                 </ul>
-                            </li>             
+                            </li>
+                            @if(Auth::guard('admin')->check())
                             <li class="nav-parent">
                                 <a style="font-size:15px">
                                     <i style="font-size:24px" class="fa fa-gear fa-spin" aria-hidden="true"></i>
@@ -83,23 +98,35 @@
                                     </li>
                                 </ul>
                             </li>
+                            @endif
                             <li class="nav-parent">
-                                           
                                     <a style="font-size:15px">
                                         <i style="font-size:24px" class="fa fa-tasks" aria-hidden="true"></i>
-                                                <span>Tasks</span>
+                                        <span>Tasks&nbsp;<span class="badge"> 5</span></span>
                                     </a>
                                     <ul class="nav nav-children">
+                                            @if(Auth::guard('admin')->check())
+                                    <a style="font-size:15px">
+                                        <i style="font-size:24px" class="fa fa-tasks" aria-hidden="true"></i>
+                                                    <span>Tasks</span>
+                                                </a>
+                                                <ul class="nav nav-children">
                                         <li>
                                             <a class="fa fa-thumb-tack"  style="font-size:18px" href="/admin/tasks/assign">
                                                  Assign
                                             </a>
                                         </li>
                                         <li>
-                                            <a class="fa fa-eye"  style="font-size:18px" href="/admin/tasks/view">
-                                                View 
-                                            </a>
-                                        </li>   
+                                                <a class="fa fa-eye"  style="font-size:18px" href="/admin/tasks/view">
+                                                     View 
+                                                </a>
+                                            </li>
+                                            @endif
+                                            <li>
+                                                    <a class="fa fa-eye"  style="font-size:18px" href="/users/tasks/view">
+                                                         View 
+                                                    </a>
+                                                </li>
                                     </ul>
                                 </li>
                                 <li class="nav-parent">
@@ -118,6 +145,7 @@
                             </li>
                         </ul>
                     </nav>
+                  
         
                     <hr class="separator" />
         
