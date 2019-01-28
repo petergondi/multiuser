@@ -114,7 +114,7 @@
                     </figure>
                     @if(Auth::guard('admin')->check())
                     <div class="profile-info" >
-                     {{Auth::user()->firstname}}
+                    
                         <span class="name"></span>
                         <span class="role">administrator</span>
                        </div>
@@ -138,7 +138,7 @@
                 </div>
                 @elseif(Auth::guard('web')->check())
                 <div class="profile-info" >
-                 {{Auth::user()->firstname}}
+                
                     <span class="name"></span>
                     <span class="role">User</span>
                    </div>

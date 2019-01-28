@@ -30,6 +30,9 @@ public $table='users';
     public function task(){
         return $this->hasMany('App\Task');
    }
+   public function comment(){
+       return $this->hasMany('App\Reply');
+   }
    
    
 }

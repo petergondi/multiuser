@@ -5,7 +5,7 @@
        
 <div class="card">
 <p class="card-header text-center font-weight-bold text-uppercase py-4">Assigned Tasks &nbsp;<span class="badge bg-info">{{$totaltask=App\Task::All()->count()}}</span></p>
-<p >Unreplied Tasks:  &nbsp;<span class="glyphicon glyphicon-envelope"><span class="badge bg-warning">{{$unreplied=App\Task::where('status','no')->count()}}</span></span></p> 
+<p >Tasks Not replied To:  &nbsp;<span class="glyphicon glyphicon-envelope"><span class="badge bg-warning">{{$unreplied=App\Task::where('status','no')->count()}}</span></span></p> 
             <div class="row">
                 <div class="col-sm-4 pull-right">
                         <a href="/admin/tasks/assign">
@@ -19,14 +19,15 @@
             <table class="table table-bordered table-striped table-hover">
               <tr>
             
-                <th class=" bg-primary">Task Name</th>
+                <th class=" bg-primary">Task</th>
                 <th class=" bg-primary">Description</th>
-                <th class=" bg-primary">Customer Name</th>
+                <th class=" bg-primary">Customer</th>
                 <th class=" bg-primary">Location</th>
                 <th class=" bg-primary">Contact</th>
                 <th class=" bg-primary">Customer Email</th>
                 <th class=" bg-primary">Assignee</th>
-                <th class=" bg-primary">Status</th>
+                <th class=" bg-primary">User Status</th>
+                <th class=" bg-primary">Comment</th>
                 <th class=" bg-primary">Action</th>
               </tr>
               @foreach($tasks as $task)
@@ -47,6 +48,9 @@
                   <span class="label label-warning">Not Replied</span>
                   </td>
                   @endif
+                <td class="pt-3-half"> <a href="/admin/tasks/comment/{{$taskasignned=$task->id}}">
+                    <button type="button" class="btn btn-info add-new "><i class="fa fa-reply"></i></button>
+                        </a></td>
                 <td><a href="/admin/tasks/edit/{{$task->id}}" style="float:left;" data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs " data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button>&nbsp;&nbsp;</a>
                   {!! Form::open(['action' => ['TaskController@destroy',$task->id],'method'=>'DELETE']) !!}
                 <p style="float:left;" data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>

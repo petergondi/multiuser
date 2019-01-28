@@ -30,5 +30,13 @@ class Reply extends Authenticatable
     //{
         //return $this->belongsTo('App\User','asignee_id');
     //}
+    public function user()
+    {
+        return $this->belongsTo('App\User','user_id');
+    }
+    public function user1()
+    {
+        return $this->belongsTo('App\Admin','user_id');
+    }
     
 }

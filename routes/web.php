@@ -63,7 +63,9 @@ Route::get('/tasks/edit/{id}', 'TaskController@edit');
 Route::put('/tasks/update/{id}', 'TaskController@update');
 Route::delete('/tasks/view/{id}', 'TaskController@destroy');
 Route::get('/customers/show', 'TaskController@customers');
-
+//showing admin reply form
+Route::get('/tasks/comment/{taskasigned}','CommentController@show')->name('admin.tasks.comment');
+Route::post('/tasks/comment/{taskid}/{userid}', 'CommentController@CommentTask');
 
 
 
