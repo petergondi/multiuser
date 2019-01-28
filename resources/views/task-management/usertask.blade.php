@@ -4,7 +4,8 @@
 <section class="content">
        
 <div class="card">
-        <h3 class="card-header text-center font-weight-bold text-uppercase py-4">My Assigned Tasks</h3>
+<p class="card-header text-center font-weight-bold text-uppercase py-4">My Assigned Tasks<span class="badge">{{$usertasks->count()}}</span></p>
+<p>New Tasks &nbsp;<span class="glyphicon glyphicon-envelope"><span class="badge bg-warning">{{$usernew_task}}</span></span></p>
             <div class="row">
                 <div class="col-sm-4 pull-right">
                        
@@ -12,7 +13,7 @@
             </div>
             <br/>
         <div class="card-body">
-          <div id="table" class="table-editable">
+          <div id="table">
             <table class="table table-bordered table-responsive-md table-striped table-hover">
               <tr>
             
@@ -25,11 +26,11 @@
                 <th class=" bg-primary">reply</th>
                 @foreach($usertasks as $usertask)
               </tr>
-                <td class="pt-3-half" contenteditable="true"> {{$usertask->task_name}}</td>
-              <td class="pt-3-half" contenteditable="true"> {{$usertask->description}}</td>
-              <td class="pt-3-half" contenteditable="true"> {{$usertask->location}}</td>
-              <td class="pt-3-half" contenteditable="true"> {{$usertask->contact}}</td>
-              <td class="pt-3-half" contenteditable="true"> {{$usertask->email}}</td>
+              <td class="pt-3-half"> {{$usertask->task_name}}</td>
+              <td class="pt-3-half" > {{$usertask->description}}</td>
+              <td class="pt-3-half" > {{$usertask->location}}</td>
+              <td class="pt-3-half"> {{$usertask->contact}}</td>
+              <td class="pt-3-half" > {{$usertask->email}}</td>
               @if($usertask->status=="yes")
               <td class="pt-3-half">
                 <span class="label label-primary">Replied</span>

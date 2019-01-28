@@ -4,16 +4,12 @@
 
 <section class="content">
     <section class="content">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+       
     <div class="container">
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
-                    <div class="col-sm-8"><h2>User <b>Details</b></h2></div>
+                    <div class="col-sm-8"><h2>User Details</h2></div>
                     <div class="col-sm-4">
                             <a href="/admin/user/create">
                         <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New User</button>

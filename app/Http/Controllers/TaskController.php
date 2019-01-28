@@ -64,7 +64,7 @@ class TaskController extends Controller
         
     }
     public function show(){
-        $tasks = Task::with('user')->paginate(3);
+        $tasks = Task::with('user')->orderBy('id','desc')->paginate(6);
         //$tasks=Task::paginate(3);
         return view('task-management.view')->with('tasks',$tasks);
     }

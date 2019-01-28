@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Department;
+use App\Notifications\TestNotification;
 
 class DepartmentController extends Controller
 {
@@ -20,6 +21,7 @@ class DepartmentController extends Controller
     public function index()
     {
         //
+        
         return view('dept-management.create');
     }
 
@@ -55,6 +57,8 @@ class DepartmentController extends Controller
         $post->email=$request->input('email');
         $post->firstname=$request->input('firstname');
         $post->save();
+        $dept=Department::find(1);
+        $dept->notify(new TestNotification);
         return redirect('admin/dept/show')->with('success','Department Added');
         
     }
@@ -68,8 +72,9 @@ class DepartmentController extends Controller
     public function show()
     {
         //
+        
         $depts = Department::paginate(2);
-        return view('dept-management.view')->with('depts',$depts);
+        return view('dept-management.view')->with(compact('depts','dept'));
     }
 
     /**
@@ -124,10 +129,10 @@ class DepartmentController extends Controller
     {
         //
         $dept = Department::find($id);
-        if ($dept == null || count($dept) == 0) {
+        if ($dept == null || $dept->count() == 0) {
             return redirect('admin/dept/view');
         }
         Department::where('id', $id)->delete();
-        return redirect('admin/dept/view')->with('success','Department Deleted!!');
+        return redirect('admin/dept/show')->with('success','Department Deleted!!');
     }
 }

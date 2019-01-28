@@ -24,6 +24,7 @@
             <span class="separator"></span>
     
             <ul class="notifications">
+
                 <li>
                     <div class="dropdown-menu notification-menu large">
                         <div class="notification-title">
@@ -67,46 +68,31 @@
                     </div>
                 </li>
                 <li>
+                    <?php  $dept= App\Department::find(1); ?>
                     <a href="#" class="dropdown-toggle notification-icon" data-toggle="dropdown">
                         <i class="fa fa-bell"></i>
-                        <span class="badge">3</span>
+                        <span class="badge">{{$dept->unreadNotifications->count()}}</span>
                     </a>
-    
+                   
                     <div class="dropdown-menu notification-menu">
                         <div class="notification-title">
-                            <span class="pull-right label label-default">3</span>
+                        <span class="pull-right label label-default">{{$dept->unreadNotifications->count()}}</span>
                             Alerts
                         </div>
-    
                         <div class="content">
                             <ul>
+                                   
+                                    @foreach ($dept->unreadNotifications as $notification) 
                                 <li>
                                     <a href="#" class="clearfix">
                                         <div class="image">
                                             <i class="fa fa-thumbs-down bg-danger"></i>
                                         </div>
-                                        <span class="title">Server is Down!</span>
+                                    <span class="title">{{$notification->data['data']}}</span>
                                         <span class="message">Just now</span>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="#" class="clearfix">
-                                        <div class="image">
-                                            <i class="fa fa-lock bg-warning"></i>
-                                        </div>
-                                        <span class="title">User Locked</span>
-                                        <span class="message">15 minutes ago</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="clearfix">
-                                        <div class="image">
-                                            <i class="fa fa-signal bg-success"></i>
-                                        </div>
-                                        <span class="title">Connection Restaured</span>
-                                        <span class="message">10/10/2014</span>
-                                    </a>
-                                </li>
+                                @endforeach
                             </ul>
     
                             <hr />

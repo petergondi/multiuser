@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class Testnotification extends Notification
+class Tasks extends Notification
 {
     use Queueable;
 
@@ -55,8 +55,8 @@ class Testnotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'data' => 'this is my notify',
-       
-    ];
+            //
+            'data'=>'added a new task',
+        ];
     }
 }

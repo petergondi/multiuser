@@ -7,11 +7,11 @@
         @foreach($taskassigned as $taskassign) 
         <div class="invisible">{{$taskid=$taskassign->id}}</div>
             <ul  class="list-group">
-                   <li class="list-group-item bg-dark"><strong>TASK NAME:</strong> {{$taskassign->task_name}}
+                   <li class="list-group-item bg-info"><strong>TASK NAME:</strong> {{$taskassign->task_name}}
                    </li>
             </ul>
             <ul  class="list-group">
-                    <li class="list-group-item bg-dark"><strong>TASK DESCRIPTION</strong> {{$taskassign->description}}
+                    <li class="list-group-item bg-info"><strong>TASK DESCRIPTION</strong> {{$taskassign->description}}
                     </li>
             </ul>
                 @endforeach  

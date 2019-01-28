@@ -40,7 +40,7 @@
                             <li class="nav-parent">
                                     <a style="font-size:15px">
                                         <i style="font-size:24px" class="fa fa-tasks" aria-hidden="true"></i>
-                                        <span>Tasks&nbsp;<span class="badge"> 5</span></span>
+                                        <span>Tasks&nbsp;<span class="badge">{{$usernew_task=App\Task::where('asignee_id',Auth::user()->id)->where('status','no')->count()}}</span></span>
                                     </a>
                                     <ul class="nav nav-children">
                                             <li>

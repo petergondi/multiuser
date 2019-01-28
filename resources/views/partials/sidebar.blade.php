@@ -26,7 +26,7 @@
                                    
                                 <a style="font-size:15px">
                                     <i style="font-size:24px" class="fa fa-link" aria-hidden="true"></i>
-                                    <span>Users</span>
+                                    <span>Users&nbsp;<span class="badge pull-center">{{$totalusers=App\User::All()->count()}}</span></span>
                                 </a>
                                 <ul class="nav nav-children ">     
                                     <li>
@@ -49,7 +49,7 @@
                             <li class="nav-parent">
                                 <a style="font-size:15px">
                                     <i style="font-size:24px" class="fa fa-building-o" aria-hidden="true"></i>
-                                    <span>Departments</span>
+                                <span>Departm&nbsp;<span class="badge pull-center">{{$totaldepartments=App\Department::All()->count()}}</span></span>
                                 </a>
                                 <ul class="nav nav-children">
                                    
@@ -87,7 +87,7 @@
                                            
                                     <a style="font-size:15px">
                                         <i style="font-size:24px" class="fa fa-tasks" aria-hidden="true"></i>
-                                                <span>Tasks</span>
+                                                <span>Tasks&nbsp;<span class="badge">{{$totaltask=App\Task::All()->count()}}</span></span>
                                     </a>
                                     <ul class="nav nav-children">
                                         <li>
@@ -105,7 +105,7 @@
                                 <li class="nav-parent">
                                     <a style="font-size:15px">
                                         <i style="font-size:24px" class="fa fa-user" aria-hidden="true"></i>
-                                        <span>Customers</span>
+                                        <span>Customers&nbsp;<span class="badge">{{$totalcustomers=App\Customer::All()->count()}}</span></span>
                                     </a>
                                     <ul class="nav nav-children">
                                         <li>
