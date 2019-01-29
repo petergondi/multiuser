@@ -18,15 +18,16 @@ class ReplyController extends Controller
     public function showReplyForm($id){
         $userid=Auth::user()->id;
         $taskassigned=Task::where('id', $id)->get();
-        return view('task-management.reply')->with(compact('taskassigned','userid'));
+        $comments =Reply::where('task_id',$id)->get();
+        return view('task-management.reply')->with(compact('taskassigned','userid','comments'));
     }
     public function replyTask(Request $request,$taskid,$userid){
-        $existing_reply= Task::where('id', $taskid)->where('status', '=', 'yes')->first();
+        //$existing_reply= Task::where('id', $taskid)->where('status', '=', 'yes')->first();
         //checking to reply only once
-        if($existing_reply){
-        return redirect('users/tasks/view')->with('error','The task has been replied');
-       }
-        else{
+       // if($existing_reply){
+       // return redirect('users/tasks/view')->with('error','The task has been replied');
+      // }
+       // else{
             $this->validate($request,[
                 'reply'=>'required', 
             ]);
@@ -36,7 +37,7 @@ class ReplyController extends Controller
             $reply->task_id=$taskid;
             $reply->user_id=$userid;
             $reply->save();
-            return redirect('users/tasks/view')->with('success','Replied to task');
-            }
+            return redirect()->back()->with('success','You commented to the assigned task');
+           // }
     }
 }

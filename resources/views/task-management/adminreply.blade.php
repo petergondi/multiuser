@@ -7,24 +7,41 @@
      
       @foreach($tasks_to_comment as $task_to_comment)
   <div class="invisible">{{$taskid=$task_to_comment->id}}{{$userid=1}}</div>
-            <ul  class="list-group">
-            <li class="list-group-item bg-info"><strong>TASK NAME:{{$task_to_comment->task_name}}</strong> 
-                   </li>
-            </ul>
-            <ul  class="list-group">
-            <li class="list-group-item bg-info"><strong>TASK DESCRIPTION:{{$task_to_comment->description}}</strong> 
-                    </li>
-            </ul>
-            @endforeach
+            <h3 style="text-center">Task Name:{{$task_to_comment->task_name}}</h3> 
+             <h4 style="float-center">Task Description:{{$task_to_comment->description}}</h4> 
+             <br>
+             @endforeach
+             <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+               Comments <span class="caret"></span>
+              </a>
+              <br/>
+            <div class="collapse" id="collapseExample">
+                <br/>
+                @if($comments->count()==0)
+               <p>No comments posted on this task</p>
+               @else
             @foreach($comments as $comment)
-            <ul  class="list-group">
-            <li  class="list-group-item bg-info"><strong>Comment:</strong><i style="color:black" >&nbsp;{{$comment->reply}}&nbsp;
-           
-            </i><small style="color:black" class="pull-right">by:</small> 
-                    </li>
-                   
-            </ul>
+              @if($comment->user_id==1)
+              <div class="container1">
+                <span  class="time-left"><strong>Admin</strong></span>
+                <img src="https://cdn4.iconfinder.com/data/icons/people-std-pack/512/boss-512.png" alt="Avatar" style="width:100%;">
+              <p>{{$comment->reply}}</p>
+                <span class="time-left">{{$comment->created_at}}</span>
+              </div>
+              <hr>
+              @else
+              <div class="container darker">
+              <span  class="time-left"><strong>{{$comment->user->firstname}}</strong></span>
+                <img src=" https://cdn3.vectorstock.com/i/1000x1000/30/97/flat-business-man-user-profile-avatar-icon-vector-4333097.jpg" alt="Avatar" class="right" style="width:100%;">
+                <p>{{$comment->reply}}</p>
+                <span class="time-left">{{$comment->created_at}}</span>
+              </div>
+              <hr>
+              @endif
             @endforeach
+            @endif
+            </div>
+            <br/>
             {!! Form::open(['action' => ['CommentController@CommentTask',$taskid,$userid],'method'=>'POST','enctype'=>'multipart/form-data']) !!}
             {{ csrf_field() }}
 <div class="form-horizontal">
