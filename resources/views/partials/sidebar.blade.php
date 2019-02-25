@@ -13,20 +13,20 @@
         
             <div class="nano">
                 <div class="nano-content">
-                    <nav id="menu" class="nav-main" role="navigation">
+                    <nav id="menu" style="font-family:arial;" class="nav-main" role="navigation">
                         <ul class="nav nav-main">
                             <li class="nav-active">
-                                <a style="font-size:15px" href="/admin">
-                                    <i style="font-size:24px"class="fa fa-home" aria-hidden="true"></i>
+                                <a  href="/admin">
+                                    <i class="fa fa-home" aria-hidden="true"></i>
                                     <span>Dashboard</span>
                                 </a>
                             </li>
                            
                             <li class="nav-parent">
                                    
-                                <a style="font-size:15px">
-                                    <i style="font-size:24px" class="fa fa-link" aria-hidden="true"></i>
-                                    <span>Users&nbsp;<span class="badge pull-center">{{$totalusers=App\User::All()->count()}}</span></span>
+                                <a >
+                                    <i  class="fa fa-link" aria-hidden="true"></i>
+                                    <span>Users<span class="badge pull-center">{{$totalusers=App\User::All()->count()}}</span></span>
                                 </a>
                                 <ul class="nav nav-children ">     
                                     <li>
@@ -47,9 +47,9 @@
                                 </ul>   
                             </li>
                             <li class="nav-parent">
-                                <a style="font-size:15px">
-                                    <i style="font-size:24px" class="fa fa-building-o" aria-hidden="true"></i>
-                                <span>Departm&nbsp;<span class="badge pull-center">{{$totaldepartments=App\Department::All()->count()}}</span></span>
+                                <a >
+                                    <i  class="fa fa-building-o" aria-hidden="true"></i>
+                                <span>Department<span class="badge pull-center">{{$totaldepartments=App\Department::All()->count()}}</span></span>
                                 </a>
                                 <ul class="nav nav-children">
                                    
@@ -66,18 +66,18 @@
                                 </ul>
                             </li>             
                             <li class="nav-parent">
-                                <a style="font-size:15px">
-                                    <i style="font-size:24px" class="fa fa-gear fa-spin" aria-hidden="true"></i>
+                                <a >
+                                    <i  class="fa fa-gear fa-spin" aria-hidden="true"></i>
                                     <span>Settings</span>
                                 </a>
                                 <ul class="nav nav-children">
                                     <li>
-                                        <a class="fa fa-envelope" style="font-size:18px" href="/admin/setting/email">
+                                        <a class="fa fa-envelope"  href="/admin/setting/email">
                                              Mail
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="fa fa-mobile-phone" style="font-size:24px" href="/admin/setting/sms">
+                                        <a class="fa fa-mobile-phone"  href="/admin/setting/sms">
                                              Sms
                                         </a>
                                     </li>
@@ -85,37 +85,111 @@
                             </li>
                             <li class="nav-parent">
                                            
-                                    <a style="font-size:15px">
-                                        <i style="font-size:24px" class="fa fa-tasks" aria-hidden="true"></i>
+                                    <a >
+                                        <i class="fa fa-tasks" aria-hidden="true"></i>
                                                 <span>Tasks&nbsp;<span class="badge">{{$totaltask=App\Task::All()->count()}}</span></span>
                                     </a>
                                     <ul class="nav nav-children">
                                         <li>
-                                            <a class="fa fa-thumb-tack"  style="font-size:18px" href="/admin/tasks/assign">
+                                            <a class="fa fa-thumb-tack"   href="/admin/tasks/assign">
                                                  Assign
                                             </a>
                                         </li>
                                         <li>
-                                            <a class="fa fa-eye"  style="font-size:18px" href="/admin/tasks/view">
+                                            <a class="fa fa-eye"   href="/admin/tasks/view">
                                                 View 
                                             </a>
                                         </li>   
                                     </ul>
                                 </li>
                                 <li class="nav-parent">
-                                    <a style="font-size:15px">
-                                        <i style="font-size:24px" class="fa fa-user" aria-hidden="true"></i>
+                                    <a >
+                                        <i class="fa fa-user" aria-hidden="true"></i>
                                         <span>Customers&nbsp;<span class="badge">{{$totalcustomers=App\Customer::All()->count()}}</span></span>
                                     </a>
                                     <ul class="nav nav-children">
                                         <li>
-                                                <a class="fa fa-eye"  style="font-size:18px" href="/admin/customers/show">
+                                                <a class="fa fa-eye"  href="/admin/customers/show">
                                                      View 
                                                 </a>
                                             </li>
                                     </ul>
                                 </li>
                             </li>
+                              <li class="nav-parent">
+                                <a >
+                                    <i  class="fa fa-list-alt" aria-hidden="true"></i>
+                                <span>Petty Cash</span>
+                                </a>
+                                <ul class="nav nav-children">
+                                   
+                                    <li>
+                                         <li class="nav-parent">
+                                <a >
+                                    <i  aria-hidden="true"></i>
+                                <span>Top Up</span>
+                                </a>
+                                <ul class="nav nav-children">
+                                   
+                                    <li>
+                                        <a href="{{ route('admin.account.topup') }}">
+                                             Make TopUp
+                                        </a>
+                                    </li> 
+                                    <li>
+                                        <a href="{{ route('admin.topup.view') }}">
+                                             View Topups
+                                        </a>
+                                    </li>    
+                                </ul>
+                            </li> 
+                                    </li> 
+                                    <li>
+                                         <li>
+                                         <li class="nav-parent">
+                                <a >
+                                    <i  aria-hidden="true"></i>
+                                <span>Accounts</span>
+                                </a>
+                                <ul class="nav nav-children">
+                                   
+                                    <li>
+                                        <a href="{{ route('admin.account.create') }}">
+                                             Create
+                                        </a>
+                                    </li> 
+                                    <li>
+                                        <a href="{{ route('admin.account.show') }}">
+                                             View
+                                        </a>
+                                    </li>    
+                                </ul>
+                            </li> 
+                                    </li> 
+                                    <li>
+                                        <li class="nav-parent">
+                                <a >
+                                    <i   aria-hidden="true"></i>
+                                <span>Expenses</span>
+                                </a>
+                                <ul class="nav nav-children">
+                                   
+                                    <li>
+                                        <a href="{{ route('admin.spendings.create') }}">
+                                             Add Daily Expenses
+                                        </a>
+                                    </li> 
+                                    <li>
+                                        <a href="{{route('admin.spendings.view')}}">
+                                             View Expenses
+                                        </a>
+                                    </li>    
+                                    
+                                </ul>
+                            </li> 
+                                    </li>    
+                                </ul>
+                            </li>  
                         </ul>
                     </nav>
         

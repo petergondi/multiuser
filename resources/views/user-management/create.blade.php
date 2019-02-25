@@ -2,11 +2,15 @@
 @extends('user-management.base')
 @section('action-content')
 @include('partials.messages')
-<div class="container">
+<div class="container-fluid alert alert-success" role="alert">
     <div class="row">
+     <section class="content-header text-left">
+    <p> <i class="fa fa-arrow-right"></i>This page shows you an overview of your created expense accounts. The top bar shows the amount that is available to be budgeted. 
+    .<a href=""><i class="fa fa-info-circle" style="font-size:13px"></i></a></p>
+    </section>
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading " style="background-color:#072F5F;color:white;">Add new User</div>
+                <div class="panel-heading ">Add new User</div>
                 <div class="panel-body ">  
                         {!! Form::open(['action' => 'UserController@store','method'=>'POST','enctype'=>'multipart/form-data']) !!}
                         {{ csrf_field() }}

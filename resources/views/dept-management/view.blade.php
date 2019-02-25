@@ -3,11 +3,11 @@
 @include('partials.messages')
 <section class="content">
        
-        <div class="container">
+        <div class="container-fluid alert alert-success" role="alert">
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
-                    <div class="col-sm-8"><h2>Department <b>Details</b></h2></div>
+                    <div class="col-sm-8"><p>Department <b>Details</b></p></div>
                     <div class="col-sm-4">
                             <a href="/admin/dept/create">
                         <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New Department</button>

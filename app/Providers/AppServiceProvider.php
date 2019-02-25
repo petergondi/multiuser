@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
         // $userlogged=Auth::user()->id;
         Schema::defaultStringLength(191);
        // $usernew_task=Task::where('asignee_id',$userlogged)->where('status','no')->count();
-        //View::share('usernew_task', $usernew_task);
+     //View::share('usernew_task', $usernew_task);
         
     }
 

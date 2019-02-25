@@ -16,14 +16,14 @@
                     <nav id="menu" class="nav-main" role="navigation">
                         <ul class="nav nav-main">
                             <li class="nav-active">
-                                <a style="font-size:15px" href="/admin">
-                                    <i style="font-size:24px"class="fa fa-home" aria-hidden="true"></i>
+                                <a  href="/admin">
+                                    <i class="fa fa-home" aria-hidden="true"></i>
                                     <span>Dashboard</span>
                                 </a>
                             </li>
                             <li class="nav-parent">
-                                <a style="font-size:15px">
-                                    <i style="font-size:24px" class="fa fa-building-o" aria-hidden="true"></i>
+                                <a >
+                                    <i  class="fa fa-building-o" aria-hidden="true"></i>
                                     <span>Departments</span>
                                 </a>
                                 <ul class="nav nav-children">
@@ -38,27 +38,40 @@
                             </li>
                             
                             <li class="nav-parent">
-                                    <a style="font-size:15px">
-                                        <i style="font-size:24px" class="fa fa-tasks" aria-hidden="true"></i>
+                                    <a >
+                                        <i  class="fa fa-tasks" aria-hidden="true"></i>
                                         <span>Tasks&nbsp;<span class="badge">{{$usernew_task=App\Task::where('asignee_id',Auth::user()->id)->where('status','no')->count()}}</span></span>
                                     </a>
                                     <ul class="nav nav-children">
                                             <li>
-                                                    <a class="fa fa-eye"  style="font-size:18px" href="{{ route('users.tasks.view') }}">
+                                                    <a class="fa fa-eye"   href="{{ route('users.tasks.view') }}">
                                                          View 
                                                     </a>
                                                 </li>
                                     </ul>
                                 </li>
                                 <li class="nav-parent">
-                                    <a style="font-size:15px">
-                                        <i style="font-size:24px" class="fa fa-user" aria-hidden="true"></i>
+                                    <a >
+                                        <i  class="fa fa-user" aria-hidden="true"></i>
                                         <span>Customers</span>
                                     </a>
                                     <ul class="nav nav-children">
                                         <li>
-                                                <a class="fa fa-eye"  style="font-size:18px" href="/admin/customers/show">
+                                                <a class="fa fa-eye"   href="/admin/customers/show">
                                                      View 
+                                                </a>
+                                            </li>
+                                    </ul>
+                                </li>
+                                 <li class="nav-parent">
+                                    <a >
+                                        <i  class="fa fa-user" aria-hidden="true"></i>
+                                        <span>Expense</span>
+                                    </a>
+                                    <ul class="nav nav-children">
+                                        <li>
+                                                <a class="fa fa-eye"   href="/admin/customers/show">
+                                                     Requisition 
                                                 </a>
                                             </li>
                                     </ul>

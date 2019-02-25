@@ -57,8 +57,9 @@ class DepartmentController extends Controller
         $post->email=$request->input('email');
         $post->firstname=$request->input('firstname');
         $post->save();
-        $dept=Department::find(1);
-        $dept->notify(new TestNotification);
+        //$dept=Department::find(7);
+        //$note=$request->input('name');
+        //$dept->notify(new TestNotification());
         return redirect('admin/dept/show')->with('success','Department Added');
         
     }
@@ -74,7 +75,7 @@ class DepartmentController extends Controller
         //
         
         $depts = Department::paginate(2);
-        return view('dept-management.view')->with(compact('depts','dept'));
+        return view('dept-management.view')->with(compact('depts'));
     }
 
     /**

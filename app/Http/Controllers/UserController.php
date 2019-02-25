@@ -77,7 +77,7 @@ class UserController extends Controller
     public function show()
     {
         //
-        $users = User::paginate(3);
+        $users = User::paginate(10);
         return view('user-management.view')->with('users',$users);
     }
 

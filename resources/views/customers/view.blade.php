@@ -3,11 +3,12 @@
 @include('partials.messages')
 <section class="content">
   
-    <div class="container">
+    <div  class="container-fluid alert alert-success" role="alert">
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
-                    <div class="col-sm-8"><h2>Customers <b>Details</b></h2></div>
+                    <div class="col-sm-8"><p>Customers Details<a href=""><i class="fa fa-info-circle pull-right" style="font-size:13px"></i></a> </p></div>
+                    
                 </div>
             </div>
             @if($customers->count()==0)
@@ -42,7 +43,8 @@
                 {{ $customers->links() }}
               </div>
         </div>
-    </div>     
+    </div> 
+     
 </body>
 </section>
 @endsection

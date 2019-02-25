@@ -6,8 +6,9 @@
 		<title>Dashboard</title>
 		<!-- Mobile Metas -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        
 		<!-- Web Fonts  -->
-		<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
+		<link href="{{asset('http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light')}}" rel="stylesheet" type="text/css">
 		<!-- Vendor CSS -->
 		<link rel="stylesheet" href="{{asset('assets/vendor/bootstrap/css/bootstrap.css')}}" />
 		<link rel="stylesheet" href="{{asset('assets/vendor/font-awesome/css/font-awesome.css')}}" />
@@ -77,7 +78,6 @@
             
             <!-- Theme Initialization Files -->
             <script src="{{asset('assets/javascripts/theme.init.js')}}"></script>
-            <!-- Examples -->
-            <script src="{{asset('assets/javascripts/dashboard/examples.dashboard.js')}}"></script>
+           
         </body>
     </html>

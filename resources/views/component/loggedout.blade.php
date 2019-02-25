@@ -1,3 +1,4 @@
+
 @if(Auth::guard('web')->check() && !Auth::guard('admin')->check() &&!Auth::guard('executives')->check())
 <p><a class="text-success" href="/users/logout">Logout User</a></p>  
 <p><a class="text-success" href="/admin/login">Admin Login</a></p> 

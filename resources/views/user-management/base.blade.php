@@ -1,11 +1,10 @@
 @extends('layouts.master')
 @section('content')
     <!-- Content Header (Page header) -->
-    <section class="content-header text-center">
-     
-      <h1>
-        User Management
-      </h1>
+    <section class="content-header text-left">
+      <h4><i class="fa fa-tasks"></i>
+        Task Management
+      </h4>
     </section>
     @yield('action-content')
     <!-- /.content -->

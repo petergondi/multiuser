@@ -68,31 +68,31 @@
                     </div>
                 </li>
                 <li>
-                    <?php  $dept= App\Department::find(1); ?>
+                   
                     <a href="#" class="dropdown-toggle notification-icon" data-toggle="dropdown">
                         <i class="fa fa-bell"></i>
-                        <span class="badge">{{$dept->unreadNotifications->count()}}</span>
+                        <span class="badge">5</span>
                     </a>
                    
                     <div class="dropdown-menu notification-menu">
                         <div class="notification-title">
-                        <span class="pull-right label label-default">{{$dept->unreadNotifications->count()}}</span>
+                        <span class="pull-right label label-default">5</span>
                             Alerts
                         </div>
                         <div class="content">
                             <ul>
                                    
-                                    @foreach ($dept->unreadNotifications as $notification) 
+                                   
                                 <li>
                                     <a href="#" class="clearfix">
                                         <div class="image">
                                             <i class="fa fa-thumbs-down bg-danger"></i>
                                         </div>
-                                    <span class="title">{{$notification->data['data']}}</span>
+                                    <span class="title">Changed</span>
                                         <span class="message">Just now</span>
                                     </a>
                                 </li>
-                                @endforeach
+                               
                             </ul>
     
                             <hr />
@@ -115,7 +115,7 @@
                     @if(Auth::guard('admin')->check())
                     <div class="profile-info" >
                     
-                        <span class="name"></span>
+                        <span class="name"> {{Auth::user()->firstname}}</span>
                         <span class="role">administrator</span>
                        </div>
     
@@ -136,10 +136,11 @@
                         </li>
                     </ul>
                 </div>
+               
                 @elseif(Auth::guard('web')->check())
                 <div class="profile-info" >
                 
-                    <span class="name"></span>
+                    <span class="name"> {{Auth::user()->firstname}}</span>
                     <span class="role">User</span>
                    </div>
 

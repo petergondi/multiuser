@@ -1,5 +1,5 @@
 <?php
-
+use App\Events\FormSubmitted;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,7 +16,6 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('users.logout');
 Route::get('/executive/login', 'Auth\ExecutiveLoginController@showLoginForm')->name('executive.login');
@@ -51,11 +50,13 @@ Route::post('/user/role/create', 'RoleController@store')->name('admin.view');
 Route::delete('/user/role/{id}', 'RoleController@destroy');
 Route::delete('/user/view/{id}', 'UserController@destroy')->name('admin.view.delete');
 Route::get('/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');
+//settings
 Route::get('/setting/email', 'MailController@index');
 Route::get('/setting/email/submit', 'MailController@mail');
 Route::post('/setting/email/create', 'MailController@emailform');
 Route::get('/setting/sms', 'SmsController@index');
 Route::post('/setting/sms/create', 'SmsController@smsform');
+//assigned tasks
 Route::get('/tasks/assign', 'TaskController@index');
 Route::get('/tasks/view', 'TaskController@show');
 Route::post('/tasks/assign/assigned', 'TaskController@storeTask');
@@ -66,8 +67,18 @@ Route::get('/customers/show', 'TaskController@customers');
 //showing admin reply form
 Route::get('/tasks/comment/{taskasigned}','CommentController@show')->name('admin.tasks.comment');
 Route::post('/tasks/comment/{taskid}/{userid}', 'CommentController@CommentTask');
-
-
-
-
+//expenditure
+Route::post('/spending/create','SpendingsController@store');
+Route::get('/spendings/create','SpendingsController@create')->name('admin.spendings.create');
+Route::get('/spend/create','SpendingsController@ReadData')->name('admin.spend.create');
+Route::get('/spendings/view','SpendingsController@index')->name('admin.spendings.view');
+Route::get('/spending/view','SpendingsController@search')->name('admin.spending.view');
+Route::delete('/spending/delete/{id}', 'SpendingsController@destroy');
+//expense accounts
+Route::get('/account/create','AccountsController@create')->name('admin.account.create');
+Route::post('/account/created','AccountsController@store');
+Route::get('/account/show','AccountsController@index')->name('admin.account.show');
+Route::get('/topup/view','TopupController@index')->name('admin.topup.view');
+Route::post('/topup/make','TopupController@store');
+Route::get('/account/topup','TopupController@create')->name('admin.account.topup');
 });

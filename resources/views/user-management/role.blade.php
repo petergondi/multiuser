@@ -4,9 +4,15 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
-<div class="container">
+<div  class="container-fluid alert alert-success" role="alert">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+          <div class="container-fluid">
+  <div class="panel panel-default">
+    <div class="panel-body">On this page you can see your budgets. The top bar is the amount that you can budget. You can adjust that yourself by clicking on the amount. What you have actually spent is shown in the bar below. 
+    Below that you will see every budget and what you have budgeted for it.</div>
+  </div>
+</div>
+        <div class="container-fluid">
             <div class="panel panel-default">
                 <div class="panel-heading " style="background-color:#072F5F;color:white;">Create Role</div>
                 <div class="panel-body ">  

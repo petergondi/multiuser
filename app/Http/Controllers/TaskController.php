@@ -63,10 +63,10 @@ class TaskController extends Controller
         return redirect('admin/tasks/view')->with('success','Task Assigned');
         
     }
+    //showing assigned tasks to admin
     public function show(){
         $tasks = Task::with('user')->orderBy('id','desc')->paginate(6);
-        //$tasks=Task::paginate(3);
-        return view('task-management.view')->with('tasks',$tasks);
+        return view('task-management.view')->with(compact('tasks'));
     }
     //editing tasks
     public function edit($id)

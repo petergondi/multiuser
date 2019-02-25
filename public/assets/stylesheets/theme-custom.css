@@ -1,6 +1,7 @@
 .container1 {
     background-color: #33415c33;
-    border-radius: 5px;
+    border-bottom-left-radius: 80px 70px;
+    border-top-right-radius: 40px 20px;
     padding: 10px;
     margin: 10px 0;
   }
@@ -9,6 +10,8 @@
     border-color: #ccc;
     background-color: rgba(54, 34, 34, 0.568);
     border-radius: 5px;
+    border-bottom-left-radius: 80px 70px;
+    border-top-right-radius: 40px 20px;
   }
   
   .container1::after {

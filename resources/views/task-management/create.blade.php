@@ -1,11 +1,11 @@
 @extends('task-management.base')
 @section('action-content')
 @include('partials.messages')
-<div class="container">
+<div class="container-fluid alert alert-success" role="alert">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-8 col-md-offset-2 >
             <div class="panel panel-default">
-                <div class="panel-heading ">Assign Task</div>
+                <div class="panel-heading bg-success ">Assign Task</div>
                 {!! Form::open(['action' => 'TaskController@storeTask','method'=>'POST','enctype'=>'multipart/form-data']) !!}
                 {{ csrf_field() }}
                 <div class="panel-body">

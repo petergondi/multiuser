@@ -16,9 +16,11 @@ class TestNotification extends Notification
      *
      * @return void
      */
+    //public $note;
     public function __construct()
     {
         //
+        //$this->note=$note;
     }
 
     /**
@@ -56,7 +58,8 @@ class TestNotification extends Notification
     {
         return [
             //
-            'data'=>'added a new department',
+            'data'=>'added a new department'
+            //.$this->note,
         ];
     }
 }
