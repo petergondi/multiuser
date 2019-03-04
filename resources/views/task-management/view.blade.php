@@ -1,9 +1,8 @@
 @extends('task-management.base')
 @section('action-content')
 @include('partials.messages')
-<section class="content">
-       
-<div class="card alert alert-success" role="alert">
+<section class="content">  
+<div class="container-fluid alert alert-success" role="alert">
 <p class="card-header text-center font-weight-bold text-uppercase py-4">Assigned Tasks &nbsp;<span class="badge bg-info">{{$totaltask=App\Task::All()->count()}}</span></p>
 <p >Tasks Not replied To:  &nbsp;<span class="glyphicon glyphicon-envelope"><span class="badge bg-warning">{{$unreplied=App\Task::where('status','no')->count()}}</span></span></p> 
             <div class="row">

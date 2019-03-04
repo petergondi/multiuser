@@ -187,12 +187,13 @@ $(document).ready(function(){
                 <thead>
                     <tr>
                        
-                        <th>Expense Name <i class="fa fa-sort"></i></th>
+                        <th>Expense<i class="fa fa-sort"></i></th>
                         <th>Date</th>
-                         <th>Person Given</th>
+                         <th>Person</th>
                         <th>Purpose</th>
                         <th>Amount<i class="fa fa-sort"></i></th>
-                        <th>Closing Balance<i class="fa fa-sort"></i></th>
+                        <th>Balance<i class="fa fa-sort"></i></th>
+                        <th>Deleted<i class="fa fa-sort"></i></th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -206,6 +207,7 @@ $(document).ready(function(){
                         <td>{{$spending->purpose}}</td>
                         <td>{{$spending->expense_amount}}</td>
                         <td>{{$spending->closing_balance}}</td>
+                        <td id="del">{{$expense_offset}}</td>
                         <td>
 							<button href="#" class="view alert-info" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></button>
                             <button href="#" class="edit alert-secondary" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></button>
@@ -216,11 +218,11 @@ $(document).ready(function(){
                     <tr class="bg-success">
                    
                     <td>Balance:</td>
-                    <td>{{$balance}}</td>
+                    <td id="balance">{{$balance}}</td>
                     </tr>
                     <tr class="bg-success">
                     <td>Total expense:</td>
-                    <td>{{$total_expense}}</td>
+                    <td id="expense">{{$total_expense}}</td>
                     </tr>
                     <tr class="bg-success">
                     <td>Last Topup:</td>
@@ -302,7 +304,9 @@ $(document).ready(function(){
             },
             success: function (data)
           {
-              console.log(data);
+               $('#del').text(data.deleted);
+                $('#balance').text(data.bal);
+                 $('#expense').text(data.total_expenses);
                 tr.fadeOut(1000, function(){
                         $(this).remove();
                     });

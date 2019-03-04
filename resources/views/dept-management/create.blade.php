@@ -1,11 +1,14 @@
 @extends('dept-management.base')
 @section('action-content')
 @include('partials.messages')
-<div class="container">
+<div class="container-fluid alert alert-success" role="alert"">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading ">Add new Department</div>
+            <div class="panel-body"><a href="info"><i class="fa fa-info-circle " style="font-size:15px"></i></a> On this page you can log in as more than one user level and perform the dedicated roles assigned to each user level. 
+ The sidebar will show you all the available operations you can perform once logged in as one of the user levels. 
+   .</div>
+                <div class="panel-heading text-center">Add new Department</div>
                 <div class="panel-body">
                        
                         {!! Form::open(['action' => 'DepartmentController@store','method'=>'POST','enctype'=>'multipart/form-data']) !!}

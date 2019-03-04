@@ -1,7 +1,7 @@
 @extends('expenditure-management.base')
 @section('action-content')
-<script src="{{asset('https://code.jquery.com/jquery-1.11.1.min.js')}}"></script>
-<script src="{{asset('https//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <meta name="csrf-token" content="{{ csrf_token() }}">
      <!-- Mobile Menu end -->
 <!-- Basic Form Start -->
@@ -54,7 +54,6 @@
                                           
                                                 <tr>
                                             <td class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
-                                                   
                                                         <select class="form-control custom-select-value" name="account[]" required>
                                                             <option value="">expense type</option> 
                                                             @foreach($expense_accounts as $expense_account)
@@ -66,9 +65,14 @@
                                                     <td class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
                                                         <input type="text" name="purpose[]"  class="form-control" required/>
                                                     </td>
-                                                    <td class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
-                                                    <input type="text" name="person[]"   class="form-control input-sm" required/>
-                                                    </td>
+                                                     <td class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
+                                                        <select class="form-control custom-select-value" name="person[]" required>
+                                                            <option value="">Person Given</option> 
+                                                            @foreach($persons as $person)
+                                                        <option value="{{$person->firstname}}">{{$person->firstname}}</option> 
+                                                            @endforeach   
+                                                            </select>
+                                                </td>
                                                     <td  class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
                                                            <div style="text-align:center;" class="form-check">
                                                      <input class="form-check-input input-sm" name="vat[]" type="checkbox" value="" id="defaultCheck1">
@@ -130,7 +134,7 @@ $(document).ready(function () {
         var cols = "";
         cols +='<td> <select class="form-control custom-select-value"  name="account[]" required><option value="">expense type</option> @foreach($expense_accounts as $expense_account)  <option value="{{$expense_account->account_name}}">{{$expense_account->account_name}}</option>@endforeach </select></td>';                                                                                                                                                                                                            
         cols += '<td><input type="text" class="form-control"name="purpose[]" required/></td>';
-        cols += '<td><input type="text" class="form-control"  name="person[]" required/></td>';
+     cols +='<td> <select class="form-control custom-select-value"  name="person[]" required><option value="">Person Given</option> @foreach($persons as $person)  <option value="{{$person->firstname}}">{{$person->firstname}}</option>@endforeach </select></td>';
         cols +='<td> <div style="text-align:center;" class="form-check"><input class="form-check-input" name="vat[]" type="checkbox" value="" id="vat"></div></td>';
         cols += '<td> <div class="input-group"><input type="text" class="form-control" id="qty" name="amount[]"/><span class="input-group-addon" required>.00</span></div></td>';
         cols += ' <td class="col-lg-1 col-md-1 col-sm-1 col-xs-12 input-sm"><button data-toggle="tooltip" title="Trash"  class="pd-setting-ed"><i class="ibtnDel btn btn-md btn-danger fa fa-trash-o" aria-hidden="true"></i></button> </td>';

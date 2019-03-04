@@ -12,7 +12,7 @@ class CommentController extends Controller
     {
         $this->middleware('auth:admin');
     }
-    //show comment form togetehr with tasks assigned to the assignee
+    //show comment form together with tasks assigned to the assignee
     public function show($taskasigned){
         $tasks_to_comment=Task::where('id',$taskasigned)->get();
         //$users_name = Reply::with('user')->get();

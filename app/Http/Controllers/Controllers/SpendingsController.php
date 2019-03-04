@@ -8,6 +8,8 @@ use App\Spendings;
 use Carbon\Carbon;
 use App\Topup;
 use App\Offset;
+use App\Expense;
+use App\User;
 use PDF;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
@@ -37,7 +39,8 @@ class SpendingsController extends Controller
         $offsets=DB::table('offset')->latest('id')->first();
              $sum=$offsets;
         $spendings=Spendings::orderBy('id', 'DESC')->paginate(10);
-        return view('expenditure-management.view')->with(compact('spendings','balance','total_expense','sum','last_topup'));
+        $expense_offset=Expense::max('deleted_amount');
+        return view('expenditure-management.view')->with(compact('spendings','balance','total_expense','sum','last_topup','expense_offset'));
     }
     //showing the table for posting expenditure
     public function create()
@@ -58,10 +61,11 @@ class SpendingsController extends Controller
         $weekday = $weekMap[$dayOfTheWeek];
         $total_topup=Topup::sum('topup');
         $total_expense=Spendings::sum('expense_amount');
+        $persons=User::All();
         $balance=$total_topup;
         $expense_accounts=Accounts::All();
         $count= $expense_accounts->count();
-        return view('expenditure-management.create')->with(compact('expense_accounts','total_topup','weekday','now','balance'));
+        return view('expenditure-management.create')->with(compact('expense_accounts','total_topup','weekday','now','balance','persons'));
        
     }
     //
@@ -307,28 +311,77 @@ return Response($output);
     public function destroy($id)
     {
         //
-        //find all ids where  the id records are greater than the deleted id
-        $affected_columns=Spendings::where('id', '>', $id+1)->pluck('closing_balance');
-       //if($affected_columns){
        $deleted_amount=Spendings::where('id',$id)->pluck('expense_amount');
-       $immediate_closingbalance=Spendings::where('id',$id+1)->pluck('closing_balance');
+       $immediate_closingbalance=Spendings::where('id','>',$id)->take(1)->pluck('closing_balance');
+       $immediate_closingbalance_id=Spendings::where('id','>',$id)->take(1)->pluck('id');
+       $top_id=Spendings::where('id','>',$id)->get();
+        //find all ids affected after deletion is done 
+        $affected_columns=Spendings::where('id', '>',$immediate_closingbalance_id)->get();
         $balance=$deleted_amount[0]+$immediate_closingbalance[0];
-       $new_amounts =  explode(',', $affected_columns);
-       //$all=array_push( $immediate_closingbalance, $new_amounts );
-      //return response($balance);  
-     //Spendings::where('id', '=', $id+1)->update($balance);
-        // }
+       //$new_amounts =  explode(',', $affected_columns);
+        //adding the deleted expense to the immediate closing balance
+                //$page = Spendings::find($immediate_closingbalance_id);
+                //if($page){
+                //    $page[0]->closing_balance = $balance;
+                //    $page[0]->save();
+                //}
+//
+
+
+            //using the immediate closing balance to deduct all the affected expenses(expenses incured after the deleted expense)
+           // if($affected_columns){
+           //     foreach($affected_columns as $column){
+           //         $new_amounts[] =$column;
+           //         $data[]=[
+           //             'closing_balance'=>$balance-array_sum($new_amounts),
+           //         ];   
+           //     }
+           // }
+           //$data[]=Spendings::max('id');//->update(['deleted_amount'=>$deleted_amount[0]]);
+           if($top_id->count()>0){
+            $previous=Expense::All();
+            if($previous->count()>0) {
+            foreach($previous as $current){
+                $new=$current->deleted_amount;
+            }        
+        }
+        else {
+            $new=0;
+       }
+       $data=new Expense;
+       $data->deleted_amount = $deleted_amount[0] +$new;
+       $data->save();
+       $total_topup=Topup::sum('topup');
+       $total_expense=Spendings::sum('expense_amount');
+       $total_expenses= $total_expense-$deleted_amount[0];
+       $bal=$total_topup-$total_expenses;
+       Spendings::find($id)->delete(); 
+      // return response($data->deleted_amount);
+       return response()->json(['response'=>'success','bal'=>$bal,'total_expenses'=>$total_expenses,'deleted'=>$data->deleted_amount]);
+           }
+           else{
+            $previous=Expense::All();
+            if($previous->count()>0) {
+            foreach($previous as $current){
+                $new=$current->deleted_amount;
+            } 
+        }       
+        else {
+            $new=0;
+       }
+       $data=new Expense;
+       $data->deleted_amount = $deleted_amount[0] +$new;
+       $data->save();
+       $total_expense=Spendings::sum('expense_amount');
+       $total_expenses= $total_expense-$deleted_amount[0];
+       $bal=$total_topup-$total_expenses;
+       Spendings::find($id)->delete(); 
+      // return response($data->deleted_amount);
+       return response()->json(['response'=>'success','bal'=>$bal,'total_expense'=>$total_expenses,'deleted'=>$data->deleted_amount]);
+           }
+          
+           //$data=Spendings::max('id');
        
-            $page = Spendings::find($id+1);
-            while($page==true){
-                $page->closing_balance = $balance;
-                $page->save();
-            }
-           
-       
-        
-        Spendings::find($id)->delete();
-        //return response()->json(['success'=>'Data is Deleted']);
-        
+        //return response()->json(['success'=>'Data is successfully added']);
     }
 }
