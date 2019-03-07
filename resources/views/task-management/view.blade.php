@@ -27,6 +27,7 @@
                 <th class=" bg-primary">Customer Email</th>
                 <th class=" bg-primary">Assignee</th>
                  <th class="bg-primary">Status</th>
+                   <th class=" bg-primary">Project</th>
                 <th class=" bg-primary">Comment</th>
                 <th class=" bg-primary">View</th>
                 <th class=" bg-primary">Edit</th>
@@ -53,11 +54,17 @@
                     <span class="label label-warning">Not Replied</span>
                     @endif
                     </td>
+                    @if(App\Project::where('taskid',$task->id)->first())
+                      <td class="pt-2-half" ><span class="label label-info">Yes</span></td>
                          <td  class="pt-2-half">
-                    <a href="/admin/tasks/comment/{{$taskasignned=$task->id}}" style="float:left;" data-placement="top" data-toggle="tooltip" title="reply"><button class="btn btn-primary btn-xs pull-right " data-title="reply" data-toggle="modal" data-target="#reply" ><span class="fa fa-reply"></span></button></a>
+                    @else
+                      <td class="pt-2-half" ><span class="label label-dark">No</span></td>
+                         <td  class="pt-2-half">
+                    @endif
+                    <a href="/admin/tasks/comment/{{$taskasignned=$task->id}}" style="float:left;" data-placement="top" data-toggle="tooltip" title="reply"><button class="btn btn-success btn-xs pull-right " data-title="reply" data-toggle="modal" data-target="#reply" ><span class="fa fa-reply"></span></button></a>
                     </td>
                           <td  class="pt-2-half">
-                    <a href="/admin/tasks/edit/{{$task->id}}" style="float:left;" data-placement="top" data-toggle="tooltip" title="view"><button class="btn btn-primary btn-xs pull-right " data-title="view" data-toggle="modal" data-target="#view" ><span class="fa fa-eye"></span></button></a>
+                    <a href="/admin/tasks/edit/{{$task->id}}" style="float:left;" data-placement="top" data-toggle="tooltip" title="view"><button class="btn btn-info btn-xs pull-right " data-title="view" data-toggle="modal" data-target="#view" ><span class="fa fa-eye"></span></button></a>
                     </td>
                 <td class="pt-2-half">
                 <a href="/admin/tasks/edit/{{$task->id}}" style="float:left;" data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs pull-right " data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></a>

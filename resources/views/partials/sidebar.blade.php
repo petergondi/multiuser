@@ -87,7 +87,7 @@
                                            
                                     <a >
                                         <i class="fa fa-tasks" aria-hidden="true"></i>
-                                                <span>Tasks&nbsp;<span class="badge">{{$totaltask=App\Task::All()->count()}}</span></span>
+                                                <span>Tasks/Project&nbsp;<span class="badge">{{$totaltask=App\Task::All()->count()}}</span></span>
                                     </a>
                                     <ul class="nav nav-children">
                                         <li>
@@ -97,7 +97,12 @@
                                         </li>
                                         <li>
                                             <a class="fa fa-eye"   href="/admin/tasks/view">
-                                                View 
+                                                Tasks
+                                            </a>
+                                        </li>   
+                                         <li>
+                                            <a class="fa fa-eye"   href="{{route('admin.projects.view')}}">
+                                             Projects 
                                             </a>
                                         </li>   
                                     </ul>
@@ -183,8 +188,12 @@
                                         <a href="{{route('admin.spendings.view')}}">
                                              View Expenses
                                         </a>
+                                    </li>   
+                                     <li>
+                                        <a href="{{route('admin.requests.view')}}">
+                                             Expenses Requests
+                                        </a>
                                     </li>    
-                                    
                                 </ul>
                             </li> 
                                     </li>    

@@ -66,6 +66,9 @@ class TaskController extends Controller
     //showing assigned tasks to admin
     public function show(){
         $tasks = Task::with('user')->orderBy('id','desc')->paginate(6);
+        //$id_task=Task::All();
+        //foreach
+        //$project=Project::where()
         return view('task-management.view')->with(compact('tasks'));
     }
     //editing tasks

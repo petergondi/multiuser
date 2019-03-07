@@ -74,7 +74,7 @@ class DepartmentController extends Controller
     {
         //
         
-        $depts = Department::paginate(2);
+        $depts = Department::paginate(10);
         return view('dept-management.view')->with(compact('depts'));
     }
 

@@ -1,9 +1,32 @@
-@extends('topup-management.base')
-@section('action-content')
+@extends('layouts.master')
+@section('content')
 <meta name="csrf-token" content="{{ csrf_token() }}">
-  <!-- Mobile Menu end -->
-<!-- Basic Form Start -->
-
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+    <!-- Content Header (Page header) -->
+    <section class="content-header text-left">
+      <h4><i class="fa fa-tasks"></i>
+        Requisition
+      </h4>
+    </section>
 <div class="basic-form-area mg-tb-15">
     <div class="container-fluid">
     <div class="panel panel-default alert alert-info" role="alert">
@@ -15,13 +38,17 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 alert alert-success" role="alert">
                 <div class="sparkline12-list">
                     <div class="sparkline12-hd">
+                      <div class="row">
+                <div class="col-sm-4 pull-right">
+                       
+                    <button type="button" class="btn btn-success add-new" data-toggle="modal" data-target="#exampleModalCenter">Status..</button>
+                       
+                </div>
+            </div>
                         <section class="content-header text-center">
-      <p>Make top up
+      <p>Send Your Expense Requisition
       </p>
-    </section>
-                    <p  class="pull-right" id="balance">Balance: ksh.{{$balance}}</p>
-                    <p  class="pull-right" id="bal"></p>
-                      
+    </section>   
                     </div>
                     <div class="sparkline12-graph">
                         <div class="basic-login-form-ad">
@@ -32,17 +59,27 @@
                                             <div class="form-group-inner">
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                                        <label  class="login2 pull-right pull-right-pro">Top Up</label>
+                                                        <label  class="login2 pull-right pull-right-pro">Expense</label>
                                                     </div>
                                                     <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
                                                         <div class="form-select-list">
-                                                            <select class="form-control custom-select-value" id="account" name="account" required>
-                                                                <option value="">select top up type</option>    
-                                                                <option value="mpesa">Mpesa</option>
-                                                                <option value="bank">Bank</option>
-                                                                <option value="cash">Cash</option>
+                                                            <select class="form-control custom-select-value" id="expense" name="account" required>
+                                                                @foreach($expenses as $expense)
+                                                                <option value="{{$expense->account_name}}">{{$expense->account_name}}</option> 
+                                                                @endforeach   
                                                                 </select>
                                                         </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br/>
+                                             <div class="form-group-inner">
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                        <label  class="login2 pull-right pull-right-pro">Purpose</label>
+                                                    </div>
+                                                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                                                        <textarea class="form-control"  name="purpose"  rows="3" id="purpose"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -54,7 +91,7 @@
                                                     </div>
                                                     <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
                                                         <div class="input-group">
-                                                            <input name="topup" type="text" id="topup" class="form-control" required>
+                                                            <input name="amount" type="text" id="amount" class="form-control" placeholder="amount requested" required>
                                                             <span class="input-group-addon">.00</span>
                                                         </div>
                                                     </div>
@@ -68,7 +105,7 @@
                                                         <div class="col-lg-9">
                                                             <div class="login-horizental cancel-wp pull-left">
                                                                 <button class="btn btn-sm btn-info" type="submit">Cancel</button>
-                                                                <button class="btn btn-sm btn-success login-submit-cs" id="submit">Top Up</button>
+                                                                <button class="btn btn-sm btn-success login-submit-cs" id="submit">Request</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -95,21 +132,18 @@
 <script>
  $('#submit').on('click', function(e) {
     e.preventDefault();
-       var account = $('#account').val();
-       var topup = $('#topup').val();
+       var expense = $('#expense').val();
+        var purpose= $('#purpose').val();
+       var  amount=  $('#amount').val();
        $.ajax({
            type: "POST",
-           url:'{{URL::to('admin/topup/make')}}',
-           data: {account:account, topup:topup,_token: '{!! csrf_token() !!}'},
+           url:'{{URL::to('users/request/send')}}',
+           data: {expense:expense, purpose:purpose,amount:amount,_token: '{!! csrf_token() !!}'},
            success:function(data){
-            if(!($("#account").val().length||$("#topup").val().length)== 0){
-            document.getElementById('bal').innerHTML += 'Balance: ksh.';
-            $('#balance').text(data);
-            $('#account').val("");
-            $('#topup').val("");
-             $('#amount').text(data);
-          
-        }
+               $('#expense').val("");
+                $('#purpose').val("");
+                $('#amount').val("");
+                 $("#submit").text(data)
         }
        });
    });

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Events\FormSubmitted;
 use App\Task;
 use App\Reply;
+use App\Project;
 
 class ReplyController extends Controller
 {
@@ -20,15 +21,10 @@ class ReplyController extends Controller
         $userid=Auth::user()->id;
         $taskassigned=Task::where('id', $id)->get();
         $comments =Reply::where('task_id',$id)->orderBy('created_at','ASC')->get();
-        return view('task-management.reply')->with(compact('taskassigned','userid','comments'));
+        $checkproject=Project::where('taskid',$id)->first();
+        return view('task-management.reply')->with(compact('taskassigned','userid','comments','checkproject'));
     }
     public function replyTask(Request $request,$taskid,$userid){
-        //$existing_reply= Task::where('id', $taskid)->where('status', '=', 'yes')->first();
-        //checking to reply only once
-       // if($existing_reply){
-       // return redirect('users/tasks/view')->with('error','The task has been replied');
-      // }
-       // else{
             $this->validate($request,[
                 'reply'=>'required', 
             ]);

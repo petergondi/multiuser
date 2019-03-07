@@ -6,7 +6,7 @@
     <div class="row">
      <section class="content-header text-left">
     <p> <i class="fa fa-arrow-right"></i>This page shows you an overview of your created expense accounts. The top bar shows the amount that is available to be budgeted. 
-    .<a href=""><i class="fa fa-info-circle" style="font-size:13px"></i></a></p>
+    .<a href=""><i class="fa fa-info-circle" style="font-size:13px"></i></a><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
     </section>
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Reply;
 use App\Task;
+use App\Project;
 
 class CommentController extends Controller
 {
@@ -15,9 +16,9 @@ class CommentController extends Controller
     //show comment form together with tasks assigned to the assignee
     public function show($taskasigned){
         $tasks_to_comment=Task::where('id',$taskasigned)->get();
-        //$users_name = Reply::with('user')->get();
+        $ifproject = Project::where('taskid',$taskasigned)->first();
         $comments =Reply::where('task_id',$taskasigned)->orderBy('created_at','ASC')->get();
-        return view('task-management.adminreply')->with(compact('comments','tasks_to_comment'));
+        return view('task-management.adminreply')->with(compact('comments','tasks_to_comment','ifproject'));
     }
     //reply to the specific task assigned to the user
     public function CommentTask(Request $request,$taskid,$userid){

@@ -6,8 +6,13 @@
         <p>You are replying to The following assigned task</p>
         @foreach($taskassigned as $taskassign) 
         <div class="invisible">{{$taskid=$taskassign->id}}</div>
-        <p style="text-center">Task Name:{{$taskassign->task_name}}</p> 
-        <p style="float-center">Task Description:{{$taskassign->description}}</p> 
+        <h4 style="text-center">
+        @if($checkproject==true)Project:
+        @else
+        Task:
+        @endif
+        {{$taskassign->task_name}}</h4> 
+        <p style="float-center">Description:{{$taskassign->description}}</p> 
                 @endforeach  
                 <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                     Comments <span class="badge">{{$comments->count()}}</span><span class="caret"></span>
@@ -17,7 +22,7 @@
                    <div  class="collapse" id="collapseExample">
                        <br/>
                        @if($comments->count()==0)
-                      <p>No comments posted on this task</p>
+                      <p>No comments posted</p>
                       @else
                    @foreach($comments as $comment)
                      @if($comment->user_id==0)

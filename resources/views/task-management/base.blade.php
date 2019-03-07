@@ -3,7 +3,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header text-left">
       <h4><i class="fa fa-tasks"></i>
-        Task Management
+        Project and Task Management
       </h4>
     </section>
     @yield('action-content')

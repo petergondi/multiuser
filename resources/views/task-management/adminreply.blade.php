@@ -7,8 +7,13 @@
         <p>You are replying to The following assigned task</p>
       @foreach($tasks_to_comment as $task_to_comment)
   <div class="invisible">{{$taskid=$task_to_comment->id}}{{$userid=0}}</div>
-            <p style="text-center">Task Name:{{$task_to_comment->task_name}}</p> 
-             <p style="float-center">Task Description:{{$task_to_comment->description}}</p> 
+            <h4 style="text-center">
+            @if($ifproject==true)Project Name:
+           @else
+            Task Name:{{$task_to_comment->task_name}}
+            @endif
+            </h4> 
+             <p style="float-center">Description:{{$task_to_comment->description}}</p> 
              <br>
              @endforeach
              <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -18,7 +23,7 @@
             <div class="container-fluid collapse" id="collapseExample">
                 <br/>
                 @if($comments->count()==0)
-               <p>No comments posted on this task</p>
+               <p>No comments posted</p>
                @else
             @foreach($comments as $comment)
               @if($comment->user_id==0)
@@ -48,7 +53,7 @@
    
     <fieldset>
 <!-- Form Name -->
-<legend>Comment to the Assigned task</legend>
+<legend>Comment</legend>
 <!-- Textarea -->
 
 <div class="form-group">

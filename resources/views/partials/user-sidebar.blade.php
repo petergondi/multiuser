@@ -70,7 +70,7 @@
                                     </a>
                                     <ul class="nav nav-children">
                                         <li>
-                                                <a class="fa fa-eye"   href="/admin/customers/show">
+                                                <a class="fa fa-eye"   href="{{route('users.request.show')}}">
                                                      Requisition 
                                                 </a>
                                             </li>

@@ -4,13 +4,13 @@
 <section class="content">
     <section class="content">
        
-    <div class="container-fluid alert alert-success" role="alert"">
+    <div class="container-fluid alert alert-success" role="alert">
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
                 <section class="content-header text-left">
     <p> <i class="fa fa-arrow-left"></i>This page shows you an overview of your created expense accounts. The top bar shows the amount that is available to be budgeted. 
-    .<a href=""><i class="fa fa-info-circle" style="font-size:13px"></i></a></p>
+    .<a href=""><i class="fa fa-info-circle" style="font-size:13px"></i></a><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
     </section>
                     <div class="col-sm-8"><p><strong>User Details</strong></p></div>
                     <div class="col-sm-4">

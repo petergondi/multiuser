@@ -7,7 +7,7 @@
     <div class="row">
     <div class="panel panel-default">
     <div class="panel-body"><a href="info"><i class="fa fa-info-circle " style="font-size:15px"></i></a>On this page you can see your budgets. The top bar is the amount that you can budget. You can adjust that yourself by clicking on the amount. What you have actually spent is shown in the bar below. 
-    Below that you will see every budget and what you have budgeted for it.</div>
+    Below that you will see every budget and what you have budgeted for it.<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></div>
   </div>
 </div>
         <div class="col-md-8 col-md-offset-2 >

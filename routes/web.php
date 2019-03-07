@@ -26,6 +26,13 @@ Route::get('/executive/logout', 'Auth\ExecutiveLoginController@logout')->name('e
 Route::get('/executive', 'ExecutiveController@index');
 Route::get('users/tasks/reply/{id}','ReplyController@showReplyForm');
 Route::post('users/tasks/replied/{taskid}/{userid}','ReplyController@replyTask');
+//task details to be converted to project on the modal
+Route::get('users/task/convert','ProjectConversion@showtask')->name('users.task.convert');
+//post project
+Route::post('users/project/create','ProjectConversion@postProject')->name('users.project.create');
+//requests
+Route::get('users/request/show','Requisition@showForm')->name('users.request.show');
+Route::post('users/request/send','Requisition@sendRequest')->name('users.request.send');
 //function to group all the admin prefix
 Route::prefix('admin')->group(function()
 {
@@ -81,4 +88,10 @@ Route::get('/account/show','AccountsController@index')->name('admin.account.show
 Route::get('/topup/view','TopupController@index')->name('admin.topup.view');
 Route::post('/topup/make','TopupController@store');
 Route::get('/account/topup','TopupController@create')->name('admin.account.topup');
+//show projects
+Route::get('/projects/view','Projects@showProjects')->name('admin.projects.view');
+//show requests
+Route::get('/requests/view','AdminViewRequest@showRequests')->name('admin.requests.view');
+Route::post('/request/approval/{id}', 'AdminViewRequest@Approve');
+Route::post('/request/decline/{id}', 'AdminViewRequest@Decline');
 });

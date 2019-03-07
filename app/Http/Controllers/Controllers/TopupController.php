@@ -119,7 +119,6 @@ class TopupController extends Controller
         $bank=Topup::where('account_type','bank')->sum('topup');
         $total_topup=Topup::sum('topup');
         $amount=Topup::where('id',$id)->first();
-        
             $offset=new Offset;
             $test=$amount->topup;
             $offset->amount=$test;
