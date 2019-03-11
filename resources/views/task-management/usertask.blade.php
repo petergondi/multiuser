@@ -64,6 +64,7 @@
                 <th class=" bg-primary">Contact</th>
                 <th class=" bg-primary">Customer Email</th>
                 <th class=" bg-primary">Status</th>
+                 <th class=" bg-primary">Project</th>
                 <th class=" bg-primary">reply</th>
                 <th class=" bg-primary">comments</th>
                 <th class=" bg-primary">View</th>
@@ -85,6 +86,7 @@
                 <span class="label label-warning">Not Replied</span>
               </td>
               @endif
+              <td class="pt-3-half"></td>
                 <td class="pt-3-half"> 
                      <a href="/users/tasks/reply/{{$usertask->id}}" style="float:left;" data-placement="top" data-toggle="tooltip" title="reply"><button class="btn btn-primary btn-xs pull-right " data-title="reply" data-toggle="modal" data-target="#reply" ><span class="fa fa-reply"></span></button></a>
                       </a></td>

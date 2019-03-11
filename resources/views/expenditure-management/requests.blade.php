@@ -7,6 +7,7 @@
 <div class="container-fluid alert alert-success" role="alert">
     <div class="row">
     <section class="content-header text-center">
+    <a href="#" class="previous round">&#8249;</a>
     <p>This page shows you an overview of your created expense accounts. The top bar shows the amount that is available to be budgeted. 
     .<a href=""><i class="fa fa-info-circle" style="font-size:13px"></i></a></p>
     </section>
@@ -30,7 +31,7 @@
                          <th>Date</th>
                          <th>View</td>
                           <th>Status</th>
-                        <th>Action</th>
+                        <th>Approve/Decline</th>
                     </tr> 
                   </thead>
                   <tbody>
@@ -50,8 +51,8 @@
                               <td><button type="submit" id="{{$sent_request->id}}" class="btn btn-sm btn-danger">Declined</button></td> 
                             @endif
                             <td>
-                            <button type="submit" data-id="{{$sent_request->id}}" class="btn btn-sm btn-success approve">Approve</button>
-                            <button type="submit" data-id="{{$sent_request->id}}" class="btn btn-sm btn-danger decline">Decline</button>
+                            <button type="submit" data-id="{{$sent_request->id}}" class="btn btn-sm btn-success approve"><span class="fa fa-check"></span></button>
+                            <button type="submit" data-id="{{$sent_request->id}}" class="btn btn-sm btn-danger decline"><span class="glyphicon glyphicon-remove"></span></button>
                             </td> 
                             @endforeach
                         </tbody>

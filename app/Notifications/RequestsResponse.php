@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class TestNotification extends Notification
+class RequestsResponse extends Notification
 {
     use Queueable;
 
@@ -16,11 +16,9 @@ class TestNotification extends Notification
      *
      * @return void
      */
-    //public $note;
     public function __construct()
     {
         //
-        //$this->note=$note;
     }
 
     /**
@@ -58,8 +56,7 @@ class TestNotification extends Notification
     {
         return [
             //
-            'data'=>'added a new department'
-            //.$this->note,
+            'data'=>'request responded to',
         ];
     }
 }

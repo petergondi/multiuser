@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Requests;
+use App\Notifications\InvoicePaid;
 class AdminViewRequest extends Controller
 {
     public function __construct()
@@ -11,10 +12,11 @@ class AdminViewRequest extends Controller
         $this->middleware('auth:admin');
     }
     //
-    public function showRequests()
+    public function showRequests(Request $request)
 {
 $sent_requests=Requests::paginate(10);
 return view('expenditure-management.requests',compact('sent_requests'));
+
 }
 //request approval
 public function Approve($id){
@@ -27,6 +29,8 @@ public function Approve($id){
         $approve_status=Requests::find($id);
         $approve_status->status=1;
         $approve_status->save();
+        $user=User::find($approve_status->user_id);
+        $user->notify(new RequestsResponse());
         return response("approved");
     }
    
@@ -41,6 +45,8 @@ public function Decline($id){
     $decline_status=Requests::find($id);
     $decline_status->status=2;
     $decline_status->save();
+    $user=User::find($decline_status->user_id);
+    $user->notify(new RequestsResponse());
     return response("declined");
     }
 }

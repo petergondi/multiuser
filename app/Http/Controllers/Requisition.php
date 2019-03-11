@@ -23,6 +23,7 @@ return view('user-management.user-request')->with(compact('expenses'));
     {
          $requisition=new Requests;
          $requisition->user=Auth::user()->firstname;
+         $requisition->user_id=Auth::user()->id;
          $requisition->expense=$request->input("expense");
          $requisition->purpose=$request->input("purpose");
          $requisition->amount=$request->input("amount");

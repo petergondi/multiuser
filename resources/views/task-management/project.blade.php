@@ -43,7 +43,7 @@
                           <td  class="pt-2-half">
                     <a href="" style="float:left;" data-placement="top" data-toggle="tooltip" title="view"><button class="btn btn-info btn-xs pull-right " data-title="view" data-toggle="modal" data-target="#view" ><span class="fa fa-eye"></span></button></a>
                     </td>
-                <td class="pt-2-half"><p style="float:left;" data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs pull-right" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+                <td class="pt-2-half"><p style="float:left;" data-placement="top" data-toggle="tooltip" title="terminate"><button class="btn btn-danger btn-xs pull-right" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-remove"></span></button></p></td>
                 {!! Form::close() !!}</td>
               </tr>
               @endforeach
