@@ -86,7 +86,11 @@
                 <span class="label label-warning">Not Replied</span>
               </td>
               @endif
-              <td class="pt-3-half"></td>
+              @if(App\Project::where('taskid',$usertask->id)->first())
+                      <td class="pt-2-half" ><span class="label label-info">Yes</span></td> 
+                    @else
+                      <td class="pt-2-half" ><span class="label label-dark">No</span></td>
+                    @endif
                 <td class="pt-3-half"> 
                      <a href="/users/tasks/reply/{{$usertask->id}}" style="float:left;" data-placement="top" data-toggle="tooltip" title="reply"><button class="btn btn-primary btn-xs pull-right " data-title="reply" data-toggle="modal" data-target="#reply" ><span class="fa fa-reply"></span></button></a>
                       </a></td>
@@ -135,7 +139,7 @@
               $.post("{{URL::to('users/project/create')}}",{taskid:taskid,task:task,description:description,customer:customer,location:location,email:email,contact:contact,from:from,to:to,note:note,_token: '{!! csrf_token() !!}'},
               function(data){  
                  $('#posted').text(data);
-                  $(".convert").attr("disabled", false);
+                  //$(".convert").attr("disabled", false);
                $('#from').val("");
                $('#to').val("");
                $('#note').val("");

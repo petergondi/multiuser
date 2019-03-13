@@ -22,6 +22,9 @@ class Project extends Authenticatable
     public $table="projects";
 
    
-   
+    public function customers()
+    {
+        return $this->belongsTo('App\Customer','customer_name');
+    }
     
 }

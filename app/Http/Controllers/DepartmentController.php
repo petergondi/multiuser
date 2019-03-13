@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Department;
-use App\Notifications\TestNotification;
+use App\Events\requestNotify;
 
 class DepartmentController extends Controller
 {
@@ -57,9 +57,7 @@ class DepartmentController extends Controller
         $post->email=$request->input('email');
         $post->firstname=$request->input('firstname');
         $post->save();
-        //$dept=Department::find(7);
-        //$note=$request->input('name');
-        //$dept->notify(new TestNotification());
+       
         return redirect('admin/dept/show')->with('success','Department Added');
         
     }
@@ -75,6 +73,11 @@ class DepartmentController extends Controller
         //
         
         $depts = Department::paginate(10);
+        $message=[
+            "name"=>"John",
+            "message"=> "Hello"
+        ];
+        event(new requestNotify($message));
         return view('dept-management.view')->with(compact('depts'));
     }
 

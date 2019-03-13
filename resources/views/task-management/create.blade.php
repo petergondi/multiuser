@@ -1,13 +1,14 @@
 @extends('task-management.base')
 @section('action-content')
 @include('partials.messages')
+<meta name="csrf-token" content="{{ csrf_token() }}">
 
 <div class="container-fluid alert alert-success" role="alert">
 
     <div class="row">
     <div class="panel panel-default">
     <div class="panel-body"><a href="info"><i class="fa fa-info-circle " style="font-size:15px"></i></a>On this page you can see your budgets. The top bar is the amount that you can budget. You can adjust that yourself by clicking on the amount. What you have actually spent is shown in the bar below. 
-    Below that you will see every budget and what you have budgeted for it.<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></div>
+    Below that you will see every budget and what you have budgeted for it.</div>
   </div>
 </div>
         <div class="col-md-8 col-md-offset-2 >
@@ -41,24 +42,27 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group{{ $errors->has('customer_name') ? ' has-error' : '' }}">
-                            <label for="customer_name" class="col-md-4 control-label">Customer Name</label>
-
-                            <div class="col-md-6">
-                                <input id="customer_name" type="text" class="form-control" name="customer_name" value="{{ old('customer_name') }}" required>
-
-                                @if ($errors->has('customer_name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('customer_name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                         <div class="form-group{{ $errors->has('customer_name') ? ' has-error' : '' }}">
+                                        <label for="customer_name" class="col-md-4 control-label">Customer</label>
+                                        <div class="col-md-6">
+                                            <select class="form-control" name="customer_name" id="customer_name">
+                                                    <option value="" selected>Select Customer</option>
+                                                    @foreach($customers as $customer)
+                                            <option value="{{$customer->id}}">{{$customer->customer_name}}</option>
+                                                    @endforeach
+                                                  </select>
+                                            @if ($errors->has('customer_name'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('customer_name') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
                         <div class="form-group{{ $errors->has('location') ? ' has-error' : '' }}">
                             <label for="location" class="col-md-4 control-label">Location</label>
 
                             <div class="col-md-6">
-                                <input id="location" type="text" class="form-control" name="location" value="{{ old('location') }}" required>
+                                <input id="location" type="text" class="form-control" name="location" value="{{ old('location') }}" >
 
                                 @if ($errors->has('Location'))
                                     <span class="help-block">
@@ -71,7 +75,7 @@
                                 <label for="contact" class="col-md-4 control-label">Customer Contact</label>
     
                                 <div class="col-md-6">
-                                    <input id="contact" type="tel" class="form-control" name="contact" value="{{ old('contact') }}" required>
+                                    <input id="contact" type="tel" class="form-control" name="contact" value="{{ old('contact') }}" >
     
                                     @if ($errors->has('contact'))
                                         <span class="help-block">
@@ -84,7 +88,7 @@
                                     <label for="email" class="col-md-4 control-label">Customer email</label>
         
                                     <div class="col-md-6">
-                                        <input id="email" type="text" class="form-control" name="email" value="{{ old('email') }}" required>
+                                        <input id="email" type="text" class="form-control" name="email" value="{{ old('email') }}" >
         
                                         @if ($errors->has('email'))
                                             <span class="help-block">
@@ -128,4 +132,46 @@
         </div>
     </div>
 </div>
+<script src="http://code.jquery.com/jquery-3.3.1.min.js"
+               integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+               crossorigin="anonymous">
+      </script>
+      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script>
+$("#customer_name").change(function () {
+    var id = $(this).val();
+    if(id.length==0){
+             var contactTextBox = document.getElementById("contact");
+       contactTextBox.value = "";
+         var locationTextBox = document.getElementById("location");
+        locationTextBox.value = "";
+         var emailTextBox = document.getElementById("email");
+         emailTextBox.value = "";  
+    }
+    else{
+$.ajax({
+           type: "POST",
+           url:"/admin/task/assign/"+id,
+           data: {customer:id,_token: '{!! csrf_token() !!}'},
+           success:function(data){
+        var contactTextBox = document.getElementsByName("contact");
+       contactTextBox.value = data.contact;
+         var locationTextBox = document.getElementsByName("location");
+        locationTextBox.value = data.location;
+         var emailTextBox = document.getElementsByName("email");
+         emailTextBox.value = data.email;
+          var contactTextBox = document.getElementById("contact");
+       contactTextBox.value = data.contact;
+         var locationTextBox = document.getElementById("location");
+        locationTextBox.value = data.location;
+         var emailTextBox = document.getElementById("email");
+         emailTextBox.value = data.email;
+        },
+         
+
+       });
+    }
+    
+});
+</script>
 @endsection

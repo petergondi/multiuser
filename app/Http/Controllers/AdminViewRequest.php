@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Requests;
-use App\Notifications\InvoicePaid;
+use App\Notifications\RequestsResponse;
+use App\Events\requestNotify;
+use App\User;
 class AdminViewRequest extends Controller
 {
     public function __construct()
@@ -27,10 +29,18 @@ public function Approve($id){
     }
     else{
         $approve_status=Requests::find($id);
+        $details = [
+            'expense' => $approve_status->expense,
+            'purpose' => $approve_status->purpose,
+            'amount' => $approve_status->amount,
+            'date' => $approve_status->created_at
+        ];
+       
         $approve_status->status=1;
         $approve_status->save();
         $user=User::find($approve_status->user_id);
-        $user->notify(new RequestsResponse());
+        $user->notify(new RequestsResponse($details));
+        event(new requestNotify("hi sent"));
         return response("approved");
     }
    
@@ -43,10 +53,17 @@ public function Decline($id){
     }
     else{
     $decline_status=Requests::find($id);
+    $details = [
+        'expense' => $decline_status->expense,
+        'purpose' => $decline_status->purpose,
+        'amount' => $decline_status->amount,
+        'date' => $decline_status->created_at
+    ];
     $decline_status->status=2;
     $decline_status->save();
-    $user=User::find($decline_status->user_id);
-    $user->notify(new RequestsResponse());
+   $user=User::find($decline_status->user_id);
+    $user->notify(new RequestsResponse($details));
+    event(new requestNotify("hi sent"));
     return response("declined");
     }
 }

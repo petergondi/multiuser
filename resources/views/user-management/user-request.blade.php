@@ -1,7 +1,10 @@
+
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
 @extends('layouts.master')
 @section('content')
-<meta name="csrf-token" content="{{ csrf_token() }}">
 <!-- Modal -->
+
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -39,11 +42,11 @@
                 <div class="sparkline12-list">
                     <div class="sparkline12-hd">
                       <div class="row">
-                <div class="col-sm-4 pull-right">
-                       
+                <div id="app" class="col-sm-4 pull-right">  
                     <button type="button" class="btn btn-success add-new" data-toggle="modal" data-target="#exampleModalCenter">Status..</button>
-                       
                 </div>
+                <script src="{{asset('js/app.js')}}" charset="utf-8"></script>
+               
             </div>
                         <section class="content-header text-center">
       <p>Send Your Expense Requisition
@@ -122,13 +125,14 @@
         </div>
     </div>
 </div>
+ 
 <!-- Basic Form End-->
 </div>
-<script src="http://code.jquery.com/jquery-3.3.1.min.js"
+<script src="{{asset('http://code.jquery.com/jquery-3.3.1.min.js')}}"
                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
                crossorigin="anonymous">
       </script>
-      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+      <script src="{{asset('http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js')}}"></script>
 <script>
  $('#submit').on('click', function(e) {
     e.preventDefault();
@@ -147,5 +151,6 @@
         }
        });
    });
+    
 </script>
 @endsection

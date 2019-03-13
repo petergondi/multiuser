@@ -3,10 +3,48 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <meta name="csrf-token" content="{{ csrf_token() }}">
+<!----modal--->
      <!-- Mobile Menu end -->
 <!-- Basic Form Start -->
 <div class="basic-form-area mg-tb-15">
-<div class="container-fluid alert alert-success" role="alert"">
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add New Person</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Name:</label>
+            <input type="text" class="form-control" id="name">
+          </div>
+           <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Occupation:</label>
+            <input type="text" class="form-control" id="occupation">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Email:</label>
+            <input type="text" class="form-control" id="email">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Phone:</label>
+            <input type="text" class="form-control" id="phone">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid alert alert-success" role="alert">
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="sparkline12-list">
@@ -45,7 +83,7 @@
                                                 <tr>
                                                     <td><strong>Expense</strong></td>
                                                     <td><strong>Purpose</strong></td>
-                                                    <td><strong>Person Given</strong></td>
+                                                    <td><strong>Person Given</strong><button data-toggle="modal" data-target="#exampleModal" title="add new person" class="btn btn-sm"><i class="fa fa-plus"></i></button></td>
                                                      <td style="text-align:center;"><strong>VAT</strong></td>
                                                     <td><strong>Amount</strong></td>
                                                      <td><strong>Action</strong></td>
@@ -67,7 +105,7 @@
                                                     </td>
                                                      <td class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
                                                         <select class="form-control custom-select-value" name="person[]" required>
-                                                            <option value="">Person Given</option> 
+                                                            <option value="">Person Given </option> 
                                                             @foreach($persons as $person)
                                                         <option value="{{$person->firstname}}">{{$person->firstname}}</option> 
                                                             @endforeach   

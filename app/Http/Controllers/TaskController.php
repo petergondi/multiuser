@@ -29,7 +29,8 @@ class TaskController extends Controller
     public function index()
     {
         $assignees=User::All();
-        return view('task-management.create')->with('assignees',$assignees);
+        $customers=Customer::All();
+        return view('task-management.create')->with(compact('assignees','customers'));
     }
     //function for posting task to both task table and customer
     public function storeTask(Request $request)
@@ -44,11 +45,6 @@ class TaskController extends Controller
             'email'=>'required',
             'asignee_id'=>'required'
         ]);
-        $customer=new Customer;
-        $customer->email=$request->input('email');
-        $customer->contact=$request->input('contact');
-        $customer->location=$request->input('location');
-        $customer->customer_name=$request->input('customer_name');
         $task=new Task;
         $task->task_name=$request->input('task_name');
         $task->description=$request->input('description');
@@ -59,9 +55,15 @@ class TaskController extends Controller
         $task->asignee_id=$request->input('asignee_id');
         $task->status="no";
         $task->save();
-        $customer->save();
         return redirect('admin/tasks/view')->with('success','Task Assigned');
         
+    }
+    public function populateCustomers($id){
+            $selected_details=Customer::where("id",$id)->first();
+            $email=$selected_details->email;
+            $contact=$selected_details->contact;
+            $location=$selected_details->location;
+           return response()->json(['email'=>$email,'contact'=>$contact,'location'=>$location]); 
     }
     //showing assigned tasks to admin
     public function show(){
@@ -94,30 +96,6 @@ class TaskController extends Controller
              'email'=>'required',
              'asignee_name'=>'required'
          ]);
-        
-         if( $customer=Customer::find($id)){
-            $customer->email=$request->input('email');
-            $customer->contact=$request->input('contact');
-            $customer->location=$request->input('location');
-            $customer->customer_name=$request->input('customer_name');
-            $task=Task::find($id);
-            $task->task_name=$request->input('task_name');
-            $task->description=$request->input('description');
-            $task->customer_name=$request->input('customer_name');
-            $task->location=$request->input('location');
-            $task->contact=$request->input('contact');
-            $task->email=$request->input('email');
-            $task->asignee_name=$request->input('asignee_name');
-            $task->save();
-            $customer->save(); 
-            return redirect('admin/tasks/view')->with('success','Task Updated');
-         }
-         else{
-            $customer=new Customer;
-            $customer->email=$request->input('email');
-            $customer->contact=$request->input('contact');
-            $customer->location=$request->input('location');
-            $customer->customer_name=$request->input('customer_name');
             $task=Task::find($id);
             $task->task_name=$request->input('task_name');
             $task->description=$request->input('description');
@@ -127,25 +105,18 @@ class TaskController extends Controller
             $task->email=$request->input('email');
             $task->asignee_id=$request->input('asignee_id');
             $task->save();
-            $customer->save();
             return redirect('admin/tasks/view')->with('success','Task Updated');
-        }
          
          
      }
      public function destroy($id)
      {
-         //delete both records from assignee and task table
-         if(Customer::where('id', $id)){
-            Task::where('id', $id)->delete();
-            Customer::where('id', $id)->delete();
-            return redirect('admin/tasks/view')->with('success','Task Deleted');
-         }
-         //incase in inconsistent id delete only the record in task table
-         else{
+        
+         
+        
             Task::where('id', $id)->delete();
             return redirect('admin/tasks/view')->with('success','Task Deleted');
-         }
+       
         
      }
      //showing customers

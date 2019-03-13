@@ -37,7 +37,7 @@
               <tr>
                 <td class="pt-2-half" >{{$task->task_name}}</td>
                 <td class="pt-2-half" >{{$task->description}}</td>
-                <td class="pt-2-half" >{{$task->customer_name}}</td>
+                <td class="pt-2-half" >{{$task->customer->customer_name}}</td>
                 <td class="pt-2-half" >{{$task->created_at->format('d/m/Y')}}</td>
                 <td class="pt-2-half" >{{$task->location}}</td>
                 <td class="pt-2-half" >{{$task->contact}}</td>

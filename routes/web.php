@@ -65,6 +65,7 @@ Route::get('/setting/sms', 'SmsController@index');
 Route::post('/setting/sms/create', 'SmsController@smsform');
 //assigned tasks
 Route::get('/tasks/assign', 'TaskController@index');
+Route::POST('/task/assign/{id}', 'TaskController@populateCustomers');
 Route::get('/tasks/view', 'TaskController@show');
 Route::post('/tasks/assign/assigned', 'TaskController@storeTask');
 Route::get('/tasks/edit/{id}', 'TaskController@edit');
@@ -90,6 +91,7 @@ Route::post('/topup/make','TopupController@store');
 Route::get('/account/topup','TopupController@create')->name('admin.account.topup');
 //show projects
 Route::get('/projects/view','Projects@showProjects')->name('admin.projects.view');
+Route::get('/project/view','Projects@showProject')->name('admin.project.view');
 //show requests
 Route::get('/requests/view','AdminViewRequest@showRequests')->name('admin.requests.view');
 Route::post('/request/approval/{id}', 'AdminViewRequest@Approve');

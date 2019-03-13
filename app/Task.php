@@ -30,5 +30,9 @@ class Task extends Authenticatable
     {
         return $this->belongsTo('App\User','asignee_id');
     }
+    public function customer()
+    {
+        return $this->belongsTo('App\Customer','customer_name');
+    }
     
 }

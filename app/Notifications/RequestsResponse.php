@@ -16,8 +16,10 @@ class RequestsResponse extends Notification
      *
      * @return void
      */
-    public function __construct()
+    private $details;
+    public function __construct($details)
     {
+        $this->details = $details;
         //
     }
 
@@ -55,8 +57,9 @@ class RequestsResponse extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
-            'data'=>'request responded to',
+            'expense'=> $this->details['expense'],
+            'purpose'=> $this->details['purpose'],
+            'amount'=> $this->details['amount'],
         ];
     }
 }

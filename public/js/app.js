@@ -57838,50 +57838,17 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-
-Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue").default);
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-var example2 = new Vue({
-  el: '#example-2',
-  data: {
-    name: 'Vue.js'
-  },
-  // define methods under the `methods` object
-  methods: {
-    greet: function greet(event) {
-      // `this` inside methods points to the Vue instance
-      alert('Hello ' + this.name + '!'); // `event` is the native DOM event
-
-      if (event) {
-        alert(event.target.tagName);
-      }
-    }
+var app = new Vue({
+  el: '#app',
+  created: function created() {
+    Echo.private('testChannel').listen('requestNotify', function (e) {
+      alert("hi there");
+    });
   }
-}); // you can invoke methods in JavaScript too
-
-example2.greet(); // => 'Hello Vue.js!'
+});
 
 /***/ }),
 
@@ -57894,15 +57861,7 @@ example2.greet(); // => 'Hello Vue.js!'
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-!(function webpackMissingModule() { var e = new Error("Cannot find module 'vue-router'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-!(function webpackMissingModule() { var e = new Error("Cannot find module './components/Homepage'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-!(function webpackMissingModule() { var e = new Error("Cannot find module './components/Create'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-!(function webpackMissingModule() { var e = new Error("Cannot find module './components/Read'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-!(function webpackMissingModule() { var e = new Error("Cannot find module './components/Update'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-!(function webpackMissingModule() { var e = new Error("Cannot find module './components/Comments'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-/* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
+/* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -57940,54 +57899,12 @@ if (token) {
 }
 
 
-
-
-
-
-
-
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(!(function webpackMissingModule() { var e = new Error("Cannot find module 'vue-router'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-var router = new !(function webpackMissingModule() { var e = new Error("Cannot find module 'vue-router'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())({
-  mode: 'history',
-  routes: [{
-    path: '/admin/dashboard',
-    name: 'read',
-    component: !(function webpackMissingModule() { var e = new Error("Cannot find module './components/Read'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()),
-    props: true
-  }, {
-    path: '/admin/create',
-    name: 'create',
-    component: !(function webpackMissingModule() { var e = new Error("Cannot find module './components/Create'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()),
-    props: true
-  }]
-});
-var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
-  el: '#app',
-  components: {
-    Homepage: !(function webpackMissingModule() { var e = new Error("Cannot find module './components/Homepage'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()),
-    Comments: !(function webpackMissingModule() { var e = new Error("Cannot find module './components/Comments'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())
-  },
-  router: router
-});
-
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
-window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_2__["default"]({
+window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
-  key: "2b07189f263d501d00e5",
-  cluster: "eu",
-  encrypted: true
+  key: 'd07b52fe461dc004f384',
+  cluster: 'us2'
 });
-
-/***/ }),
-
-/***/ "./resources/js/components/ExampleComponent.vue":
-/*!******************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-throw new Error("Module build failed (from ./node_modules/vue-loader/lib/index.js):\nError: [vue-loader] vue-template-compiler must be installed as a peer dependency, or a compatible compiler implementation must be passed via options.\n    at loadTemplateCompiler (C:\\xampp\\htdocs\\multiauth\\blog\\node_modules\\vue-loader\\lib\\index.js:21:11)\n    at Object.module.exports (C:\\xampp\\htdocs\\multiauth\\blog\\node_modules\\vue-loader\\lib\\index.js:65:35)");
 
 /***/ }),
 

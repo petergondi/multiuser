@@ -26,4 +26,10 @@ class Customer extends Authenticatable
      *
      * @var array
      */
+    public function task(){
+        return $this->hasMany('App\Task');
+   }
+   public function project(){
+    return $this->hasMany('App\Project');
+}
 }

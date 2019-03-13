@@ -10,20 +10,16 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class FormSubmitted implements ShouldBroadcast
+class requestNotify implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
     
     
-    public $reply;
-    public $task;
-    public $user;
    
-    public function __construct($reply, $task,$user)
+   public $message;
+    public function __construct($message)
     {  
-    $this->reply=$reply;
-    $this->task=$task;
-    $this->user=$user;
+  $this->message=$message;
     }
 
     /**
@@ -33,6 +29,6 @@ class FormSubmitted implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('my-channel');
+        return new PrivateChannel('testChannel');
     }
 }

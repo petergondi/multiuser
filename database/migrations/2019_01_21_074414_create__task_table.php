@@ -20,7 +20,7 @@ class CreateTaskTable extends Migration
             $table->string('customer_name');
             $table->string('location');
             $table->integer('contact');
-           $table->string('email')->unique();
+           $table->string('email');
            $table->string('asignee_name');
            $table->string('status');
             $table->timestamps();
