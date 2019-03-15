@@ -49,7 +49,11 @@
                             <td>{{$account->account_name}}</td>
                             <td>{{$account->code}}</td>
                              <td>{{$account->account_description}}</td>
-                              <td><button type="button" class="btn btn-secondary btn-sm">Inactive</button></td>
+                             @if(App\Spendings::where('expense_name',$account->account_name)->first())
+                              <td><button type="button" class="btn btn-primary btn-sm">active</button></td>
+                              @else
+                                <td><button type="button" class="btn btn-secondary btn-sm">inactive</button></td>
+                                @endif
                                <td>{{$account->creator}}</td>
                              <td>{{$account->created_at}}</td>
                             

@@ -10,6 +10,7 @@ use App\Topup;
 use App\Offset;
 use App\Expense;
 use App\User;
+use App\newperson;
 use PDF;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
@@ -27,25 +28,21 @@ class SpendingsController extends Controller
      */
     public function index()
     {
-        //
+        //show expenditure records
         $total_topup=Topup::sum('topup');
         $total_expense=Spendings::sum('expense_amount');
         $balance=$total_topup-$total_expense;
         $last_topup=DB::table('topup')->latest('id')->first();
-        //foreach( $last_topups as $last){
-        //    $last_topup=$last;
-        //}
-        //$offsets=Offset::latest()->take(1)->get();
         $offsets=DB::table('offset')->latest('id')->first();
              $sum=$offsets;
         $spendings=Spendings::orderBy('id', 'DESC')->paginate(10);
         $expense_offset=Expense::max('deleted_amount');
         return view('expenditure-management.view')->with(compact('spendings','balance','total_expense','sum','last_topup','expense_offset'));
     }
-    //showing the table for posting expenditure
+    //page the table for posting expenditure
     public function create()
     {
-        //
+        //current day and week
        $now =Carbon::now()->format('m-d-Y');
         $weekMap = [
             0 => 'Sunday',
@@ -61,12 +58,33 @@ class SpendingsController extends Controller
         $weekday = $weekMap[$dayOfTheWeek];
         $total_topup=Topup::sum('topup');
         $total_expense=Spendings::sum('expense_amount');
-        $persons=User::All();
+        $newpersons=newperson::All();
+        //$new_persons_names=$newpersons->name;
+        $userpersons=User::All();
+        foreach($userpersons as $user){
+            $users[]=$user->firstname;
+        }
         $balance=$total_topup;
         $expense_accounts=Accounts::All();
         $count= $expense_accounts->count();
-        return view('expenditure-management.create')->with(compact('expense_accounts','total_topup','weekday','now','balance','persons'));
-       
+        foreach($newpersons as $person){
+            $newperson[]=$person->firstname;
+        }
+        $allpersons=array_merge( $users,  $newperson);
+        return view('expenditure-management.create')->with(compact('expense_accounts','total_topup','weekday','now','balance','allpersons'));
+    }
+    //function to auto-update persons given dropdown
+    public function personsgiven(){
+        $newpersons=newperson::All();
+        $userpersons=User::All();
+        foreach($userpersons as $user){
+            $users[]=$user->firstname;
+        }
+        foreach($newpersons as $person){
+            $newperson[]=$person->firstname;
+        }
+        $allpersons=array_merge( $users,  $newperson);
+        return response($allpersons);
     }
     //
     public function ReadData(){

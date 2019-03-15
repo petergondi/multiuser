@@ -1,7 +1,5 @@
 @extends('expenditure-management.base')
 @section('action-content')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <!----modal--->
      <!-- Mobile Menu end -->
@@ -39,7 +37,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Add</button>
+        <button type="button" id="add" class="btn btn-primary">Add</button>
       </div>
     </div>
   </div>
@@ -104,10 +102,10 @@
                                                         <input type="text" name="purpose[]"  class="form-control" required/>
                                                     </td>
                                                      <td class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
-                                                        <select class="form-control custom-select-value" name="person[]" required>
+                                                        <select class="form-control custom-select-value" id="person" name="person[]" required>
                                                             <option value="">Person Given </option> 
-                                                            @foreach($persons as $person)
-                                                        <option value="{{$person->firstname}}">{{$person->firstname}}</option> 
+                                                            @foreach($allpersons as $person)
+                                                        <option value="{{$person}}">{{$person}}</option> 
                                                             @endforeach   
                                                             </select>
                                                 </td>
@@ -172,7 +170,7 @@ $(document).ready(function () {
         var cols = "";
         cols +='<td> <select class="form-control custom-select-value"  name="account[]" required><option value="">expense type</option> @foreach($expense_accounts as $expense_account)  <option value="{{$expense_account->account_name}}">{{$expense_account->account_name}}</option>@endforeach </select></td>';                                                                                                                                                                                                            
         cols += '<td><input type="text" class="form-control"name="purpose[]" required/></td>';
-     cols +='<td> <select class="form-control custom-select-value"  name="person[]" required><option value="">Person Given</option> @foreach($persons as $person)  <option value="{{$person->firstname}}">{{$person->firstname}}</option>@endforeach </select></td>';
+     cols +='<td> <select class="form-control custom-select-value"  name="person[]" required><option value="">Person Given</option> @foreach($allpersons as $person)  <option value="{{$person}}">{{$person}}</option>@endforeach </select></td>';
         cols +='<td> <div style="text-align:center;" class="form-check"><input class="form-check-input" name="vat[]" type="checkbox" value="" id="vat"></div></td>';
         cols += '<td> <div class="input-group"><input type="text" class="form-control" id="qty" name="amount[]"/><span class="input-group-addon" required>.00</span></div></td>';
         cols += ' <td class="col-lg-1 col-md-1 col-sm-1 col-xs-12 input-sm"><button data-toggle="tooltip" title="Trash"  class="pd-setting-ed"><i class="ibtnDel btn btn-md btn-danger fa fa-trash-o" aria-hidden="true"></i></button> </td>';
@@ -231,26 +229,40 @@ $('#qty').on('keyup',function(){
        
 })
 
-$.get("{{URL::to('spend/create')}}",function(data){     
+$.get("{{URL::to('admin/spend/create')}}",function(data){     
     var balance=data;
    $('#result').text(balance);
-})
-$.ajaxSetup({
-headers: {
-    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-}
 });
-//$("#submit").on("click", function () {
-//      event.preventDefault();
-//   $.ajax({
-//      type:"post",
-//      url:"{{url('spending/create') }}",
-//      data:$(this).serialize(),
-//      success: function(data){
-//         alert("Data Save: " + data);
-//      }
-//   });
-//   })
+//adiing new person to dropdownlist
+
+
+$('#add').on('click',function(){
+        var occupation=$('#occupation').val();
+        var name=$('#name').val();
+        var email=$('#email').val();
+        var phone=$('#phone').val();
+ $.ajax({
+           type: "POST",
+           url:'{{URL::to('admin/person/add')}}',
+           data: {name:name, occupation:occupation,email:email,phone:phone,_token: '{!! csrf_token() !!}'},
+           success:function(data){
+               $.get("{{URL::to('admin/newpersons/show')}}",function(data){  
+                   $('#person').empty();   
+  for(var i = 0; i < data.length; i++) {
+  $('#person').append('<option value='+i+'>'+data[i]+'</option>');
+  }
+   });
+           $('#occupation').val("");
+           $('#name').val("");
+           $('#email').val("");
+           $('#phone').val("");
+           setTimeout(function() {
+      $('#exampleModal').modal('hide');
+    }, 4000); 
+    
+        }
+       });
+         });
    
 
 </script>

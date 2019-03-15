@@ -71,12 +71,12 @@
                    
                     <a href="#" class="dropdown-toggle notification-icon" data-toggle="dropdown">
                         <i class="fa fa-bell"></i>
-                        <span class="badge">5</span>
+                        <span class="badge">{{auth()->user()->notifications->count()}}</span>
                     </a>
                    
                     <div class="dropdown-menu notification-menu">
                         <div class="notification-title">
-                        <span class="pull-right label label-default">5</span>
+                        <span class="pull-right label label-default">{{auth()->user()->notifications->count()}}</span>
                             Alerts
                         </div>
                         <div class="content">
@@ -86,10 +86,20 @@
                                 <li>
                                     <a href="#" class="clearfix">
                                         <div class="image">
-                                            <i class="fa fa-thumbs-down bg-danger"></i>
+                                            <i class="fa fa-thumbs-up bg-danger"></i>
                                         </div>
-                                    <span class="title">Changed</span>
-                                        <span class="message">Just now</span>
+                                    <span class="title">Message</span>
+                                    <span class="message">
+                                    @foreach (auth()->user()->notifications as $notification)
+                                    <div class="panel panel-default alert alert-info" role="alert">
+                                    Expense:
+                                    {{$notification = auth()->user()->notifications[0]->data['expense']}}
+                                    </div>
+                                       <div class="panel panel-default">
+                                       {{$notification = auth()->user()->notifications[0]->data['purpose']}}
+                                       </div>
+                                       @endforeach
+                                        </span>
                                     </a>
                                 </li>
                                

@@ -26,7 +26,6 @@
                                 @endif
                             </div>
                         </div>
-                        
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">Department Name</label>
 
@@ -53,19 +52,22 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group{{ $errors->has('firstname') ? ' has-error' : '' }}">
-                            <label for="lastname" class="col-md-4 control-label">Incharge</label>
-
-                            <div class="col-md-6">
-                                <input id="firstname" type="text" class="form-control" name="firstname" value="{{ old('firstname') }}" required>
-
-                                @if ($errors->has('firstname'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('firstname') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                        <div class="form-group{{ $errors->has('customer_name') ? ' has-error' : '' }}">
+                                        <label for="customer_name" class="col-md-4 control-label">Incharge</label>
+                                        <div class="col-md-6">
+                                            <select class="form-control" name="customer_name" id="firstname">
+                                                    <option value="" selected>Select Incharge</option>
+                                                    @foreach($users as $user)
+                                            <option value="{{$user->firstname}}">{{$user->firstname}}</option>
+                                                    @endforeach
+                                                  </select>
+                                            @if ($errors->has('firstname'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('firstname') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
                         
                         </div>
                         </div>

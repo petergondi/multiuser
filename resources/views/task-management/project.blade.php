@@ -1,7 +1,6 @@
 @extends('task-management.base')
 @section('action-content')
 @include('partials.messages')
-<meta name="csrf-token" content="{{ csrf_token() }}">
 <section class="content">  
 <div class="container-fluid">
 <p id="project" class="card-header text-center font-weight-bold text-uppercase py-4"></p>
@@ -82,11 +81,6 @@
           </div>
         </div>
       </div>
-      <script src="http://code.jquery.com/jquery-3.3.1.min.js"
-               integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-               crossorigin="anonymous">
-      </script>
-      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
       <script>
        $('.show').on('click', function(e) {
          var id = $(this).data("id");

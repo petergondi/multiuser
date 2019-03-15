@@ -1,7 +1,6 @@
 @extends('task-management.base')
 @section('action-content')
 @include('partials.messages')
-<meta name="csrf-token" content="{{ csrf_token() }}">
 
 <div class="container-fluid alert alert-success" role="alert">
 
@@ -132,11 +131,6 @@
         </div>
     </div>
 </div>
-<script src="http://code.jquery.com/jquery-3.3.1.min.js"
-               integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-               crossorigin="anonymous">
-      </script>
-      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script>
 $("#customer_name").change(function () {
     var id = $(this).val();

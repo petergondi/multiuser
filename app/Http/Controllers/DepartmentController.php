@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Department;
 use App\Events\requestNotify;
+use App\User;
 
 class DepartmentController extends Controller
 {
@@ -21,8 +22,9 @@ class DepartmentController extends Controller
     public function index()
     {
         //
+        $users=User::All();
         
-        return view('dept-management.create');
+        return view('dept-management.create',compact('users'));
     }
 
     /**
