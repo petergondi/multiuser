@@ -18,11 +18,18 @@ class ReplyController extends Controller
     }
     //returning reply form
     public function showReplyForm($id){
-        $userid=Auth::user()->id;
-        $taskassigned=Task::where('id', $id)->get();
-        $comments =Reply::where('task_id',$id)->orderBy('created_at','ASC')->get();
-        $checkproject=Project::where('taskid',$id)->first();
-        return view('task-management.reply')->with(compact('taskassigned','userid','comments','checkproject'));
+        $taskassign=Task::where('id', $id)->first();
+        if($taskassign){
+            $taskassigned=Task::where('id', $id)->get();
+            $userid=Auth::user()->id;
+            $comments =Reply::where('task_id',$id)->orderBy('created_at','ASC')->get();
+            $checkproject=Project::where('taskid',$id)->first();
+            return view('task-management.reply')->with(compact('taskassigned','userid','comments','checkproject'));
+        }
+        else{
+            return redirect('users/tasks/view')->with('error','The task has been terminated!!');
+        }
+       
     }
     public function replyTask(Request $request,$taskid,$userid){
             $this->validate($request,[

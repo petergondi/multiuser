@@ -92,6 +92,7 @@ Route::get('/account/topup','TopupController@create')->name('admin.account.topup
 //show projects
 Route::get('/projects/view','Projects@showProjects')->name('admin.projects.view');
 Route::get('/project/view','Projects@showProject')->name('admin.project.view');
+Route::post('/project/delete','Projects@terminateProject')->name('admin.project.delete');
 //show requests
 Route::get('/requests/view','AdminViewRequest@showRequests')->name('admin.requests.view');
 Route::post('/request/approval/{id}', 'AdminViewRequest@Approve');
@@ -99,4 +100,6 @@ Route::post('/request/decline/{id}', 'AdminViewRequest@Decline');
 //adding new expense person
 Route::post('/person/add', 'newpersonController@store')->name('admin.person.add');
 Route::get('/newpersons/show', 'SpendingsController@personsgiven');
+//downloads
+Route::get('/pdf/download', 'SpendingsController@downloadPDF')->name('admin.pdf.download');
 });

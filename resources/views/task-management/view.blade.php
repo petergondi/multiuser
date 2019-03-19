@@ -17,7 +17,6 @@
           <div id="table">
             <table class="table table-bordered table-striped table-hover table-responsive">
               <tr>
-            
                 <th class=" bg-primary">Task</th>
                 <th class=" bg-primary">Description</th>
                 <th class=" bg-primary">Customer</th>
@@ -26,8 +25,8 @@
                 <th class=" bg-primary">Contact</th>
                 <th class=" bg-primary">Customer Email</th>
                 <th class=" bg-primary">Assignee</th>
-                 <th class="bg-primary">Status</th>
-                   <th class=" bg-primary">Project</th>
+                <th class="bg-primary">Status</th>
+                <th class=" bg-primary">Project</th>
                 <th class=" bg-primary">Comment</th>
                 <th class=" bg-primary">View</th>
                 <th class=" bg-primary">Edit</th>

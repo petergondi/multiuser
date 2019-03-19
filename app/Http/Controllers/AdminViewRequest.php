@@ -40,7 +40,7 @@ public function Approve($id){
         $approve_status->save();
         $user=User::find($approve_status->user_id);
         $user->notify(new RequestsResponse($details));
-        event(new requestNotify("hi sent"));
+        
         return response("approved");
     }
    

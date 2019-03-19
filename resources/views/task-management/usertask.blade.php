@@ -1,10 +1,7 @@
 @extends('task-management.base')
 @section('action-content')
 @include('partials.messages')
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<meta name="csrf-token" content="{{ csrf_token() }}">
+
 <section class="content">
        <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -47,12 +44,6 @@
 <div class="card">
 <p class="card-header text-center font-weight-bold text-uppercase py-4">My Assigned Tasks<span class="badge">{{$usertasks->count()}}</span></p>
 <p>New Tasks &nbsp;<span class="glyphicon glyphicon-envelope"><span class="badge bg-warning">{{$usernew_task}}</span></span></p>
-            <div class="row">
-                <div class="col-sm-4 pull-right">
-                       
-                </div>
-            </div>
-            <br/>
         <div class="card-body">
           <div id="table">
             <table class="table table-bordered table-responsive-md table-striped table-hover">
@@ -95,7 +86,7 @@
                      <a href="/users/tasks/reply/{{$usertask->id}}" style="float:left;" data-placement="top" data-toggle="tooltip" title="reply"><button class="btn btn-primary btn-xs pull-right " data-title="reply" data-toggle="modal" data-target="#reply" ><span class="fa fa-reply"></span></button></a>
                       </a></td>
                         <td class="pt-3-half">
-                            <span class="label label-warning">{{$usertasks->count()}}</span>
+                            <span class="label label-warning">{{App\Reply::where('user_id',$userlogged)->where('task_id',$usertask->id)->count()}}</span>
                           </td>
                            <td  class="pt-3-half">
                     <a href="" style="float:left;" data-placement="top" data-toggle="tooltip" title="view"><button class="btn btn-primary btn-xs pull-right " data-title="view" data-toggle="modal" data-target="#view" ><span class="fa fa-eye"></span></button>&nbsp;&nbsp;</a>
@@ -111,10 +102,7 @@
           </div>
         </div>
       </div>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+     
       <script>
       //displaying task details to be converted in the modal
       $('.convert').on('click', function(e) {

@@ -26,7 +26,7 @@ class UserTaskController extends Controller
             $task->notify(new Tasks);
             }
             $usernew_task=Task::where('asignee_id',$userlogged)->where('status','no')->count();
-               return view('task-management.usertask')->with(compact('usertasks','usernew_task')); 
+               return view('task-management.usertask')->with(compact('usertasks','usernew_task','userlogged')); 
         }
         //for debbugin purposes to be removed later
        else{

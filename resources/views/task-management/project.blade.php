@@ -69,7 +69,7 @@
                           <td  class="pt-2-half">
                    <button class="btn btn-info btn-xs pull-right show" data-id="{{$project->id}}" title="view" data-toggle="modal" data-target="#exampleModal" data-target="#view" ><span class="fa fa-eye"></span></button>
                     </td>
-                <td class="pt-2-half"><p style="float:left;" data-placement="top" data-toggle="tooltip" title="terminate"><button class="btn btn-danger btn-xs pull-right" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-remove"></span></button></p></td>
+                <td class="pt-2-half"><p style="float:left;" data-placement="top" data-toggle="tooltip" title="terminate"><button class="btn btn-danger btn-xs pull-right terminate" data-id='["{{$project->id}}","{{$project->taskid}}","{{$project->task_name}}"]' data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-remove"></span></button></p></td>
                 {!! Form::close() !!}</td>
               </tr>
               @endforeach
@@ -103,11 +103,29 @@
               $("#start").text("Start Date:"+start);
               $("#end").text("End Date:"+end);
               $("#days").text("Days:"+days);
-             
-            }
-           
-             
+            }      
        });
    });
+     $('.terminate').on('click', function(e) {
+         var id = $(this).data("id");
+          var tr = $(this).closest('tr');
+          var confirmation=confirm("Are You sure You want to terminate"+" "+id[2]+" "+"project?"+""+"this will delete even the task related to the project!!");
+            if (confirmation) {
+           $.ajax({
+           type : 'post',
+        url : '{{URL::to('admin/project/delete')}}',
+        data:{'id':id[0],'taskid':id[1],_token: '{!! csrf_token() !!}'},
+        success:function(data){ 
+          alert(data);
+            tr.fadeOut(1000, function(){
+                        $(this).remove();
+                    });
+           }      
+       });
+            }
+            else{
+              return false;
+            }
+     });
       </script>
       @endsection

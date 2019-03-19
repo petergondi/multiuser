@@ -11,7 +11,8 @@ use App\Offset;
 use App\Expense;
 use App\User;
 use App\newperson;
-use PDF;
+use PdfReport;
+use ExcelReport;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 
@@ -93,11 +94,47 @@ class SpendingsController extends Controller
         $balance=$total_topup-$total_expense;
         return response($balance);
     }
-    public function downloadPDF(){
-        $data = ['title' => 'Welcome to HDTuto.com'];
-        $pdf = PDF::loadView('pdf', $data);
-  
-        return $pdf->download('itsolutionstuff.pdf');
+    public function downloadPDF(Request $request){
+        $fromDate = $request->from;
+    $toDate = $request->to;
+    //$sortBy = $request->input('sort_by');
+
+    $title = 'Movetech Petty Cash Report'; // Report title
+
+    $meta = [ // For displaying filters description on header
+        'Registered on' => $fromDate . ' To ' . $toDate
+    ];
+
+    $queryBuilder = Spendings::select(['expense_name', 'person_given','purpose', 'expense_amount','closing_balance','created_at']); // Do some querying..
+
+    $columns = [ // Set Column to be displayed
+        'Expense' => 'expense_name',
+        'Date'=>'created_at',
+        'person given'=>'person_given', // if no column_name specified, this will automatically seach for snake_case of column name (will be registered_at) column from query result
+        'Purpose'=>'purpose',
+        'Amount' => 'expense_amount',
+        'Balance'=>'closing_balance'
+        //'Status' => function($result) { // You can do if statement or any action do you want inside this closure
+            //return ($result->balance > 100000) ? 'Rich Man' : 'Normal Guy';
+        //}
+    ];
+
+    // Generate Report with flexibility to manipulate column class even manipulate column value (using Carbon, etc).
+    return PdfReport::of($title, $meta, $queryBuilder, $columns)
+                    ->editColumns(['Balance','Amount'], [ // Mass edit column
+                        'class' => 'right bolder  italic-red'
+                    ]) ->setOrientation('portrait')
+                    ->setCss([
+                        '.bolder' => 'font-weight: 800;',
+                        '.italic-red' => 'color: red;font-style: italic;'
+                    ])
+                    ->showTotal([ // Used to sum all value on specified column on the last table (except using groupBy method). 'point' is a type for displaying total with a thousand separator
+                        'Amount' => 'point',
+                        'Total Balance'=>'point'
+                         // if you want to show dollar sign ($) then use 'Total Balance' => '$'
+                    ])
+                    ->limit(20) // Limit record to be showed
+                    ->download('petty'); // other available method: download('filename') to download pdf / make() that will producing DomPDF / SnappyPdf instance so you could do any other DomPDF / snappyPdf method such as stream() or download()
   
       }
     public function store(Request $request)

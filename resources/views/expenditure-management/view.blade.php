@@ -128,11 +128,11 @@ $(document).ready(function(){
         <form class="form-inline">
   <div class="form-group col-3">
      <label for="staticEmail2">From</label>
-    <input type="text" class="form-control" id="date" placeholder="yy/mm/dd">
+    <input type="text" class="form-control" name="date" id="date" placeholder="yy/mm/dd">
   </div>
   <div class="form-group col-3">
      <label for="staticEmail2">To</label>
-    <input type="text" class="form-control" id="date1" placeholder="yy/mm/dd">
+    <input type="text" class="form-control" name="date1" id="date1" placeholder="yy/mm/dd">
   </div>
    <div class="form-group col-3">
      <label for="staticEmail2">File type</label>
@@ -142,12 +142,11 @@ $(document).ready(function(){
   <option value="3">EXCEL</option>
 </select>
   </div>
-
 </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn  btn-sm btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn  btn-sm btn-primary"><i class="fa fa-download"></i>Save</button>
+      <button type="button" id="export" class="btn  btn-sm btn-primary"><i class="fa fa-download"></i>Save</button>
       </div>
     </div>
   </div>
@@ -159,11 +158,9 @@ $(document).ready(function(){
     <section class="content-header text-center">
     <p>This page shows you an overview of your created expense accounts. The top bar shows the amount that is available to be budgeted. 
     .<a href=""><i class="fa fa-info-circle" style="font-size:13px"></i></a></p>
-  <div class="col col-xs-6 pull-right">
-  <a href="{{ route('admin.spendings.create') }}">
-                    <button type="button" class="btn btn-sm btn-success btn-create"><i class="fa fa-plus"></i>Add New Expense</button>
-                  </a>
-                  </div>
+    <div class="col col-xs-6 pull-right">
+            <button type="button" class="btn btn-sm btn-success btn-create"><i class="fa fa-plus"></i>Add New Expense</button>
+        </div>
     </section>
     <div class="container-fluid">
         <div  class="table-wrapper">
@@ -248,13 +245,10 @@ $(document).ready(function(){
         </div>
     </div>    
     </div>
-     <script type="text/javascript" src="{{asset('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js')}}"></script>
-<link rel="stylesheet" href="{{asset('http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css')}}">
-<link rel="stylesheet" href="{{asset('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css')}}"/>
+   
 
     <script type="text/javascript">
     $(document).ready(function() {
- 
         $('#search').on('keyup',function(){
          
         $value=$(this).val();
@@ -306,19 +300,12 @@ $(document).ready(function(){
                 tr.fadeOut(1000, function(){
                         $(this).remove();
                     });
-                     
- 
-                  
             },
         });
          }
         else{
             return false;
-        }
-        
-        
-
-        
+        } 
     });
       var options={
             format: 'mm/dd/yyyy',
@@ -329,7 +316,20 @@ $(document).ready(function(){
 
     $('#date').datepicker(options);
     $('#date1').datepicker(options);
-        </script>
+    $('#export').on('click', function(e) {
+    e.preventDefault();
+       var from = $('#date').val();
+       var to = $('#date1').val();
+       $.ajax({
+           type: "get",
+           url:'{{URL::to('admin/pdf/download')}}',
+           data: {from:from, to:to,_token: '{!! csrf_token() !!}'},
+           success:function(data){
+         console.log("downloaded")
+        }
+        });
+       });
+  </script>
          
         <script type="text/javascript">
          

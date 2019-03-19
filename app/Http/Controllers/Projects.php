@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Project;
+use App\Task;
 
 class Projects extends Controller
 
@@ -21,5 +22,10 @@ class Projects extends Controller
         $id=$request->id;
         $projects=Project::where('id',$id)->first();
         return response()->json(['project'=>$projects->task_name,'description'=>$projects->description,'customer'=>$projects->customer_name,'location'=>$projects->location,'contact'=>$projects->contact,'email'=>$projects->email,'days'=>$projects->days,'start'=>$projects->start,'end'=>$projects->end]);
+    }
+    public function terminateProject(Request $request){
+        Project::where('id',$request->id)->delete();
+        Task::where('id',$request->taskid)->delete();
+        return response("deleted successfully");
     }
 }
