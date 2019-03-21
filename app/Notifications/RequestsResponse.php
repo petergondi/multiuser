@@ -60,6 +60,7 @@ class RequestsResponse extends Notification
             'expense'=> $this->details['expense'],
             'purpose'=> $this->details['purpose'],
             'amount'=> $this->details['amount'],
+            'status'=> $this->details['status'],
         ];
     }
 }

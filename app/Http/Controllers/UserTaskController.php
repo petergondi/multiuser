@@ -21,16 +21,13 @@ class UserTaskController extends Controller
         $userlogged=Auth::user()->id;
        // checking for authenticated user's task 
            $usertasks=Task::where('asignee_id', $userlogged)->orderBy('id','desc')->get();
-           if($usertasks){
-            foreach ($usertasks as $task) {
-            $task->notify(new Tasks);
-            }
+           if($usertasks->count()>0){
             $usernew_task=Task::where('asignee_id',$userlogged)->where('status','no')->count();
                return view('task-management.usertask')->with(compact('usertasks','usernew_task','userlogged')); 
         }
         //for debbugin purposes to be removed later
        else{
-          return "no page like that exist!!";
+          return view('task-management.nousertask');
         }
         
     }

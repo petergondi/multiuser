@@ -6,9 +6,7 @@ use Illuminate\Http\Request;
 use App\Task;
 use App\Project;
 use Carbon\Carbon;
-
 class ProjectConversion extends Controller
-
 {
     public function __construct()
     {
@@ -20,11 +18,11 @@ class ProjectConversion extends Controller
         $task_to_convert=Task::where('id',$request->id)->first();
         return response()->json(['task'=>$task_to_convert->task_name,'description'=>$task_to_convert->description,'customer'=>$task_to_convert->customer_name,'location'=>$task_to_convert->location,'contact'=>$task_to_convert->contact,'email'=>$task_to_convert->email,'taskid'=>$task_to_convert->id]);
     }
-    //
+    //convert task to project
     public function postProject(Request $request){
         $taskid=$request->taskid;
         $project_check=Project::where('taskid',$taskid)->first();
-        if($project_check==true){
+        if($project_check){
             return response("this is an ongoing project!!");
         }
         else{
@@ -42,7 +40,6 @@ class ProjectConversion extends Controller
             $project->note=$request->input('note');
             $project->save();
             return response("the task has been converted to project!!");
-    
         }
        
 

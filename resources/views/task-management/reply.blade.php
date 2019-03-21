@@ -49,10 +49,6 @@
                 {!! Form::open(['action' => ['ReplyController@replyTask',$taskid,$userid],'method'=>'POST','enctype'=>'multipart/form-data']) !!}
                 {{ csrf_field() }}
 <div class="form-horizontal">
-    <script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
-<script>
-    CKEDITOR.replace( 'textarea' );
-</script>
     <fieldset>
 <!-- Form Name -->
 <legend>Reply to the Assigned task</legend>

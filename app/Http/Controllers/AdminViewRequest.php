@@ -33,6 +33,7 @@ public function Approve($id){
             'expense' => $approve_status->expense,
             'purpose' => $approve_status->purpose,
             'amount' => $approve_status->amount,
+            'status' => $approve_status->status,
             'date' => $approve_status->created_at
         ];
        
@@ -57,6 +58,7 @@ public function Decline($id){
         'expense' => $decline_status->expense,
         'purpose' => $decline_status->purpose,
         'amount' => $decline_status->amount,
+        'status' => $decline_status->status,
         'date' => $decline_status->created_at
     ];
     $decline_status->status=2;

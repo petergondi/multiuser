@@ -90,14 +90,20 @@
                                         </div>
                                     <span class="title">Message</span>
                                     <span class="message">
-                                    @foreach (auth()->user()->notifications as $notification)
+                                    @foreach (auth()->user()->unreadNotifications as $notification)
                                     <div class="panel panel-default alert alert-info" role="alert">
                                     Expense:
                                     {{$notification = auth()->user()->notifications[0]->data['expense']}}
                                     </div>
-                                       <div class="panel panel-default">
-                                       {{$notification = auth()->user()->notifications[0]->data['purpose']}}
+                                    @if(auth()->user()->notifications[0]->data['status']==1)
+                                     <div class="panel panel-default">
+                                     Request Accepted
                                        </div>
+                                       @else
+                                       <div class="panel panel-default">
+                                     Request Declined
+                                       </div>
+                                       @endif
                                        @endforeach
                                         </span>
                                     </a>

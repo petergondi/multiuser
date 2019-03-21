@@ -58,6 +58,7 @@ class TaskController extends Controller
         return redirect('admin/tasks/view')->with('success','Task Assigned');
         
     }
+    //pupolate customers in task assign text fields
     public function populateCustomers($id){
             $selected_details=Customer::where("id",$id)->first();
             $email=$selected_details->email;
@@ -68,9 +69,6 @@ class TaskController extends Controller
     //showing assigned tasks to admin
     public function show(){
         $tasks = Task::with('user')->orderBy('id','desc')->paginate(6);
-        //$id_task=Task::All();
-        //foreach
-        //$project=Project::where()
         return view('task-management.view')->with(compact('tasks'));
     }
     //editing tasks
@@ -105,19 +103,12 @@ class TaskController extends Controller
             $task->email=$request->input('email');
             $task->asignee_id=$request->input('asignee_id');
             $task->save();
-            return redirect('admin/tasks/view')->with('success','Task Updated');
-         
-         
+            return redirect('admin/tasks/view')->with('success','Task Updated');   
      }
      public function destroy($id)
      {
-        
-         
-        
             Task::where('id', $id)->delete();
             return redirect('admin/tasks/view')->with('success','Task Deleted');
-       
-        
      }
      //showing customers
      public function customers(){

@@ -1,5 +1,6 @@
 @extends('task-management.base')
 @section('action-content')
+<meta name="csrf-token" content="{{ csrf_token() }}">
 @include('partials.messages')
 
 <section class="content">
@@ -120,14 +121,12 @@
               var email=data.email;
               var contact=data.contact;
               var taskid=data.taskid;
-              //var asignee_name=data.task;
               var from= $('#from').val();
               var to= $('#to').val();
               var note= $('#note').val();
               $.post("{{URL::to('users/project/create')}}",{taskid:taskid,task:task,description:description,customer:customer,location:location,email:email,contact:contact,from:from,to:to,note:note,_token: '{!! csrf_token() !!}'},
               function(data){  
-                 $('#posted').text(data);
-                  //$(".convert").attr("disabled", false);
+               $('#posted').text(data);
                $('#from').val("");
                $('#to').val("");
                $('#note').val("");
@@ -139,7 +138,7 @@
        });
    });
        var options={
-            format: 'mm-dd-yyyy',
+            format: 'mm/dd/yyyy',
             todayHighlight: true,
             autoclose: true,
           orientation: 'top auto'
