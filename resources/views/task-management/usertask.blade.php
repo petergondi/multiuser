@@ -65,7 +65,7 @@
                 @foreach($usertasks as $usertask)
               </tr>
               <td class="pt-3-half"> {{$usertask->id}}</td>
-               @if($usertask->reason=="quotation") 
+               @if($usertask->reason=="quotation"||$usertask->reason=="invoice") 
               <td class="pt-3-half">
               <a href="{{route('users.quotations.view')}}">{{$usertask->reason}}</a>
               </td>

@@ -35,6 +35,7 @@ Route::get('users/request/show','Requisition@showForm')->name('users.request.sho
 Route::post('users/request/send','Requisition@sendRequest')->name('users.request.send');
 //quotation
 Route::get('users/quotations/view','userTaskController@quotations')->name('users.quotations.view');
+Route::get('users/quotation/view/{id}','userTaskController@showQuotation')->name('users.quotation.show');
 //function to group all the admin prefix
 Route::prefix('admin')->group(function()
 {

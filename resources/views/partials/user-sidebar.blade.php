@@ -50,7 +50,7 @@
                                                 </li>
                                             <li>
                                                     <a class="fa fa-eye"   href="{{ route('users.quotations.view') }}">
-                                                         Quotation
+                                                         Quotation/Invoice
                                                     </a>
                                             </li>
                                     </ul>

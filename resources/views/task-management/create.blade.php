@@ -55,6 +55,7 @@
                                                     <option value="meeting">Meeting</option>
                                                     <option value="enquiry">Enquiry</option>
                                                     <option value="quotation">Quotation</option>
+                                                    <option value="invoice">Invoice</option>
                                                   </select>
                                             @if ($errors->has('customer_name'))
                                                 <span class="help-block">

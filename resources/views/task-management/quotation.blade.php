@@ -3,76 +3,60 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 @include('partials.messages')
 
-<section class="content">
-       <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Convert This Task To project</h5>
-       
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body alert alert-success" role="alert">
-        <div class="panel panel-default alert alert-success" role="alert">
-    <div class="panel-body" ><a href="info"><i class="fa fa-info-circle " style="font-size:15px"></i></a><h4 id="task"></h4><p id="description"></p></div>
+<section class="container-fluid alert alert-success" role="alert">
+<div class="card">
+<p class="card-header text-center font-weight-bold text-uppercase py-4">Quotations/Invoice<span class="badge"></span></p>
+        <div class="card">
+  <h5 class="card-header h4"><strong>{{$quotation->task_name}}</strong></h4>
+  <div class="card-body">
+    <h5 class="card-title"><strong>Client/Supplier Details</strong></h5>
+    
+  <ul>
+    <li>Customer/Supplier:{{$quotation->customer->customer_name}}</li>
+    <li>Email:{{$quotation->email}}</li>
+    <li>Location:{{$quotation->location}}</li>
+    <li>Contact:{{$quotation->contact}}</li>
+  </ul>
+  <div class="card-header">
+  <h5 class="card-title"><strong>Description</strong></h5>
   </div>
-  <div class="bg-primary" id="posted"></div>
-        <form>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">From:</label>
-            <input type="text" class="form-control" id="from" placeholder="yy/mm/dd" required>
-          </div>
-           <div class="form-group">
-            <label for="recipient-name" class="col-form-label">To:</label>
-            <input type="text" class="form-control" id="to" placeholder="yy/mm/dd" required>
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">Note:</label>
-            <textarea class="form-control" id="note" required></textarea>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" id="submit" class="btn btn-success">Convert</button>
-      </div>
-    </div>
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      <p>{{$quotation->description}}</p>
+      <footer class="blockquote-footer">client/supplier <cite title="Source Title"> {{$quotation->customer->customer_name}}</cite></footer>
+    </blockquote>
   </div>
 </div>
-<div class="card">
-<p class="card-header text-center font-weight-bold text-uppercase py-4">Quotations<span class="badge"></span></p>
-<p>New Quotations Requests &nbsp;<span class="glyphicon glyphicon-envelope"><span class="badge bg-warning">{{$usernew_quotations}}</span></span></p>
-        <div class="card-body">
-          <div id="table">
-            <table class="table table-bordered table-responsive-md table-striped table-hover">
-              <tr>
-                 <th class=" bg-primary">No.</th>
-                 <th class=" bg-primary">Name</th>
-                <th class=" bg-primary">Description</th>
-                <th class=" bg-primary">Location</th>
-                <th class=" bg-primary">Contact</th>
-                <th class=" bg-primary">Customer Email</th>
-                <th class=" bg-primary">Date</th>
-                 <th class=" bg-primary">Send</th>
+  </div>
+</div>
+             <div class="container-fluid">
+    <div class="row setup-content" id="step-1">
+        <div class="col-xs-12">
+            <div class="col-md-12 well text-center">
+      <label for="fileToUpload"><cite>Upload<i class="fa fa-upload"></i></cite></label><br />
+      <input type="file"  name="fileToUpload" id="fileToUpload" onchange="fileSelected();"/></i><br/>
+      <div class="progress">
+  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
+  aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:10%">
+    10% 
+  </div>
+</div>
+    </div>
+    <div id="fileName"></div>
+    <div id="fileSize"></div>
+    <div id="fileType"></div>
 
-              </tr>
-              @foreach($quotations as $quotation)
-              <tr>
-              <td class="pt-3-half">{{$quotation->id}}</td>
-               <td class="pt-3-half"> {{$quotation->task_name}}</td>
-              <td class="pt-3-half"> {{$quotation->description}}</td>
-              <td class="pt-3-half" >{{$quotation->location}}</td>
-              <td class="pt-3-half" >{{$quotation->contact}}</td>
-              <td class="pt-3-half"> {{$quotation->email}}</td>
-              <td class="pt-3-half" >{{$quotation->created_at}}</td>
-              <td class="pt-3-half" ><a href=""><i class="fa fa-send-o"></a></td>
-              </tr>
-              @endforeach
-            </table>
+    <div class="row">
+       <a href="#!" class="btn btn-success"><i class="fa fa-send-o"></i>Send</a>
+    </div>
+    
+
+            </div>
+        </div>
+    </div>
+  </div>
           </div>
         </div>
       </div>
+      
       @endsection
