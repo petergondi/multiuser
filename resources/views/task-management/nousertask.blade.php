@@ -7,7 +7,7 @@
        <!-- Modal -->
  <section class="content-header text-center">
       <h5>
-        No Task Assigned Yet
+        Nothing Assigned Yet
       </h5>
     </section>
    

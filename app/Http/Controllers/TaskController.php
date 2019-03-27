@@ -37,6 +37,8 @@ class TaskController extends Controller
     {
         //
          $this->validate($request,[
+            'medium'=>'required', 
+            'reason'=>'required', 
             'task_name'=>'required', 
             'description'=>'required', 
             'customer_name'=>'required',
@@ -46,6 +48,8 @@ class TaskController extends Controller
             'asignee_id'=>'required'
         ]);
         $task=new Task;
+        $task->medium=$request->input('medium');
+        $task->reason=$request->input('reason');
         $task->task_name=$request->input('task_name');
         $task->description=$request->input('description');
         $task->customer_name=$request->input('customer_name');

@@ -107,12 +107,36 @@
                                         </li>   
                                     </ul>
                                 </li>
+                                 <li class="nav-parent">
+                                           
+                                    <a >
+                                        <i class="fa fa-phone" aria-hidden="true"></i>
+                                                <span>Calls&nbsp;<span class="badge">{{$totaltask=App\Task::All()->count()}}</span></span>
+                                    </a>
+                                    <ul class="nav nav-children">
+                                        <li>
+                                            <a class="fa fa-thumb-tack"   href="{{route('admin.call.details')}}">
+                                                 Record Details
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="fa fa-eye"   href="{{route('admin.call.view')}}">
+                                                View
+                                            </a>
+                                        </li>   
+                                    </ul>
+                                </li>
                                 <li class="nav-parent">
                                     <a >
                                         <i class="fa fa-user" aria-hidden="true"></i>
                                         <span>Customers&nbsp;<span class="badge">{{$totalcustomers=App\Customer::All()->count()}}</span></span>
                                     </a>
                                     <ul class="nav nav-children">
+                                     <li>
+                                                <a class="fa fa-plus"  href="/admin/customers/show">
+                                                     Add 
+                                                </a>
+                                            </li>
                                         <li>
                                                 <a class="fa fa-eye"  href="/admin/customers/show">
                                                      View 

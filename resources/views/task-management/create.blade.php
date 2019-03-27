@@ -3,24 +3,71 @@
 @include('partials.messages')
 
 <div class="container-fluid alert alert-success" role="alert">
-
     <div class="row">
     <div class="panel panel-default">
     <div class="panel-body"><a href="info"><i class="fa fa-info-circle " style="font-size:15px"></i></a>On this page you can see your budgets. The top bar is the amount that you can budget. You can adjust that yourself by clicking on the amount. What you have actually spent is shown in the bar below. 
     Below that you will see every budget and what you have budgeted for it.</div>
   </div>
 </div>
+ <div class="header-right">
+            <div action="pages-search-results.html" class="search nav-form col-md-8 col-md-offset-2">
+                <div class="input-group input-search">
+                    <input type="text" class="form-control" name="q" id="q" placeholder="Search Customer...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+                    </span>
+                </div>
+            </div>
+                    </div>
         <div class="col-md-8 col-md-offset-2 >
             <div class="panel panel-default">
-                <div class="panel-heading bg-success ">Assign Task</div>
+                <div class="panel-heading bg-success ">Assign Duty/Task 
+                
+                </div>
                 {!! Form::open(['action' => 'TaskController@storeTask','method'=>'POST','enctype'=>'multipart/form-data']) !!}
                 {{ csrf_field() }}
                 <div class="panel-body">
+                                       <div class="form-group{{ $errors->has('medium') ? ' has-error' : '' }}">
+                                        <label for="customer_name" class="col-md-4 control-label">Engagement Medium</button></label>
+                                        <div class="col-md-6">
+                                            <select class="form-control" name="medium" id="medium">
+                                                    <option value="" selected>Select Type</option>
+                                                    <option value="call">Call</option>
+                                                    <option value="text">Text</option>
+                                                    <option value="email">Email</option>
+                                                    <option value="contact-form">Contact Form</option>
+                                                    <option value="online-chat">Online Chat</option>
+                                                    <option value="walk-in">Walk-in</option>
+                                                  </select>
+                                            @if ($errors->has('customer_name'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('medium') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                     <div class="form-group{{ $errors->has('reason') ? ' has-error' : '' }}">
+                                        <label for="customer_name" class="col-md-4 control-label">Reason</button></label>
+                                        <div class="col-md-6">
+                                            <select class="form-control" name="reason" id="reason">
+                                                    <option value="" selected>Choose</option>
+                                                    <option value="task">Task</option>
+                                                    <option value="meeting">Meeting</option>
+                                                    <option value="enquiry">Enquiry</option>
+                                                    <option value="quotation">Quotation</option>
+                                                  </select>
+                                            @if ($errors->has('customer_name'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('reason') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
                         <div class="form-group{{ $errors->has('task_name') ? ' has-error' : '' }}">
-                            <label for="task_name" class="col-md-4 control-label">Task Name</label>
+                            <label for="task_name" class="col-md-4 control-label">Header</label>
 
                             <div class="col-md-6">
-                                <input id="task_name" type="text" class="form-control" name="task_name" value="{{ old('task_name') }}" required autofocus>
+                                <input id="header" type="text" class="form-control" name="task_name" value="{{ old('task_name') }}" required autofocus>
 
                                 @if ($errors->has('task_name'))
                                     <span class="help-block">
@@ -31,7 +78,7 @@
                         </div>
                         
                         <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
-                            <label for="description" class="col-md-4 control-label">Task Description</label>
+                            <label for="description" class="col-md-4 control-label">Description</label>
                             <div class="col-md-6">
                                 <textarea class="form-control" rows="5" name="description" id="comment"  value="{{ old('description') }}" required></textarea>
                                 @if ($errors->has('description'))
@@ -42,7 +89,7 @@
                             </div>
                         </div>
                          <div class="form-group{{ $errors->has('customer_name') ? ' has-error' : '' }}">
-                                        <label for="customer_name" class="col-md-4 control-label">Customer</label>
+                                        <label for="customer_name" class="col-md-4 control-label">Customer<button data-toggle="modal" data-target="#exampleModal" title="new Customer" class="btn btn-sm"><i class="fa fa-plus"></i></button></label>
                                         <div class="col-md-6">
                                             <select class="form-control" name="customer_name" id="customer_name">
                                                     <option value="" selected>Select Customer</option>

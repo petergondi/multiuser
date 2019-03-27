@@ -50,7 +50,8 @@
             <table class="table table-bordered table-responsive-md table-striped table-hover">
               <tr>
                  <th class=" bg-primary">No.</th>
-                <th class=" bg-primary">Task Name</th>
+                <th class=" bg-primary">Category</th>
+                 <th class=" bg-primary">Task Name</th>
                 <th class=" bg-primary">Description</th>
                 <th class=" bg-primary">Location</th>
                 <th class=" bg-primary">Contact</th>
@@ -64,6 +65,15 @@
                 @foreach($usertasks as $usertask)
               </tr>
               <td class="pt-3-half"> {{$usertask->id}}</td>
+               @if($usertask->reason=="quotation") 
+              <td class="pt-3-half">
+              <a href="{{route('users.quotations.view')}}">{{$usertask->reason}}</a>
+              </td>
+              @else
+               <td class="pt-3-half">
+              {{$usertask->reason}}
+              </td>
+              @endif
               <td class="pt-3-half"> {{$usertask->task_name}}</td>
               <td class="pt-3-half" > {{$usertask->description}}</td>
               <td class="pt-3-half" > {{$usertask->location}}</td>

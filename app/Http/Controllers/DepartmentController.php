@@ -75,11 +75,11 @@ class DepartmentController extends Controller
         //
         
         $depts = Department::paginate(10);
-        $message=[
-            "name"=>"John",
-            "message"=> "Hello"
-        ];
-        event(new requestNotify($message));
+      // $message=[
+      //     "name"=>"John",
+      //     "message"=> "Hello"
+      // ];
+      // event(new requestNotify($message));
         return view('dept-management.view')->with(compact('depts'));
     }
 

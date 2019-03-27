@@ -31,5 +31,19 @@ class UserTaskController extends Controller
         }
         
     }
+    public function quotations(){
+        $userlogged=Auth::user()->id;
+        // checking for authenticated user's quotation 
+            $quotations=Task::where('asignee_id', $userlogged)->where('reason','quotation')->orderBy('id','desc')->get();
+            if( $quotations->count()>0){
+             $usernew_quotations=Task::where('asignee_id',$userlogged)->where('reason','quotation')->count();
+             return view('task-management.quotation')->with(compact('quotations','usernew_quotations','userlogged')); 
+         }
+         //for debbugin purposes to be removed later
+        else{
+           return view('task-management.nousertask');
+         }
+        
+    }
   
 }

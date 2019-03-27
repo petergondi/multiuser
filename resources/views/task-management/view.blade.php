@@ -17,6 +17,7 @@
           <div id="table">
             <table class="table table-bordered table-striped table-hover table-responsive">
               <tr>
+                <th class=" bg-primary">Category</th>
                 <th class=" bg-primary">Task</th>
                 <th class=" bg-primary">Description</th>
                 <th class=" bg-primary">Customer</th>
@@ -34,6 +35,7 @@
               </tr>
               @foreach($tasks as $task)
               <tr>
+                <td class="pt-2-half" >{{$task->reason}}</td>
                 <td class="pt-2-half" >{{$task->task_name}}</td>
                 <td class="pt-2-half" >{{$task->description}}</td>
                 <td class="pt-2-half" >{{$task->customer->customer_name}}</td>

@@ -33,6 +33,8 @@ Route::post('users/project/create','ProjectConversion@postProject')->name('users
 //requests
 Route::get('users/request/show','Requisition@showForm')->name('users.request.show');
 Route::post('users/request/send','Requisition@sendRequest')->name('users.request.send');
+//quotation
+Route::get('users/quotations/view','userTaskController@quotations')->name('users.quotations.view');
 //function to group all the admin prefix
 Route::prefix('admin')->group(function()
 {
@@ -102,4 +104,7 @@ Route::post('/person/add', 'newpersonController@store')->name('admin.person.add'
 Route::get('/newpersons/show', 'SpendingsController@personsgiven');
 //downloads
 Route::get('/pdf/download', 'SpendingsController@downloadPDF')->name('admin.pdf.download');
+//call management
+Route::get('/call/details', 'callController@index')->name('admin.call.details');
+Route::get('/call/view', 'callController@view')->name('admin.call.view');
 });

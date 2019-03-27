@@ -48,6 +48,11 @@
                                                          View 
                                                     </a>
                                                 </li>
+                                            <li>
+                                                    <a class="fa fa-eye"   href="{{ route('users.quotations.view') }}">
+                                                         Quotation
+                                                    </a>
+                                            </li>
                                     </ul>
                                 </li>
                                 <li class="nav-parent">
