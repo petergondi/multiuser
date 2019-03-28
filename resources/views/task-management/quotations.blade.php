@@ -13,6 +13,7 @@
             <table class="table table-bordered table-responsive-md table-striped table-hover">
               <tr>
                  <th class=" bg-primary">No.</th>
+                  <th class=" bg-primary">Category</th>
                   <th class=" bg-primary">Customer Name</th>
                  <th class=" bg-primary">Name</th>
                 <th class=" bg-primary">Description</th>
@@ -25,18 +26,52 @@
 
               </tr>
               @foreach($quotations as $quotation)
-              <tr>
-              <td class="pt-3-half">{{$quotation->id}}</td>
-               <td class="pt-3-half"> {{$quotation->customer->customer_name}}</td>
-               <td class="pt-3-half"> {{$quotation->task_name}}</td>
-              <td class="pt-3-half"> {{$quotation->description}}</td>
-              <td class="pt-3-half" >{{$quotation->location}}</td>
-              <td class="pt-3-half" >{{$quotation->contact}}</td>
-              <td class="pt-3-half"> {{$quotation->email}}</td>
-              <td class="pt-3-half" >{{$quotation->created_at}}</td>
-               <td class="pt-3-half" ><button type="button" class="btn btn-secondary btn-sm">pending...</button></td>
-              <td class="pt-3-half" ><a href="/users/quotation/view/{{$quotation->id}}"><i class="fa fa-send-o"></i></a></td>
-              </tr>
+              @if($quotation->reason=="invoice")
+                    <tr>
+                    <td class="pt-3-half">{{$quotation->id}}</td>
+                     <td class="pt-3-half">{{$quotation->reason}}</td>
+                    <td class="pt-3-half"> {{$quotation->customer->customer_name}}</td>
+                    <td class="pt-3-half"> {{$quotation->task_name}}</td>
+                    <td class="pt-3-half"> {{$quotation->description}}</td>
+                    <td class="pt-3-half" >{{$quotation->location}}</td>
+                    <td class="pt-3-half" >{{$quotation->contact}}</td>
+                    <td class="pt-3-half"> {{$quotation->email}}</td>
+                    <td class="pt-3-half" >{{$quotation->created_at}}</td>
+
+                
+                    @if($quotation->response==0)
+                    <td class="pt-3-half" ><button type="button" class="btn btn-secondary btn-sm">pending...</button></td>
+                    @else
+                    <td class="pt-3-half" ><button type="button" class="btn btn-primary btn-sm">sent</button></td>
+                    @endif
+                    <td class="pt-3-half" ><a href="/users/quotation/view/{{$quotation->id}}"><i class="fa fa-send-o"></i></a></td>
+                    </tr>
+
+                @elseif($quotation->reason=="quotation")
+   
+                <tr>
+                <td class="pt-3-half">{{$quotation->id}}</td>
+                 <td class="pt-3-half">{{$quotation->reason}}</td>
+                <td class="pt-3-half"> {{$quotation->customer->customer_name}}</td>
+                <td class="pt-3-half"> {{$quotation->task_name}}</td>
+                <td class="pt-3-half"> {{$quotation->description}}</td>
+                <td class="pt-3-half" >{{$quotation->location}}</td>
+                <td class="pt-3-half" >{{$quotation->contact}}</td>
+                <td class="pt-3-half"> {{$quotation->email}}</td>
+                <td class="pt-3-half" >{{$quotation->created_at}}</td>
+
+             
+                @if($quotation->response==0)
+                <td class="pt-3-half" ><button type="button" class="btn btn-secondary btn-sm">pending...</button></td>
+                @else
+                <td class="pt-3-half" ><button type="button" class="btn btn-primary btn-sm">sent</button></td>
+                @endif
+                <td class="pt-3-half" ><a href="/users/quotation/view/{{$quotation->id}}"><i class="fa fa-send-o"></i></a></td>
+                </tr>
+               
+                  @else
+
+                  @endif 
               @endforeach
             </table>
           </div>

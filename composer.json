@@ -16,6 +16,7 @@
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.4.0",
+        "phpmailer/phpmailer": "^6.0",
         "pusher/pusher-php-server": "~3.0",
         "unisharp/laravel-ckeditor": "^4.7"
     },

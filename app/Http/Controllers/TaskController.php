@@ -49,6 +49,7 @@ class TaskController extends Controller
         ]);
         $task=new Task;
         $task->medium=$request->input('medium');
+        $task->response=0;
         $task->reason=$request->input('reason');
         $task->task_name=$request->input('task_name');
         $task->description=$request->input('description');

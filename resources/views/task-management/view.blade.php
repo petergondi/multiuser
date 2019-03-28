@@ -15,7 +15,7 @@
             <br/>
         <div class="card-body">
           <div id="table">
-            <table class="table table-bordered table-striped table-hover table-responsive">
+            <table class="table table-bordered table-striped table-hover ">
               <tr>
                 <th class=" bg-primary">Category</th>
                 <th class=" bg-primary">Task</th>
@@ -35,7 +35,12 @@
               </tr>
               @foreach($tasks as $task)
               <tr>
+              @if($task->response==1)
+                <td class="pt-2-half" >{{$task->reason}}<br/>
+                <button type="button" class="btn btn-primary btn-xs"><i class="fa fa-paper-plane"></i></button></td>
+                @else
                 <td class="pt-2-half" >{{$task->reason}}</td>
+                @endif
                 <td class="pt-2-half" >{{$task->task_name}}</td>
                 <td class="pt-2-half" >{{$task->description}}</td>
                 <td class="pt-2-half" >{{$task->customer->customer_name}}</td>
