@@ -25,7 +25,7 @@
                             <li class="nav-parent">
                                    
                                 <a >
-                                    <i  class="fa fa-link" aria-hidden="true"></i>
+                                    <i  class="fa fa-group" aria-hidden="true"></i>
                                     <span>Users<span class="badge pull-center">{{$totalusers=App\User::All()->count()}}</span></span>
                                 </a>
                                 <ul class="nav nav-children ">     

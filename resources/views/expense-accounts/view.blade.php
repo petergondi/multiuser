@@ -67,6 +67,7 @@
                     <ul class="pagination hidden-xs pull-right">
                         {{ $accounts->links() }}
                     </ul>
+                    <a href="javascript:history.back()" class="btn btn-default">Back</a>
                 </div>
               </div>
             </div>

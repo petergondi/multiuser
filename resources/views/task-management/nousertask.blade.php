@@ -9,6 +9,7 @@
       <h5>
         Nothing Assigned Yet
       </h5>
+      <a href="javascript:history.back()" class="btn btn-default">Back</a>
     </section>
    
       @endsection

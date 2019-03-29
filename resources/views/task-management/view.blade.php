@@ -2,7 +2,7 @@
 @section('action-content')
 @include('partials.messages')
 <section class="content">  
-<div class="container-fluid alert alert-success" role="alert">
+<div class="container-fluid alert alert-success" role="alert" >
 <p class="card-header text-center font-weight-bold text-uppercase py-4">Assigned Tasks &nbsp;<span class="badge bg-info">{{$totaltask=App\Task::All()->count()}}</span></p>
 <p >Tasks Not replied To:  &nbsp;<span class="glyphicon glyphicon-envelope"><span class="badge bg-warning">{{$unreplied=App\Task::where('status','no')->count()}}</span></span></p> 
             <div class="row">
@@ -14,7 +14,7 @@
             </div>
             <br/>
         <div class="card-body">
-          <div id="table">
+          <div id="table" >
             <table class="table table-bordered table-striped table-hover ">
               <tr>
                 <th class=" bg-primary">Category</th>
@@ -37,7 +37,7 @@
               <tr>
               @if($task->response==1)
                 <td class="pt-2-half" >{{$task->reason}}<br/>
-                <button type="button" class="btn btn-primary btn-xs"><i class="fa fa-paper-plane"></i></button></td>
+                <button type="button" title="email sent" class="btn btn-primary btn-xs"><i class="fa fa-paper-plane"></i></button></td>
                 @else
                 <td class="pt-2-half" >{{$task->reason}}</td>
                 @endif
@@ -85,6 +85,7 @@
             <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
               {{ $tasks->links() }}
             </div>
+           <a href="javascript:history.back()" class="btn btn-primary">Back</a
           </div>
         </div>
       </div>

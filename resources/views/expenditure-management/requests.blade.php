@@ -62,6 +62,7 @@
                     <ul class="pagination hidden-xs pull-right">
                        {{$sent_requests->links()}}
                     </ul>
+                    <a href="javascript:history.back()" class="btn btn-default">Back</a>
                 </div>
               </div>
             </div>

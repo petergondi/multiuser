@@ -243,6 +243,7 @@ $(document).ready(function(){
                 </ul>
             </div>
         </div>
+        <a href="javascript:history.back()" class="btn btn-default">Back</a>
     </div>    
     </div>
    

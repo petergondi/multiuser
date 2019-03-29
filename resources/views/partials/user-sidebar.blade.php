@@ -35,6 +35,13 @@
                                         </li>
                                     
                                 </ul>
+                                
+                            </li>
+                            <li >
+                                <a  href="{{route('users.activities.view')}}">
+                                    <i class="fa fa-wrench" aria-hidden="true"></i>
+                                    <span>Activities</span>
+                                </a>
                             </li>
                             
                             <li class="nav-parent">
@@ -70,7 +77,7 @@
                                 </li>
                                  <li class="nav-parent">
                                     <a >
-                                        <i  class="fa fa-user" aria-hidden="true"></i>
+                                        <i  class="fa fa-money" aria-hidden="true"></i>
                                         <span>Expense</span>
                                     </a>
                                     <ul class="nav nav-children">

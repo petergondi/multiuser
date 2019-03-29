@@ -7,6 +7,7 @@ use App\Task;
 use App\Customer;
 use App\User;
 use App\Reply;
+use App\Activity;
 
 class TaskController extends Controller
 {
@@ -60,6 +61,13 @@ class TaskController extends Controller
         $task->asignee_id=$request->input('asignee_id');
         $task->status="no";
         $task->save();
+        //posting data to activities
+        $activity=new Activity;
+        $activity->activity=$request->input('task_name');
+        $activity->status="pending";
+        $activity->comment="no comment";
+        $activity->user_id=$request->input('asignee_id');
+        $activity->save();
         return redirect('admin/tasks/view')->with('success','Task Assigned');
         
     }

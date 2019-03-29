@@ -57,6 +57,7 @@
             <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
                 {{ $users->links() }}
               </div>
+              <a href="javascript:history.back()" class="btn btn-default">Back</a>
         </div>
     </div>     
 </body>

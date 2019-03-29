@@ -1,7 +1,43 @@
 @extends('task-management.base')
 @section('action-content')
 @include('partials.messages')
-
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add New Person</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Name:</label>
+            <input type="text" class="form-control" id="name">
+          </div>
+           <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Occupation:</label>
+            <input type="text" class="form-control" id="occupation">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Email:</label>
+            <input type="text" class="form-control" id="customer_email">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Phone:</label>
+            <input type="text" class="form-control" id="phone">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" id="add" class="btn btn-primary">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="container-fluid alert alert-success" role="alert">
     <div class="row">
     <div class="panel panel-default">
@@ -174,11 +210,13 @@
                         </div>
                         
                         {!! Form::close() !!}
+                        <a href="javascript:history.back()" class="btn btn-default">Back</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 <script>
 $("#customer_name").change(function () {
     var id = $(this).val();

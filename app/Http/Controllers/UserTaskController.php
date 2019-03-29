@@ -39,8 +39,8 @@ class UserTaskController extends Controller
         // checking for authenticated user's quotation 
             $quotations=Task::where('asignee_id', $logged_in)->orderBy('id','desc')->get();
             if( $quotations->count()>0){
-             $usernew_quotations=Task::where('asignee_id',$logged_in)->where('reason','quotation')->count();
-             $usernew_invoice=Task::where('asignee_id',$logged_in)->where('reason','invoice')->count();
+             $usernew_quotations=Task::where('asignee_id',$logged_in)->where('reason','quotation')->where('response',0)->count();
+             $usernew_invoice=Task::where('asignee_id',$logged_in)->where('reason','invoice')->where('response',0)->count();
              return view('task-management.quotations')->with(compact('quotations','usernew_quotations','usernew_invoice','logged_in')); 
          }
          //for debbugin purposes to be removed later
@@ -77,7 +77,7 @@ class UserTaskController extends Controller
         $mail->Port       = 587;
         $mail->IsHTML(true);
         $mail->Username = "gondipeters@gmail.com";
-        $mail->Password = "madhabahu";
+        $mail->Password = "Fireworks@2019";
         $mail->SetFrom("gondipeters@gmail.com", 'Movetech');
         $mail->Subject = $topic;
         $mail->Body    = $text;
@@ -93,8 +93,8 @@ class UserTaskController extends Controller
             //return "sent";
             return redirect('users/quotations/view')->with('success','Quotation/Invoice Sent!! to '.$name);
         } else {
-            return "not sent";
-            //return Redirect::back()->withErrors(['error', 'The email could not be sent']);
+            //return "not sent";
+            return Redirect::back()->withErrors(['error', 'The email could not be sent']);
         }
         }
        

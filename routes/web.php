@@ -38,6 +38,8 @@ Route::get('users/quotations/view','userTaskController@quotations')->name('users
 Route::get('users/quotation/view/{id}','userTaskController@showQuotation')->name('users.quotation.show');
 //upload quotation or invoice
 Route::post('users/file/upload/{name}/{email}/{topic}/{id}', 'userTaskController@fileUploadPost')->name('users.file.upload');
+//activities
+Route::get('users/activities/view','activityController@index')->name('users.activities.view');
 //function to group all the admin prefix
 Route::prefix('admin')->group(function()
 {

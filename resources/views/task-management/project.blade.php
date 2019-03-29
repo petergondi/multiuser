@@ -80,6 +80,7 @@
             </div>
           </div>
         </div>
+        <a href="javascript:history.back()" class="btn btn-default">Back</a>
       </div>
       <script>
        $('.show').on('click', function(e) {
