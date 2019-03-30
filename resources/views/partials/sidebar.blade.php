@@ -17,7 +17,7 @@
                         <ul class="nav nav-main">
                             <li class="nav-active">
                                 <a  href="/admin">
-                                    <i class="fa fa-home" aria-hidden="true"></i>
+                                    <i class="fa fa-dashboard" aria-hidden="true"></i>
                                     <span>Dashboard</span>
                                 </a>
                             </li>

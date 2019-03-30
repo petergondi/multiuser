@@ -18,6 +18,7 @@ class CreateActivitiesTable extends Migration
             $table->string('activity');
             $table->string('status');
             $table->string('comment');
+            $table->string('activity_id');
             $table->timestamps();
         });
     }

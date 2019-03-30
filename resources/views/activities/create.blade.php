@@ -30,9 +30,7 @@
                                 <p class="small">
                                     This Section contain your Daily Routine, you can create activities and mark them on completetion                             
                                 </p>
-                                   <button type="button" class="btn btn-sm btn-success pull-right"><i class="fa fa-plus"></i>New Activity</button>
                             </div>
-
                             <div class="col-xs-12 toggle-header">
                                 <div class="col-xs-6">
                                     <button type="button" class="btn btn-primary btn-sm hidden-xs" data-toggle="collapse" data-target="#feature-1">
@@ -44,7 +42,7 @@
                                 </div>
                                 <div class="col-xs-2 text-center">
                                     <span class="hidden-xs">Comment</span>
-                                    <span class="visible-xs">S</span>
+                                    <span class="visible-xs">C</span>
                                 </div>
                                 <div class="col-xs-2 text-center">
                                      <span class="hidden-xs">In Progress</span>
@@ -53,6 +51,8 @@
                                 <div class="col-xs-2 text-center">
                                      <span class="hidden-xs">Complete</span>
                                     <span class="visible-xs">L</span>
+                                    <span class="hidden-xs">Save</span>
+                                    <span class="visible-xs">S</span>
                                 </div>
                             </div>
                             
@@ -64,7 +64,7 @@
                                                    {{$user_activity->activity}}                                            
                                                 </div>
                                                 <div class="col-xs-2 text-center">
-                                                   <textarea  name="is_company">comment..(max 100 characters)</textarea>
+                                                   <textarea  name="is_company" placeholder="max 100 characters"></textarea>
                                                     <span class="checkround"></span>
                                                 </div>
                                                 <div class="col-xs-2 text-center">
@@ -74,14 +74,15 @@
                                                 <div class="col-xs-2 text-center">
                                                   <input type="radio" name="is_company">
                                                     <span class="checkround"></span>
+                                                    <button type="button" class="btn btn-sm btn-primary pull-right"><i class="fa fa-save"></i></button>
                                         </div> 
+                                        
                                         </div>
                                         </div> 
                                      @endforeach  
                             </div>
 	                </div>
                 </div>
-<button type="button" class="btn btn-sm btn-primary pull-left"><i class="fa fa-save"></i>Save</button>
 <button type="button" class="btn btn-sm btn-success pull-right"><i class="fa fa-file-archive-o"></i>Send Monthly Report</button>
 </section>
 @endsection

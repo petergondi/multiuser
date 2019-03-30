@@ -18,7 +18,6 @@ class activityController extends Controller
     {
         $userlogged=Auth::user()->id;
         $user_activities=Activity::where('user_id', $userlogged)->orderBy('id','desc')->get();
-       
         return view("activities.create",compact('user_activities'));
     }
 

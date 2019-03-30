@@ -33,9 +33,10 @@ class TaskController extends Controller
         $customers=Customer::All();
         return view('task-management.create')->with(compact('assignees','customers'));
     }
-    //function for posting task to both task table and customer
+    //function for posting task to both task table 
     public function storeTask(Request $request)
     {
+         $activity_id=Task::max('id');
         //
          $this->validate($request,[
             'medium'=>'required', 
@@ -67,6 +68,7 @@ class TaskController extends Controller
         $activity->status="pending";
         $activity->comment="no comment";
         $activity->user_id=$request->input('asignee_id');
+        $activity->activity_id=$activity_id+1;
         $activity->save();
         return redirect('admin/tasks/view')->with('success','Task Assigned');
         
@@ -121,10 +123,12 @@ class TaskController extends Controller
      public function destroy($id)
      {
             Task::where('id', $id)->delete();
+            Activity::where('id', $id)->delete();
             return redirect('admin/tasks/view')->with('success','Task Deleted');
      }
      //showing customers
-     public function customers(){
+     public function customers()
+     {
          $customers= Customer::paginate(3);
          return view('customers.view')->with('customers',$customers);
      }
