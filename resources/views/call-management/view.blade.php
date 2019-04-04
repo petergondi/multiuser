@@ -6,30 +6,32 @@
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
-                    <div class="col-sm-8"><p>Customers Details<a href=""><i class="fa fa-info-circle pull-right" style="font-size:13px"></i></a> </p></div>
+                    <div class="col-sm-8"><p>Calls Details<a href=""><i class="fa fa-info-circle pull-right" style="font-size:13px"></i></a> </p></div>
                     
                 </div>
             </div>
             <table class="table table-bordered ">
                 <thead>
                     <tr class="bg-primary">
-                        <th>Customer Name</th>
-                        <th>Customer Email</th>
-                        <th>Customer Tel.</th>
-                        <th>Customer Location</th>
-                        <th>Actions</th>
+                        <th>Caller Name</th>
+                        <th>Caller Email</th>
+                        <th>Caller Tel.</th>
+                        <th>Caller Location</th>
+                        <th>Call Reason</th>
+                        <th>Time</th>
                     </tr>
                 </thead>
                 <tbody>
+                @foreach($calls as $call)
                     <tr>       
-                    <td><b>1</td>
-                    <td><b>2</b></td>
-                    <td><b>3</b></td>
-                    <td><b>4</b></td>
-                        <td>
-                            <p style="float:left;" data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p>
-                        </td>
+                    <td><b>{{$call->customer->customer_name}}</b></td>
+                    <td><b>{{$call->email}}</b></td>
+                    <td><b>{{$call->contact}}</b></td>
+                    <td><b>{{$call->location}}</b></td>
+                     <td><b>{{$call->reason}}</b></td>
+                     <td><b>{{$call->created_at}}</b></td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
             <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">

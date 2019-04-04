@@ -126,11 +126,6 @@ class TaskController extends Controller
             Activity::where('id', $id)->delete();
             return redirect('admin/tasks/view')->with('success','Task Deleted');
      }
-     //showing customers
-     public function customers()
-     {
-         $customers= Customer::paginate(3);
-         return view('customers.view')->with('customers',$customers);
-     }
+   
     
 }

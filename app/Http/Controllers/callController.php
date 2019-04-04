@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Task;
 
 class callController extends Controller
 {
@@ -18,7 +19,8 @@ class callController extends Controller
     public function view()
     {
         //
-        return view('call-management.view');
+       $calls=Task::where('medium','call')->get();
+        return view('call-management.view',compact('calls'));
     }
 
     /**

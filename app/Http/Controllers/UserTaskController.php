@@ -19,6 +19,7 @@ class UserTaskController extends Controller
     {
         $this->middleware('auth:web');
     }
+    protected $usertasks;
     public function userTask(){
         $userlogged=Auth::user()->id;
        // checking for authenticated user's task 
@@ -45,7 +46,7 @@ class UserTaskController extends Controller
          }
          //for debbugin purposes to be removed later
         else{
-           return view('task-management.nousertask');
+            return view('task-management.usertask')->with(compact('usertasks','usernew_task','userlogged')); 
          }
         
     }
@@ -53,7 +54,13 @@ class UserTaskController extends Controller
     public function showQuotation($id)
     {
      $quotation=Task::find($id);
-     return view('task-management.quotation',compact('quotation'));
+     if($quotation){
+        return view('task-management.quotation',compact('quotation'));
+     }
+     else{
+        return view('task-management.quotations')->with('error','the task has been terminated');
+     }
+    
     }
     //upload invoice or quotation
     public function fileUploadPost(Request $request,$name,$email,$topic,$id)
@@ -69,7 +76,7 @@ class UserTaskController extends Controller
         $mail->AddEmbeddedImage("assets/images/move.png", "my-attach", "assets/images/move.png");
         $text             = 'Dear '.$name. 'find the attached invoice/quotation thanks! <img src=\"cid:my-attach\" />';
         $mail->IsSMTP();
-        $mail->SMTPDebug = 2;
+        //$mail->SMTPDebug = 2;
         $mail->SMTPAuth   = true; // authentication enabled
         $mail->SMTPSecure = 'tls'; // secure transfer enabled REQUIRED for Gmail
         $mail->Debugoutput = 'html';

@@ -1,12 +1,35 @@
 @extends('task-management.base')
 @section('action-content')
 @include('partials.messages')
+<!-- result modal-->
+<div class="modal fade" id="customer_result" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Customer Search Result</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p id="result"></p>
+        <p id="contac"></p>
+        <p id="emai"></p>
+        <p id="locat"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- endresult -->
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add New Person</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Add New Customer</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -15,19 +38,19 @@
         <form>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Name:</label>
-            <input type="text" class="form-control" id="name">
+            <input type="text" class="form-control" id="customer">
           </div>
            <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Occupation:</label>
-            <input type="text" class="form-control" id="occupation">
+            <label for="recipient-name" class="col-form-label">Phone No:</label>
+            <input type="text" class="form-control" id="customer_phone">
           </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Email:</label>
             <input type="text" class="form-control" id="customer_email">
           </div>
           <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Phone:</label>
-            <input type="text" class="form-control" id="phone">
+            <label for="recipient-name" class="col-form-label">Location:</label>
+            <input type="text" class="form-control" id="customer_location">
           </div>
         </form>
       </div>
@@ -48,14 +71,14 @@
  <div class="header-right">
             <div action="pages-search-results.html" class="search nav-form col-md-8 col-md-offset-2">
                 <div class="input-group input-search">
-                    <input type="text" class="form-control" name="q" id="q" placeholder="Search Customer...">
+                    <input type="text" class="form-control" name="q" id="customer_search" placeholder="Search Customer...">
                     <span class="input-group-btn">
-                        <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+                        <button class="btn btn-default" id="search" type="submit"><i class="fa fa-search"></i></button>
                     </span>
                 </div>
             </div>
                     </div>
-        <div class="col-md-8 col-md-offset-2 >
+        <div class="col-md-8 col-md-offset-2" >
             <div class="panel panel-default">
                 <div class="panel-heading bg-success ">Assign Duty/Task 
                 
@@ -203,14 +226,15 @@
                                     Assign
                                 </button>
                             </div>
-                        </div>
-                        
-                        </div>
-                        </div>
-                        </div>
-                        
-                        {!! Form::close() !!}
+                              {!! Form::close() !!}
                         <a href="javascript:history.back()" class="btn btn-default">Back</a>
+                        </div>
+                        
+                        </div>
+                        </div>
+                        </div>
+                        
+                      
                 </div>
             </div>
         </div>
@@ -253,5 +277,67 @@ $.ajax({
     }
     
 });
+$('#add').on('click',function(){
+        var name=$('#customer').val();
+        var email=$('#customer_email').val();
+        var phone=$('#customer_phone').val();
+         var location=$('#customer_location').val();
+ $.ajax({
+           type: "POST",
+           url:'{{URL::to('admin/customer/add')}}',
+           data: {name:name, location:location,email:email,phone:phone,_token: '{!! csrf_token() !!}'},
+           success:function(data){
+              $.get("{{URL::to('admin/customers/populate')}}",function(data){  
+                   $('#customer_name').empty();   
+                 for(var i = 0; i < data.length; i++) {
+               $('#customer_name').append('<option value='+i+'>'+data[i]+'</option>');
+                 }
+                  });
+                $('#customer').val("");
+           $('#customer_location').val("");
+           $('#customer_email').val("");
+           $('#customer_phone').val("");
+           setTimeout(function() {
+      $('#exampleModal').modal('hide');
+    }, 4000); 
+  }
+   });
+          
+       
+         });
+         //search customer
+          $('#search').on('click',function(){
+         
+        $value=$('#customer_search').val();
+         
+        $.ajax({
+         
+        type : 'get',
+         
+        url : '{{URL::to('admin/customers/search')}}',
+         
+        data:{'search':$value,_token: '{!! csrf_token() !!}'},
+         
+        success:function(data){
+         
+        var customers_name=data.name;
+        var contact=data.contact;
+        var email=data.email;
+        var location=data.location;
+         $('#contac').text(contact);
+          $('#emai').text(email);
+           $('#locat').text(location);
+            $('#result').text(customers_name);
+        $('#customer_result').modal('show');
+       }
+    //   error: function (data) {
+    // $('#customer_result').modal('show');
+    //   }
+        }); 
+        
+        
+    });
+   
+
 </script>
 @endsection

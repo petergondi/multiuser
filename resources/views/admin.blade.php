@@ -91,11 +91,13 @@
 </style>
 <div class="container">
     <div class="card card-login mx-auto text-center bg-dark">
+    <div class="card-header mx-auto bg-dark">
+            <span> <img src="https://amar.vote/assets/img/amarVotebd.png" class="w-75" alt="Logo"> </span><br/>
+                        <span class="logo_title mt-5"> Admin Login </span>
+        </div>
         <div class="card-header mx-auto bg-dark">
             <span> <img src="https://amar.vote/assets/img/amarVotebd.png" class="w-75" alt="Logo"> </span><br/>
                         <span class="logo_title mt-5"> Admin Login </span>
-<!--            <h1>--><?php //echo $message?><!--</h1>-->
-
         </div>
         <div class="card-body">
             <form action="" method="post">

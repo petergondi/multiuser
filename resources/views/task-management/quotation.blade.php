@@ -41,10 +41,6 @@
             <div class="col-md-12 well text-center">
       <label for="fileToUpload"><cite>Upload<i class="fa fa-upload"></i></cite></label><br />
       <input type="file"  name="file" id="poster"/></i><br/>
-      <div class="progress">
-                        <div class="bar"></div >
-                        <div class="percent">0%</div >
-                    </div>
     </div>
     <div id="fileName"></div>
     <div id="fileSize"></div>
@@ -54,11 +50,13 @@
        <button type="submit"  value="Submit" class="btn btn-success"><i class="fa fa-send-o"></i>Send</button>
     </div>
  </form>  
+ 
             </div>
+            <a href="javascript:history.back()" class="btn btn-default pull-right">Back</a>
         </div>
     </div>
   </div>
-  <a href="javascript:history.back()" class="btn btn-default">Back</a>
+  
           </div>
         </div>
       </div>

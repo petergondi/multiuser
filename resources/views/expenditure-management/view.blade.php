@@ -146,7 +146,7 @@ $(document).ready(function(){
       </div>
       <div class="modal-footer">
         <button type="button" class="btn  btn-sm btn-secondary" data-dismiss="modal">Close</button>
-      <button type="button" id="export" class="btn  btn-sm btn-primary"><i class="fa fa-download"></i>Save</button>
+      <a href="{{route('admin.pdf.download')}}"><button type="button" id="export" class="btn  btn-sm btn-primary"><i class="fa fa-download"></i>Save</button></a>
       </div>
     </div>
   </div>
@@ -317,19 +317,19 @@ $(document).ready(function(){
 
     $('#date').datepicker(options);
     $('#date1').datepicker(options);
-    $('#export').on('click', function(e) {
-    e.preventDefault();
-       var from = $('#date').val();
-       var to = $('#date1').val();
-       $.ajax({
-           type: "get",
-           url:'{{URL::to('admin/pdf/download')}}',
-           data: {from:from, to:to,_token: '{!! csrf_token() !!}'},
-           success:function(data){
-         console.log("downloaded")
-        }
-        });
-       });
+    //$('#export').on('click', function(e) {
+    //e.preventDefault();
+    //   var from = $('#date').val();
+    //   var to = $('#date1').val();
+    //   $.ajax({
+    //       type: "get",
+    //       url:'{{URL::to('admin/pdf/download')}}',
+    //       data: {from:from, to:to,_token: '{!! csrf_token() !!}'},
+    //       success:function(data){
+    //     console.log("downloaded")
+    //    }
+    //    });
+    //   });
   </script>
          
         <script type="text/javascript">

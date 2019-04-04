@@ -93,6 +93,10 @@ body{
 <div class="container">
     <div class="card card-login mx-auto text-center bg-dark">
         <div class="card-header mx-auto bg-dark">
+                                <a  href="/..">
+                                    <i class="fa fa-home " aria-hidden="true"></i>
+                                    <span>Home</span>
+                                </a>
             <span> <img src="{{asset('assets/images/move.png')}}" class="w-75" style="border-radius:10px;" alt="Logo"> </span><br/>
                         <span class="logo_title mt-5">User Login </span>
 <!--            <h1>--><?php //echo $message?><!--</h1>-->

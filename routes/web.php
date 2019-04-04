@@ -26,6 +26,7 @@ Route::get('/executive/logout', 'Auth\ExecutiveLoginController@logout')->name('e
 Route::get('/executive', 'ExecutiveController@index');
 Route::get('users/tasks/reply/{id}','ReplyController@showReplyForm');
 Route::post('users/tasks/replied/{taskid}/{userid}','ReplyController@replyTask');
+
 //task details to be converted to project on the modal
 Route::get('users/task/convert','ProjectConversion@showtask')->name('users.task.convert');
 //post project
@@ -78,7 +79,7 @@ Route::post('/tasks/assign/assigned', 'TaskController@storeTask');
 Route::get('/tasks/edit/{id}', 'TaskController@edit');
 Route::put('/tasks/update/{id}', 'TaskController@update');
 Route::delete('/tasks/view/{id}', 'TaskController@destroy');
-Route::get('/customers/show', 'TaskController@customers');
+
 //showing admin reply form
 Route::get('/tasks/comment/{taskasigned}','CommentController@show')->name('admin.tasks.comment');
 Route::post('/tasks/comment/{taskid}/{userid}', 'CommentController@CommentTask');
@@ -112,4 +113,9 @@ Route::get('/pdf/download', 'SpendingsController@downloadPDF')->name('admin.pdf.
 //call management
 Route::get('/call/details', 'callController@index')->name('admin.call.details');
 Route::get('/call/view', 'callController@view')->name('admin.call.view');
+//add customer
+Route::get('/customers/show', 'CustomerController@customers');
+Route::get('/customers/populate', 'CustomerController@newCustomers');
+Route::get('/customers/search', 'CustomerController@search');
+Route::post('/customer/add', 'CustomerController@add')->name('admin.customer.add');
 });
