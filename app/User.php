@@ -33,6 +33,8 @@ public $table='users';
    public function comment(){
        return $this->hasMany('App\Reply');
    }
-   
+   public function project(){
+    return $this->hasMany('App\Project');
+}
    
 }

@@ -23,6 +23,7 @@
 		<!-- Theme Custom CSS -->
         <link rel="stylesheet" href="{{asset('assets/stylesheets/theme-custom.css')}}">
         <link rel="stylesheet" href="{{asset('assets/custom/made.css')}}">
+        <link href="{{asset('https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.6/css/mdb.min.css')}}" rel="stylesheet">
 
         
 		<!-- Head Libs -->

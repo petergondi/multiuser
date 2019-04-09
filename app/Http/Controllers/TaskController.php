@@ -62,6 +62,18 @@ class TaskController extends Controller
         $task->asignee_id=$request->input('asignee_id');
         $task->status="no";
         $task->save();
+        //posting to customer if they dont exist
+        $check_customer=Customer::where('email',$request->input('email'))->first();
+        if(!$check_customer)
+        {
+            $customer=new Customer;
+            $customer->customer_name=$request->input('customer_name');
+            $customer->location=$request->input('location');
+            $customer->contact=$request->input('contact');
+            $customer->email=$request->input('email');
+            $customer->save();
+        }
+         
         //posting data to activities
         $activity=new Activity;
         $activity->activity=$request->input('task_name');
@@ -85,6 +97,13 @@ class TaskController extends Controller
     public function show(){
         $tasks = Task::with('user')->orderBy('id','desc')->paginate(6);
         return view('task-management.view')->with(compact('tasks'));
+    }
+    public function showSingleTask($id)
+    {
+        $check_tasks=Task::find($id);
+        if($check_tasks->count()>0){
+            return view('task-management.usertask-show')->with(compact('check_tasks'));
+        }
     }
     //editing tasks
     public function edit($id)
@@ -120,10 +139,15 @@ class TaskController extends Controller
             $task->save();
             return redirect('admin/tasks/view')->with('success','Task Updated');   
      }
+     //delete task and its related activities and replies
      public function destroy($id)
      {
             Task::where('id', $id)->delete();
             Activity::where('id', $id)->delete();
+            $chats=Reply::where('task_id', $id)->get();
+            if($chats->count()>0){
+                Reply::where('task_id', $id)->delete();
+            }
             return redirect('admin/tasks/view')->with('success','Task Deleted');
      }
    

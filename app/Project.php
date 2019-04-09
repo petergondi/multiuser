@@ -26,5 +26,9 @@ class Project extends Authenticatable
     {
         return $this->belongsTo('App\Customer','customer_name');
     }
+    public function users()
+    {
+        return $this->belongsTo('App\User','userid');
+    }
     
 }

@@ -30,7 +30,7 @@
                     <tr>
                     <td class="pt-3-half">{{$quotation->id}}</td>
                      <td class="pt-3-half">{{$quotation->reason}}</td>
-                    <td class="pt-3-half"> {{$quotation->customer->customer_name}}</td>
+                    <td class="pt-3-half"> {{$quotation->customer_name}}</td>
                     <td class="pt-3-half"> {{$quotation->task_name}}</td>
                     <td class="pt-3-half"> {{$quotation->description}}</td>
                     <td class="pt-3-half" >{{$quotation->location}}</td>
@@ -52,7 +52,7 @@
                 <tr>
                 <td class="pt-3-half">{{$quotation->id}}</td>
                  <td class="pt-3-half">{{$quotation->reason}}</td>
-                <td class="pt-3-half"> {{$quotation->customer->customer_name}}</td>
+                <td class="pt-3-half"> {{$quotation->customer_name}}</td>
                 <td class="pt-3-half"> {{$quotation->task_name}}</td>
                 <td class="pt-3-half"> {{$quotation->description}}</td>
                 <td class="pt-3-half" >{{$quotation->location}}</td>

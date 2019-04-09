@@ -35,6 +35,12 @@ class ReplyController extends Controller
             $this->validate($request,[
                 'reply'=>'required', 
             ]);
+            if($request->input('progress')==true){
+               $progress= Project::where('taskid', $taskid)->first();
+               $progress->progress=1;
+               $progress->save();
+
+            }
             Task::where('id', $taskid)->where('status', '=', 'no')->update(['status'=> 'yes']);
             $reply=new Reply;
             $reply->reply=$request->input('reply');
