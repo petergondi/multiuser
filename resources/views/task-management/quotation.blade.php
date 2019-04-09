@@ -16,7 +16,7 @@
     <h5 class="card-title"><strong>Client/Supplier Details</strong></h5>
     
   <ul>
-    <li>Customer/Supplier:{{$quotation->customer->customer_name}}</li>
+    <li>Customer/Supplier:{{$quotation->customer_name}}</li>
     <li>Email:{{$quotation->email}}</li>
     <li>Location:{{$quotation->location}}</li>
     <li>Contact:{{$quotation->contact}}</li>
@@ -27,13 +27,13 @@
   <div class="card-body">
     <blockquote class="blockquote mb-0">
       <p>{{$quotation->description}}</p>
-      <footer class="blockquote-footer">client/supplier <cite title="Source Title"> {{$quotation->customer->customer_name}}</cite></footer>
+      <footer class="blockquote-footer">client/supplier <cite title="Source Title"> {{$quotation->customer_name}}</cite></footer>
     </blockquote>
   </div>
 </div>
   </div>
 </div>
- <form method="POST" action="{{ route('users.file.upload',[$name=$quotation->customer->customer_name,$email=$quotation->email,$topic=$quotation->task_name,$id=$quotation->id]) }}" enctype="multipart/form-data">
+ <form method="POST" action="{{ route('users.file.upload',[$name=$quotation->customer_name,$email=$quotation->email,$topic=$quotation->task_name,$id=$quotation->id]) }}" enctype="multipart/form-data">
                 @csrf
     <div class="container-fluid">
     <div class="row setup-content" id="step-1">

@@ -31,5 +31,11 @@ return view('user-management.user-request')->with(compact('expenses'));
          $requisition->save();
          return response('Request Sent!!');
     }
+    //view all the sent requests
+    public function showRequest(){
+        $userid=Auth::user()->id;
+        $myrequests=Requests::where('user_id',$userid)->orderBy('created_at', 'asc')->paginate(10);
+        return view('expenditure-management.requests-view',compact('myrequests'));
+    }
    
 }

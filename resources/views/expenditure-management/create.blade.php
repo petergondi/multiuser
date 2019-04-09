@@ -230,10 +230,10 @@ $('#qty').on('keyup',function(){
        
 })
 
-$.get("{{URL::to('admin/spend/create')}}",function(data){     
-    var balance=data;
-   $('#result').text(balance);
-});
+//$.get("{{URL::to('admin/spend/create')}}",function(data){     
+//    var balance=data;
+//   $('#result').text(balance);
+//});
 //adiing new person to dropdownlist
 
 

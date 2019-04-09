@@ -10,11 +10,12 @@
         @if($checkproject==true)Project:
         @else
         Task:
+       
         @endif
         {{$taskassign->task_name}}</h4> 
         <p style="float-center">Description:{{$taskassign->description}}</p> 
                 @endforeach  
-                <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                <a class="btn btn-dark" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                     Comments <span class="badge">{{$comments->count()}}</span><span class="caret"></span>
                    </a>
                    <br/>
@@ -52,6 +53,12 @@
     <fieldset>
 <!-- Form Name -->
 <legend>Reply to the Assigned task</legend>
+<div class="form-group pull-center">
+    <div class="col-md-12">
+    <input type="checkbox" name="progress" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Mark Complete</label>
+  </div>
+</div>
 <!-- Textarea -->
 <div class="form-group">
   <div class="col-md-12">                   

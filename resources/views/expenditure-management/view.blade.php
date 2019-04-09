@@ -194,7 +194,6 @@ $(document).ready(function(){
                 <tbody>
                     <tr>
                     @foreach($spendings as $spending)
-                        
                         <td>{{$spending->expense_name}}</td>
                         <td>{{$spending->created_at}}</td>
                         <td>{{$spending->person_given}}</td>
@@ -204,7 +203,6 @@ $(document).ready(function(){
                         <td id="del">{{$expense_offset}}</td>
                         <td>
 							<button href="#" class="view alert-info" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></button>
-                            <button href="#" class="edit alert-secondary" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></button>
                             <button href="#" class="delete alert-danger" id="delete" data-id="{{$spending->id}}" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></button>
                         </td>
                     </tr>
@@ -223,7 +221,6 @@ $(document).ready(function(){
                     <td>Amount:{{$last_topup->topup}} </td>
                     </tr>
                     <tr class="bg-success">
-                  
                     <td>Offset:</td>
                     <td>{{$sum}}</td>
                     </tr>

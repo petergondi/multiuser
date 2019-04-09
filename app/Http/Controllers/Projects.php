@@ -16,7 +16,7 @@ class Projects extends Controller
     }
    
     public function showProjects(){
-        $projects=Project::All();
+        $projects=Project::orderBy('progress', 'asc')->get();
         return view('task-management.project')->with(compact('projects'));
     }
     public function showProject(Request $request){

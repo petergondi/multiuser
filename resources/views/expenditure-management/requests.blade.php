@@ -42,7 +42,7 @@
                             <td>{{$sent_request->purpose}}</td>
                              <td>{{$sent_request->amount}}</td>
                             <td>{{$sent_request->created_at}}</td>
-                            <td> <a href="" style="float:left;" data-placement="top" data-toggle="tooltip" title="view"><button class="btn btn-primary btn-xs pull-right " data-title="view" data-toggle="modal" data-target="#view" ><span class="fa fa-eye"></span></button></a></td>
+                            <td> <a href="" style="float:left;" data-placement="top" data-toggle="tooltip" title="view"><button class="btn btn-primary btn-sm pull-right " data-title="view" data-toggle="modal" data-target="#view" ><span class="fa fa-eye"></span></button></a></td>
                             @if($sent_request->status==0)
                             <td> <button type="submit" id="{{$sent_request->id}}" class="btn btn-sm btn-default">Pending..</button></td>
                             @elseif($sent_request->status==1)

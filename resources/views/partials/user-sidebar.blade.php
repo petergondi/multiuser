@@ -60,6 +60,12 @@
                                                          Quotation/Invoice
                                                     </a>
                                             </li>
+                                            <li>
+                                                    <a class="fa fa-eye"   href="{{ route('users.projects.view') }}">
+                                                         Projects
+                                                    </a>
+                                                </li>
+                                            <li>
                                     </ul>
                                 </li>
                                 <li class="nav-parent">
@@ -86,6 +92,11 @@
                                                      Requisition 
                                                 </a>
                                             </li>
+                                             <li>
+                                                    <a class="fa fa-eye"   href="{{ route('users.myrequests.view') }}">
+                                                         My Requests
+                                                    </a>
+                                                </li>
                                     </ul>
                                 </li>
                             </li>

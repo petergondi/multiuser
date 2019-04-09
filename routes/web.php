@@ -33,6 +33,7 @@ Route::get('users/task/convert','ProjectConversion@showtask')->name('users.task.
 Route::post('users/project/create','ProjectConversion@postProject')->name('users.project.create');
 //requests
 Route::get('users/request/show','Requisition@showForm')->name('users.request.show');
+Route::get('users/myrequests/view','Requisition@showRequest')->name('users.myrequests.view');
 Route::post('users/request/send','Requisition@sendRequest')->name('users.request.send');
 //quotation
 Route::get('users/quotations/view','userTaskController@quotations')->name('users.quotations.view');
@@ -41,6 +42,8 @@ Route::get('users/quotation/view/{id}','userTaskController@showQuotation')->name
 Route::post('users/file/upload/{name}/{email}/{topic}/{id}', 'userTaskController@fileUploadPost')->name('users.file.upload');
 //activities
 Route::get('users/activities/view','activityController@index')->name('users.activities.view');
+//shouw user projects
+Route::get('users/projects/view','userProject@index')->name('users.projects.view');
 //function to group all the admin prefix
 Route::prefix('admin')->group(function()
 {
@@ -79,6 +82,7 @@ Route::post('/tasks/assign/assigned', 'TaskController@storeTask');
 Route::get('/tasks/edit/{id}', 'TaskController@edit');
 Route::put('/tasks/update/{id}', 'TaskController@update');
 Route::delete('/tasks/view/{id}', 'TaskController@destroy');
+Route::get('/tasks/show/{single_task}', 'TaskController@showSingleTask');
 
 //showing admin reply form
 Route::get('/tasks/comment/{taskasigned}','CommentController@show')->name('admin.tasks.comment');

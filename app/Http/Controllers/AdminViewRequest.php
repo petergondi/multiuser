@@ -16,7 +16,7 @@ class AdminViewRequest extends Controller
     //
     public function showRequests(Request $request)
 {
-$sent_requests=Requests::paginate(10);
+$sent_requests=Requests::orderBy('created_at', 'asc')->paginate(10);
 return view('expenditure-management.requests',compact('sent_requests'));
 
 }

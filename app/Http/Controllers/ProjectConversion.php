@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Task;
 use App\Project;
 use Carbon\Carbon;
@@ -26,8 +27,10 @@ class ProjectConversion extends Controller
             return response("this is an ongoing project!!");
         }
         else{
+            $userid = Auth::user()->id;
             $project=new Project;
-            $project->taskid=$request->taskid;
+            $project->taskid=$taskid;
+            $project->userid=$userid;
             $project->task_name=$request->task;
             $project->description=$request->description;
             $project->customer_name=$request->customer;
@@ -37,11 +40,11 @@ class ProjectConversion extends Controller
             $project->start=Carbon::parse($request->input('from'));
             $project->end=Carbon::parse($request->input('to'));
             $project->days=abs(strtotime(Carbon::parse($request->input('to'))) - strtotime(Carbon::parse($request->input('from'))))/86400;
+            $project->progress=0;
             $project->note=$request->input('note');
             $project->save();
             return response("the task has been converted to project!!");
         }
-       
 
     }
 }

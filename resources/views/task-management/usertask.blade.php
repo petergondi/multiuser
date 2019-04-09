@@ -52,6 +52,7 @@
                  <th class=" bg-primary">No.</th>
                 <th class=" bg-primary">Category</th>
                  <th class=" bg-primary">Task Name</th>
+                  <th class=" bg-primary">Customer Name</th>
                 <th class=" bg-primary">Description</th>
                 <th class=" bg-primary">Location</th>
                 <th class=" bg-primary">Contact</th>
@@ -75,6 +76,7 @@
               </td>
               @endif
               <td class="pt-3-half"> {{$usertask->task_name}}</td>
+              <td class="pt-3-half"> {{$usertask->customer_name}}</td>
               <td class="pt-3-half" > {{$usertask->description}}</td>
               <td class="pt-3-half" > {{$usertask->location}}</td>
               <td class="pt-3-half"> {{$usertask->contact}}</td>
@@ -89,21 +91,21 @@
               </td>
               @endif
               @if(App\Project::where('taskid',$usertask->id)->first())
-                      <td class="pt-2-half" ><span class="label label-info">Yes</span></td> 
+                      <td id="project" class="pt-2-half" ><span class="label label-info">Yes</span></td> 
                     @else
                       <td class="pt-2-half" ><span class="label label-dark">No</span></td>
                     @endif
                 <td class="pt-3-half"> 
-                     <a href="/users/tasks/reply/{{$usertask->id}}" style="float:left;" data-placement="top" data-toggle="tooltip" title="reply"><button class="btn btn-primary btn-xs pull-right " data-title="reply" data-toggle="modal" data-target="#reply" ><span class="fa fa-reply"></span></button></a>
+                     <a href="/users/tasks/reply/{{$usertask->id}}" style="float:left;" data-placement="top" data-toggle="tooltip" title="reply"><button class="btn btn-primary btn-sm btn-xs pull-right " data-title="reply" data-toggle="modal" data-target="#reply" ><span class="fa fa-reply"></span></button></a>
                       </a></td>
                         <td class="pt-3-half">
                             <span class="label label-warning">{{App\Reply::where('user_id',$userlogged)->where('task_id',$usertask->id)->count()}}</span>
                           </td>
                            <td  class="pt-3-half">
-                    <a href="" style="float:left;" data-placement="top" data-toggle="tooltip" title="view"><button class="btn btn-primary btn-xs pull-right " data-title="view" data-toggle="modal" data-target="#view" ><span class="fa fa-eye"></span></button>&nbsp;&nbsp;</a>
+                    <a href="" style="float:left;" data-placement="top" data-toggle="tooltip" title="view"><button class="btn btn-primary btn-sm btn-xs pull-right " data-title="view" data-toggle="modal" data-target="#view" ><span class="fa fa-eye"></span></button>&nbsp;&nbsp;</a>
                     </td>
                       <td class="pt-3-half">
-                <span> <button class="btn btn-success btn-xs convert" id="convert" title="convert-task" data-id="{{$usertask->id}}" data-toggle="modal" data-target="#exampleModal" ><span class="fa fa-exchange"></span></button>
+                <span> <button class="btn btn-success btn-sm btn-xs convert" id="convert" title="convert-task" data-id="{{$usertask->id}}" data-toggle="modal" data-target="#exampleModal" ><span class="fa fa-exchange"></span></button>
                     </span>
               </td>
 
@@ -141,6 +143,7 @@
                $('#from').val("");
                $('#to').val("");
                $('#note').val("");
+                $('#project').text("yes");
               });
             });
             $('#task').text(data.task);

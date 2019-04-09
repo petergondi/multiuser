@@ -95,13 +95,13 @@
                                     Expense:
                                     {{$notification = auth()->user()->notifications[0]->data['expense']}}
                                     </div>
-                                    @if(auth()->user()->notifications[0]->data['status']==1)
+                                    @if(auth()->user()->notifications[0]->data['status']==2)
                                      <div class="panel panel-default">
-                                     Request Accepted
+                                     Request Declined
                                        </div>
                                        @else
                                        <div class="panel panel-default">
-                                     Request Declined
+                                     Request Approved
                                        </div>
                                        @endif
                                        @endforeach

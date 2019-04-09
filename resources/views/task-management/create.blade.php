@@ -71,7 +71,7 @@
  <div class="header-right">
             <div action="pages-search-results.html" class="search nav-form col-md-8 col-md-offset-2">
                 <div class="input-group input-search">
-                    <input type="text" class="form-control" name="q" id="customer_search" placeholder="Search Customer...">
+                    <input type="text" class="form-control" name="q" id="customer_search" placeholder="Search Customer using email or contact...">
                     <span class="input-group-btn">
                         <button class="btn btn-default" id="search" type="submit"><i class="fa fa-search"></i></button>
                     </span>
@@ -148,22 +148,19 @@
                                 @endif
                             </div>
                         </div>
-                         <div class="form-group{{ $errors->has('customer_name') ? ' has-error' : '' }}">
-                                        <label for="customer_name" class="col-md-4 control-label">Customer<button data-toggle="modal" data-target="#exampleModal" title="new Customer" class="btn btn-sm"><i class="fa fa-plus"></i></button></label>
-                                        <div class="col-md-6">
-                                            <select class="form-control" name="customer_name" id="customer_name">
-                                                    <option value="" selected>Select Customer</option>
-                                                    @foreach($customers as $customer)
-                                            <option value="{{$customer->id}}">{{$customer->customer_name}}</option>
-                                                    @endforeach
-                                                  </select>
-                                            @if ($errors->has('customer_name'))
-                                                <span class="help-block">
-                                                    <strong>{{ $errors->first('customer_name') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
+                          <div class="form-group{{ $errors->has('location') ? ' has-error' : '' }}">
+                            <label for="location" class="col-md-4 control-label">Customer<button data-toggle="modal" data-target="#exampleModal" title="new Customer" class="btn btn-sm"><i class="fa fa-plus"></i></button></label>
+
+                            <div class="col-md-6">
+                                <input id="customer_name" type="text" class="form-control" name="customer_name" value="{{ old('customer_name') }}" >
+
+                                @if ($errors->has('customer_name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('customer_name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
                         <div class="form-group{{ $errors->has('location') ? ' has-error' : '' }}">
                             <label for="location" class="col-md-4 control-label">Location</label>
 
@@ -258,12 +255,6 @@ $.ajax({
            url:"/admin/task/assign/"+id,
            data: {customer:id,_token: '{!! csrf_token() !!}'},
            success:function(data){
-        var contactTextBox = document.getElementsByName("contact");
-       contactTextBox.value = data.contact;
-         var locationTextBox = document.getElementsByName("location");
-        locationTextBox.value = data.location;
-         var emailTextBox = document.getElementsByName("email");
-         emailTextBox.value = data.email;
           var contactTextBox = document.getElementById("contact");
        contactTextBox.value = data.contact;
          var locationTextBox = document.getElementById("location");
@@ -287,12 +278,6 @@ $('#add').on('click',function(){
            url:'{{URL::to('admin/customer/add')}}',
            data: {name:name, location:location,email:email,phone:phone,_token: '{!! csrf_token() !!}'},
            success:function(data){
-              $.get("{{URL::to('admin/customers/populate')}}",function(data){  
-                   $('#customer_name').empty();   
-                 for(var i = 0; i < data.length; i++) {
-               $('#customer_name').append('<option value='+i+'>'+data[i]+'</option>');
-                 }
-                  });
                 $('#customer').val("");
            $('#customer_location').val("");
            $('#customer_email').val("");
@@ -328,7 +313,15 @@ $('#add').on('click',function(){
           $('#emai').text(email);
            $('#locat').text(location);
             $('#result').text(customers_name);
-        $('#customer_result').modal('show');
+        //$('#customer_result').modal('show');
+         var contactTextBox = document.getElementById("customer_name");
+       contactTextBox.value = data.name;
+         var contactTextBox = document.getElementById("contact");
+       contactTextBox.value = data.contact;
+         var locationTextBox = document.getElementById("location");
+        locationTextBox.value = data.location;
+         var emailTextBox = document.getElementById("email");
+         emailTextBox.value = data.email;
        }
     //   error: function (data) {
     // $('#customer_result').modal('show');

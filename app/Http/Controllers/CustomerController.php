@@ -61,7 +61,7 @@ class CustomerController extends Controller
     public function search(Request $request)
     {
         if($request->ajax()){
-     $results=Customer::where('customer_name','LIKE','%'.$request->search)->orWhere('email',$request->search)->orWhere('contact',$request->search)->first();  
+     $results=Customer::where('email',$request->search)->orWhere('contact',$request->search)->first();  
      if($results->count()>0){
          $name=$results->customer_name;
          $email=$results->email;
@@ -97,5 +97,6 @@ class CustomerController extends Controller
     public function destroy($id)
     {
         //
+        Customer::where('id', $id)->delete();
     }
 }
